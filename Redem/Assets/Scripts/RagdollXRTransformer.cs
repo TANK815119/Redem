@@ -36,16 +36,19 @@ public class RagdollXRTransformer : MonoBehaviour
         if (inputData.headset.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 headsetPosition))
         {
             headset.localPosition = headsetPosition;
+            hipTarget.position = headsetPosition + headset.parent.position + bodyConfig.HipOffset();
+            
         }
         if (inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation))
         {
             headset.localRotation = headsetRotation;
+            hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
         }
 
         //left controller
         if (inputData.leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 leftPosition))
         {
-            leftController.position = leftPosition;
+            leftController.localPosition = leftPosition;
         }
         if (inputData.leftController.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion leftRotation))
         {
@@ -55,7 +58,7 @@ public class RagdollXRTransformer : MonoBehaviour
         //rightController
         if (inputData.rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rightPosition))
         {
-            rightController.position = rightPosition;
+            rightController.localPosition = rightPosition;
         }
         if (inputData.rightController.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rightRotation))
         {
@@ -65,6 +68,6 @@ public class RagdollXRTransformer : MonoBehaviour
     private void UpdateHipTarget()
     {
         hipTarget.position = headset.position + bodyConfig.HipOffset();
-        hipTarget.rotation = headset.rotation;
+        hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
     }
 }

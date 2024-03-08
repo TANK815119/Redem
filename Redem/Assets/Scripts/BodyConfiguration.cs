@@ -91,14 +91,18 @@ public class BodyConfiguration : MonoBehaviour
         headCamera.rotation = Quaternion.Euler(0f, turn, 0f) * 
             ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ?  headsetRotation : headCamera.rotation);
 
-        float xNerdNeck = Mathf.Sin(headCamera.eulerAngles.y) * nerdNeck; // using the transform rotation may be unwise as it may be "slow"/behind
-        float zNerdNeck = Mathf.Cos(headCamera.eulerAngles.y) * nerdNeck; // using the transform rotation may be unwise as it may be "slow"/behind
-        headJoint.connectedAnchor = new Vector3(xNerdNeck * 10f, torsoHeight * 10f, zNerdNeck * 10f);
+        //float xNerdNeck = Mathf.Sin(Mathf.Deg2Rad * headCamera.eulerAngles.y) * nerdNeck; // using the transform rotation may be unwise as it may be "slow"/behind
+        //float zNerdNeck = Mathf.Cos(Mathf.Deg2Rad * headCamera.eulerAngles.y) * nerdNeck; // using the transform rotation may be unwise as it may be "slow"/behind
+        headJoint.connectedAnchor = new Vector3(0f * 10f, torsoHeight * 10f, nerdNeck * 10f);
     }
 
     private void PhysicsHip()
     {
         hipJoint.connectedAnchor = new Vector3(0f, (hipHeight - rotoBallRadius) * 10f, 0f);
+        hip.rotation = Quaternion.Euler(0f, 
+            (Quaternion.Euler(0f, turn, 0f) *
+            ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y, 
+            0f);
     }
 
     private void PhysicsLegs()
@@ -188,6 +192,8 @@ public class BodyConfiguration : MonoBehaviour
 
     public Vector3 HipOffset() // get the positional difference between the head and hip
     {
-        return hip.position - head.position;
+        Quaternion headRotation = ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation);
+        //return hip.position - head.position;
+        return Quaternion.Euler(0f, headRotation.eulerAngles.y, 0f) * new Vector3(0f, -torsoHeight, -nerdNeck);
     }
 }
