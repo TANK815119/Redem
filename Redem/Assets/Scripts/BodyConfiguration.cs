@@ -79,8 +79,20 @@ public class BodyConfiguration : MonoBehaviour
         torsoHeight = torsoLengthMax; //for now
         nerdNeck = nerdNeckMin; //for now
 
+        //use head rotation to manipulate hip/head(leg/torso) height ratio height and nerneck
+        float headRoll = headset.eulerAngles.x;
+        if (headRoll > 0f && headRoll < 90f)
+        {
+            torsoHeight = torsoHeight - (Mathf.Abs(headRoll / 90f) * torsoHeight / 6f); //needs tweeking
+        }
+        
+
+        //use height(actual) to manipulate nerneck and torso length proportionatly @TODO major adjustments with if statements
+        //nerdNeck = nerdNeckMin + nerdNeckMin * (playerHeightMax - playerHeight / playerHeightMax) * 1f; //needs tweeking
+        //torsoHeight = torsoHeight = torsoHeight - (playerHeightMax - playerHeight / playerHeightMax) * (torsoHeight / 3f); //needs tweeking
+
         //keep the hipHeight in a range beteen the ground and max height possible(-torso)
-        if (playerHeight <= playerHeightMax && playerHeight - torsoHeight - (rotoBallRadius / 4) >= 0f) //remove "rotoball radius/4" if want even lower coruch
+        if (playerHeight <= playerHeightMax && playerHeight - torsoHeight - (rotoBallRadius / 6) >= 0f) //remove "rotoball radius/4" if want even lower coruch
         {
             hipHeight = playerHeight - torsoHeight;
         }
@@ -190,7 +202,7 @@ public class BodyConfiguration : MonoBehaviour
         }
     }
 
-    public Vector3 HipOffset() // get the positional difference between the head and hip
+    public Vector3 HipOffset() // get the positional difference between the head and hip  
     {
         Quaternion headRotation = ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation);
         //return hip.position - head.position;
