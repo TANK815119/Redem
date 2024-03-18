@@ -80,11 +80,11 @@ public class BodyConfiguration : MonoBehaviour
         nerdNeck = nerdNeckMin; //for now
         
 
-        //use height(actual) to manipulate nerneck and torso length proportionatly @TODO major adjustments with if statements
-        nerdNeck = Mathf.Clamp(nerdNeckMin + nerdNeckMin * (1f - playerHeight / playerHeightMax) * 1f, nerdNeckMin, nerdNeckMin * 2f); //needs tweeking
-        //torsoHeight = Mathf.Clamp(torsoHeight - torsoHeight * (playerHeightMax - playerHeight / playerHeightMax) * 0.3333f, torsoLengthMax * 0.333f, torsoLengthMax); //needs tweeking
-        torsoHeight = Mathf.Sqrt(torsoLengthMax * torsoLengthMax - nerdNeck * nerdNeck); // pythagorean therom;
-        //Debug.Log("nerd neck: " + nerdNeck + " Torso Height: " + torsoHeight + " TorsoLength: " + Mathf.Sqrt(torsoHeight * torsoHeight + nerdNeck * nerdNeck));
+        ////use height(actual) to manipulate nerneck and torso length proportionatly @TODO major adjustments with if statements
+        //nerdNeck = Mathf.Clamp(nerdNeckMin + nerdNeckMin * (1f - playerHeight / playerHeightMax) * 1f, nerdNeckMin, nerdNeckMin * 2f); //needs tweeking
+        ////torsoHeight = Mathf.Clamp(torsoHeight - torsoHeight * (playerHeightMax - playerHeight / playerHeightMax) * 0.3333f, torsoLengthMax * 0.333f, torsoLengthMax); //needs tweeking
+        //torsoHeight = Mathf.Sqrt(torsoLengthMax * torsoLengthMax - nerdNeck * nerdNeck); // pythagorean therom;
+        ////Debug.Log("nerd neck: " + nerdNeck + " Torso Height: " + torsoHeight + " TorsoLength: " + Mathf.Sqrt(torsoHeight * torsoHeight + nerdNeck * nerdNeck));
 
         //use head rotation to manipulate hip/head(leg/torso) height ratio height and nerneck
         float headRoll = headset.localEulerAngles.x;
