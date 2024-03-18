@@ -78,18 +78,23 @@ public class BodyConfiguration : MonoBehaviour
         //torso/head offset calculations
         torsoHeight = torsoLengthMax; //for now
         nerdNeck = nerdNeckMin; //for now
-
-        //use head rotation to manipulate hip/head(leg/torso) height ratio height and nerneck
-        float headRoll = headset.eulerAngles.x;
-        if (headRoll > 0f && headRoll < 90f)
-        {
-            torsoHeight = torsoHeight - (Mathf.Abs(headRoll / 90f) * torsoHeight / 6f); //needs tweeking
-        }
         
 
         //use height(actual) to manipulate nerneck and torso length proportionatly @TODO major adjustments with if statements
-        //nerdNeck = nerdNeckMin + nerdNeckMin * (playerHeightMax - playerHeight / playerHeightMax) * 1f; //needs tweeking
-        //torsoHeight = torsoHeight = torsoHeight - (playerHeightMax - playerHeight / playerHeightMax) * (torsoHeight / 3f); //needs tweeking
+        nerdNeck = Mathf.Clamp(nerdNeckMin + nerdNeckMin * (1f - playerHeight / playerHeightMax) * 1f, nerdNeckMin, nerdNeckMin * 2f); //needs tweeking
+        //torsoHeight = Mathf.Clamp(torsoHeight - torsoHeight * (playerHeightMax - playerHeight / playerHeightMax) * 0.3333f, torsoLengthMax * 0.333f, torsoLengthMax); //needs tweeking
+        torsoHeight = Mathf.Sqrt(torsoLengthMax * torsoLengthMax - nerdNeck * nerdNeck); // pythagorean therom;
+        //Debug.Log("nerd neck: " + nerdNeck + " Torso Height: " + torsoHeight + " TorsoLength: " + Mathf.Sqrt(torsoHeight * torsoHeight + nerdNeck * nerdNeck));
+
+        //use head rotation to manipulate hip/head(leg/torso) height ratio height and nerneck
+        float headRoll = headset.localEulerAngles.x;
+        if (headRoll > 0f && headRoll < 90f)
+        {
+            torsoHeight = torsoHeight - (Mathf.Abs(headRoll / 90f) * torsoHeight / 3f); //needs tweeking
+            nerdNeck = nerdNeck - (Mathf.Abs(headRoll / 90f) * nerdNeck); //needs tweeking
+            
+        }
+        //Debug.Log("Head Roll: " + headRoll + "Herd Neck: " + nerdNeck);
 
         //keep the hipHeight in a range beteen the ground and max height possible(-torso)
         if (playerHeight <= playerHeightMax && playerHeight - torsoHeight - (rotoBallRadius / 6) >= 0f) //remove "rotoball radius/4" if want even lower coruch

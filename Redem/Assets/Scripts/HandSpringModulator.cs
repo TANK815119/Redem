@@ -52,7 +52,7 @@ public class HandSpringModulator : MonoBehaviour
         }
         else
         {
-            Debug.Log("modulating");
+            //Debug.Log("modulating");
         }
 
         float modulator = 2f * modulatorMult * (float)System.Math.Tanh(relativeDistance);
