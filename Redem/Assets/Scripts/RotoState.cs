@@ -11,12 +11,17 @@ using UnityEngine;
 //a 1 on either axis indicates one full rotation
 public class RotoState : MonoBehaviour
 {
+    [SerializeField] float proportionalGain;
+    [SerializeField] float derrivativeGain;
+    [SerializeField] float integralGain;
+
     public Vector3 idealRot = Vector3.zero; // x is around the x-axis, z is around the z axis, y is unused
     public Vector3 realRot = Vector3.zero;
-    public Quaternion quat;
-    
+
     //take distance and convert it to
     //# of rotations to get there
+    private float lastError;
+    private float integrationStored;
     public void IdealRotDelta(float xDistDelta, float zdistDelta, float radius)
     {
         //convert distance to portion of circumferece
@@ -35,7 +40,7 @@ public class RotoState : MonoBehaviour
     {
         //more transformation may be nessesary when the 180 to -180 threshold is passed as\
         //this may spit out a deltaAngle which is far too large.
-
+        
         realRot.x += xAnlgeDelta / 360f;
         realRot.z += -zAnlgeDelta / 360f;
     }
@@ -52,5 +57,25 @@ public class RotoState : MonoBehaviour
         //Debug.Log(rotDirection);
 
         return rotDirection;
+    }
+
+    public float PIDTorque(float fixedDeltaTime)
+    {
+        //calculate the error
+        float error = (idealRot - realRot).magnitude;
+
+        //calculate proportional
+        float propotional = error * proportionalGain;
+
+        //calculate derrivate
+        float errorDerrivative = (error - lastError) / fixedDeltaTime;
+        lastError = error;
+        float derrivative = errorDerrivative * derrivativeGain;
+
+        //calculate integral
+        integrationStored += error * fixedDeltaTime;
+        float integral = integrationStored * integralGain;
+
+        return propotional + derrivative + integral; // likely make this absolute values as direction is already known
     }
 }

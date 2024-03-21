@@ -50,7 +50,7 @@ public class RoomspaceLocomotion : MonoBehaviour
         rotoState.RealRotDelta(xDeltaRot, zDeltaRot, radius);
 
         //rotate in the rotoState direction;
-        Vector3 direction = rotoState.RotationDirection() * 10f;
+        Vector3 direction = rotoState.RotationDirection() * rotoState.PIDTorque(Time.fixedDeltaTime);
         rotoBody.AddTorque(direction.x, 0f, -direction.z);
     }
 }
