@@ -68,6 +68,7 @@ public class RotoState : MonoBehaviour
         float propotional = error * proportionalGain;
 
         //calculate derrivate
+        //i probably dont have to worry about derrivative kick
         float errorDerrivative = (error - lastError) / fixedDeltaTime;
         lastError = error;
         float derrivative = errorDerrivative * derrivativeGain;

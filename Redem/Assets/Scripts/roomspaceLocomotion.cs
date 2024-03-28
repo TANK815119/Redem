@@ -25,6 +25,7 @@ public class RoomspaceLocomotion : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        rotoBody.angularVelocity = Vector3.zero;
         //update headset deltas
         Vector3 headsetPosition = headset.localPosition;
         Vector3 deltaHeadsetPosition = headsetPosition - lastHeadsetPosition;

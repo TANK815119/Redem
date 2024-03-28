@@ -2219,8 +2219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f9629d4c5512346bb13282034754c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proportionalGain: 100
-  derrivativeGain: 100
+  proportionalGain: 2500
+  derrivativeGain: 500
   integralGain: 0
   idealRot: {x: 0, y: 0, z: 0}
   realRot: {x: 0, y: 0, z: 0}
