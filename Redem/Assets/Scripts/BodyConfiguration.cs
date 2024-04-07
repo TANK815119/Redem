@@ -128,12 +128,9 @@ public class BodyConfiguration : MonoBehaviour
         float legLength = hip.position.y - anchor.position.y;
         if(legLength > 0f)
         {
-            //find the midpoint between the hip and anchor
-            float legPosition = hip.position.y - (legLength / 2f);
-
             //manipulate the leg transform with this information
             legs.localScale = new Vector3(0.2f, Mathf.Abs(legLength / 2f), 0.2f);
-            legJoint.anchor = new Vector3(0f, legPosition * 1f, 0f);
+            legJoint.anchor = new Vector3(0f, (legLength / 2f) * 1f, 0f);
         }
         else
         {

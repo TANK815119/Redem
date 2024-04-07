@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoomspaceLocomotion : MonoBehaviour
 {
     [SerializeField] private Transform headset;
+    [SerializeField] private Transform physicsHead;
     [SerializeField] private GameObject rotoball;
     [SerializeField] private float radius = 0.2f;
 
@@ -13,7 +14,7 @@ public class RoomspaceLocomotion : MonoBehaviour
     private RotoState rotoState;
 
     private Vector3 lastHeadsetPosition = Vector3.zero;
-    Quaternion lastRotoballRotation = Quaternion.identity;
+    private Quaternion lastRotoballRotation = Quaternion.identity;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class RoomspaceLocomotion : MonoBehaviour
     {
         rotoBody.angularVelocity = Vector3.zero;
         //update headset deltas
-        Vector3 headsetPosition = headset.localPosition;
+        Vector3 headsetPosition = headset.position - physicsHead.position;
         Vector3 deltaHeadsetPosition = headsetPosition - lastHeadsetPosition;
         lastHeadsetPosition = headsetPosition;
 
@@ -48,10 +49,10 @@ public class RoomspaceLocomotion : MonoBehaviour
             zDeltaRot = zDeltaRot - 360f;
         }
         rotoState.IdealRotDelta(deltaHeadsetPosition.x, deltaHeadsetPosition.z, radius);
-        rotoState.RealRotDelta(xDeltaRot, zDeltaRot, radius);
+        rotoState.RealRotDelta(xDeltaRot, zDeltaRot, radius); // should only appear in one place
 
         //rotate in the rotoState direction;
-        Vector3 direction = rotoState.RotationDirection() * rotoState.PIDTorque(Time.fixedDeltaTime);
+        Vector3 direction = rotoState.RotationDirection() * rotoState.PIDTorque(Time.fixedDeltaTime, rotoBody.velocity.magnitude);
         rotoBody.AddTorque(direction.x, 0f, -direction.z);
     }
 }

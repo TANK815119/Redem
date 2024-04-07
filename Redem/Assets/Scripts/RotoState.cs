@@ -17,11 +17,14 @@ public class RotoState : MonoBehaviour
 
     public Vector3 idealRot = Vector3.zero; // x is around the x-axis, z is around the z axis, y is unused
     public Vector3 realRot = Vector3.zero;
+    public bool useVelocity = true;
 
     //take distance and convert it to
     //# of rotations to get there
     private float lastError;
     private float integrationStored;
+
+    private bool derrivativeEnabled = true;
     public void IdealRotDelta(float xDistDelta, float zdistDelta, float radius)
     {
         //convert distance to portion of circumferece
@@ -59,7 +62,7 @@ public class RotoState : MonoBehaviour
         return rotDirection;
     }
 
-    public float PIDTorque(float fixedDeltaTime)
+    public float PIDTorque(float fixedDeltaTime, float velocity)
     {
         //calculate the error
         float error = (idealRot - realRot).magnitude;
@@ -69,9 +72,28 @@ public class RotoState : MonoBehaviour
 
         //calculate derrivate
         //i probably dont have to worry about derrivative kick
-        float errorDerrivative = (error - lastError) / fixedDeltaTime;
-        lastError = error;
-        float derrivative = errorDerrivative * derrivativeGain;
+        float derrivative = 0f;
+        float errorDerrivative = 0f;
+        if (useVelocity)
+        {
+            errorDerrivative = -velocity;
+            derrivative = -velocity * derrivativeGain;
+        }
+        else
+        {
+            errorDerrivative = (error - lastError) / fixedDeltaTime;
+            lastError = error;
+            derrivative = errorDerrivative * derrivativeGain;
+        }
+        
+        if (!derrivativeEnabled)
+        {
+            lastError = 0f;
+            derrivative = 0f;
+            derrivativeEnabled = true; //gets rid of inntial derrivative kick
+        }
+
+        Debug.Log("Proportional: " + error + " | Derrivative: " + errorDerrivative);
 
         //calculate integral
         integrationStored += error * fixedDeltaTime;
