@@ -51,8 +51,9 @@ public class RoomspaceLocomotion : MonoBehaviour
         rotoState.IdealRotDelta(deltaHeadsetPosition.x, deltaHeadsetPosition.z, radius);
         rotoState.RealRotDelta(xDeltaRot, zDeltaRot, radius); // should only appear in one place
 
-        //rotate in the rotoState direction;
-        Vector3 direction = rotoState.RotationDirection() * rotoState.PIDTorque(Time.fixedDeltaTime, rotoBody.velocity.magnitude);
+        //rotate in the rotoState direction
+        float planeVelocity =  (new Vector3(rotoBody.velocity.x, 0f, rotoBody.velocity.z)).magnitude;
+        Vector3 direction = rotoState.RotationDirection() * rotoState.PIDTorque(Time.fixedDeltaTime, planeVelocity);
         rotoBody.AddTorque(direction.x, 0f, -direction.z);
     }
 }

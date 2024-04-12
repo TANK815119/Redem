@@ -2743,7 +2743,7 @@ ConfigurableJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
-  m_ConnectedMassScale: 0.00001
+  m_ConnectedMassScale: 1
 --- !u!4 &923155032693515502
 Transform:
   m_ObjectHideFlags: 0
@@ -8961,12 +8961,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f9629d4c5512346bb13282034754c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proportionalGain: 2500
-  derrivativeGain: 500
+  proportionalGain: 5000
+  derrivativeGain: 750
   integralGain: 0
   idealRot: {x: 0, y: 0, z: 0}
   realRot: {x: 0, y: 0, z: 0}
-  useVelocity: 0
+  useVelocity: 1
 --- !u!114 &5997203632868768198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11925,6 +11925,8 @@ MonoBehaviour:
   rotoball: {fileID: 7305135998560514015}
   radius: 0.2
   metersPerSecond: 1.5
+  posZ: 0
+  posX: 0
 --- !u!4 &8729299336367756743
 Transform:
   m_ObjectHideFlags: 0
