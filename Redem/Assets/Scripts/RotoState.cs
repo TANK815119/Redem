@@ -11,9 +11,11 @@ using UnityEngine;
 //a 1 on either axis indicates one full rotation
 public class RotoState : MonoBehaviour
 {
-    [SerializeField] float proportionalGain;
-    [SerializeField] float derrivativeGain;
-    [SerializeField] float integralGain;
+    [SerializeField] private float proportionalGain;
+    [SerializeField] private float derrivativeGain;
+    [SerializeField] private float integralGain;
+    [SerializeField] private float crudeGain;
+    [SerializeField] private float theta;
 
     public Vector3 idealRot = Vector3.zero; // x is around the x-axis, z is around the z axis, y is unused
     public Vector3 realRot = Vector3.zero;
@@ -100,5 +102,36 @@ public class RotoState : MonoBehaviour
         float integral = integrationStored * integralGain;
 
         return propotional + derrivative + integral; // likely make this absolute values as direction is already known
+    }
+
+    public float CrudeTorque()
+    {
+        //calculate the error
+        float error = (idealRot - realRot).magnitude;
+
+        //figure out a boolean condition to prevent overshoot here to elminate jostle
+        //I probably just need to look at if the error touched--or nearly touched-- zero last time and then 
+        //set the realRot to the idealRot
+        bool overShot = false;
+
+        float power = 0f;
+        if(error > theta)
+        {
+            power = crudeGain;
+        }
+        else
+        {
+            //power = crudeGain * Mathf.Pow(error * (1f / theta), 5f);
+            power = crudeGain * 2f * ((1f/(1f + Mathf.Exp(-4f * (error * (1f / theta))))) - 0.5f);
+        }
+
+        if(overShot)
+        {
+            //reset power and set ideal and real rot to match
+        }
+
+        Debug.Log("Error: " + error + " Power: " + power);
+
+        return power;
     }
 }

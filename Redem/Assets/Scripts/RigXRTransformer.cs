@@ -46,7 +46,7 @@ public class RigXRTransformer : MonoBehaviour
         {
             Vector3 deltaPosition = headsetPosition - lastHeadsetPosition;
             headsetStack = headsetStack + Quaternion.Euler(0f, turn, 0f) * deltaPosition;
-            headset.position = headsetStack + new Vector3(head.position.x, 0f, head.position.z);
+            headset.position = headsetStack + new Vector3(head.position.x, head.position.y, head.position.z);
             lastHeadsetPosition = headsetPosition;
         }
         if (inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation))
