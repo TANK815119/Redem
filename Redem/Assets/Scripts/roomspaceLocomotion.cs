@@ -11,7 +11,7 @@ public class RoomspaceLocomotion : MonoBehaviour
 
     private Rigidbody rotoBody;
     private Transform rotoTrans;
-    private RotoState rotoState;
+    private PIDWrapper wrapper;
 
     private Vector3 lastHeadsetPosition = Vector3.zero;
     private Quaternion lastRotoballRotation = Quaternion.identity;
@@ -20,7 +20,8 @@ public class RoomspaceLocomotion : MonoBehaviour
     {
         rotoBody = rotoball.GetComponent<Rigidbody>();
         rotoTrans = rotoball.transform;
-        rotoState = rotoball.GetComponent<RotoState>();
+
+        wrapper = rotoball.GetComponent<PIDWrapper>();
     }
 
     // Update is called once per frame
@@ -37,7 +38,7 @@ public class RoomspaceLocomotion : MonoBehaviour
         Quaternion deltaRotoballRotation = rotoballRotation * Quaternion.Inverse(lastRotoballRotation); //this - last
         lastRotoballRotation = rotoballRotation;
 
-        //update rotostate
+        //convert to usable values
         float xDeltaRot = deltaRotoballRotation.eulerAngles.x;
         float zDeltaRot = deltaRotoballRotation.eulerAngles.z;
         if(xDeltaRot > 180f)
@@ -48,17 +49,10 @@ public class RoomspaceLocomotion : MonoBehaviour
         {
             zDeltaRot = zDeltaRot - 360f;
         }
-        rotoState.IdealRotDelta(deltaHeadsetPosition.x, deltaHeadsetPosition.z, radius);
-        rotoState.RealRotDelta(xDeltaRot, zDeltaRot, radius); // should only appear in one place
 
-        //rotate in the rotoState direction
-        //calculate how much power is necessary
-        float planarVelocity =  (new Vector3(rotoBody.velocity.x, 0f, rotoBody.velocity.z)).magnitude;
-        //float planarVelocity = rotoBody.angularVelocity.magnitude;
-        //float power = rotoState.PIDTorque(Time.fixedDeltaTime, planarVelocity);
-        float power = rotoState.CrudeTorque();
-        Vector3 direction = rotoState.RotationDirection() * power;
-        rotoBody.AddTorque(direction.x, 0f, -direction.z);
-        //Debug.Log("Power: " + power);
+        //write and read to the PID controllers
+        wrapper.IdealRotDelta(deltaHeadsetPosition.x, deltaHeadsetPosition.z, radius);
+        wrapper.RealRotDelta(xDeltaRot, zDeltaRot, radius); // should only appear in one place
+        rotoBody.AddTorque(wrapper.PIDRotTorque(Time.fixedDeltaTime, rotoBody.velocity.x, rotoBody.velocity.z)); // should only appear in one place
     }
 }

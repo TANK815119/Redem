@@ -17,7 +17,7 @@ public class ControllerLocomotion : MonoBehaviour
     private InputData inputData;
     private Rigidbody rotoBody;
     private Transform rotoTrans;
-    private RotoState rotoState;
+    private PIDWrapper wrapper;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class ControllerLocomotion : MonoBehaviour
         inputData = rotoball.GetComponent<InputData>();
         rotoBody = rotoball.GetComponent<Rigidbody>();
         rotoTrans = rotoball.transform;
-        rotoState = rotoball.GetComponent<RotoState>();
+        wrapper = rotoball.GetComponent<PIDWrapper>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class ControllerLocomotion : MonoBehaviour
         if(posZ) { thumbstick.y = 1f; }
         if(posX) { thumbstick.x = 1f; }
 
-        rotoState.IdealRotDelta(
+        wrapper.IdealRotDelta(
             Mathf.Sin(Mathf.Deg2Rad * headset.eulerAngles.y) * thumbstick.y * metersPerSecond * Time.deltaTime +        //x-axis movement(parralel to view)
                 Mathf.Cos(Mathf.Deg2Rad * headset.eulerAngles.y) * thumbstick.x * metersPerSecond * Time.deltaTime,     //x-axis movement(perpendicular to view)
             Mathf.Cos(Mathf.Deg2Rad * headset.eulerAngles.y) * thumbstick.y * metersPerSecond * Time.deltaTime +        //z-axis movement(parralel to view)

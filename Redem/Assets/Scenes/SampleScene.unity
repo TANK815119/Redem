@@ -9369,26 +9369,6 @@ Transform:
   - {fileID: 4208034275351535627}
   m_Father: {fileID: 6173613455817816712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5997203632868768197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7305135998560514015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40f9629d4c5512346bb13282034754c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  proportionalGain: 5000
-  derrivativeGain: 750
-  integralGain: 0
-  crudeGain: 2500
-  theta: 0.25
-  idealRot: {x: 0, y: 0, z: 0}
-  realRot: {x: 0, y: 0, z: 0}
-  useVelocity: 1
 --- !u!114 &5997203632868768198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10083,6 +10063,7 @@ MonoBehaviour:
   leftController: {fileID: 1422358519234662564}
   rightController: {fileID: 1400565017846184615}
   head: {fileID: 5076382753601252062}
+  anchor: {fileID: 6781249846493456927}
   turnSpeed: 120
 --- !u!153 &6707872622066717564
 ConfigurableJoint:
@@ -10832,9 +10813,9 @@ GameObject:
   - component: {fileID: 8712277858512455684}
   - component: {fileID: 503690079655129226}
   - component: {fileID: 5997203632868768198}
-  - component: {fileID: 5997203632868768197}
   - component: {fileID: 8712277858512455686}
   - component: {fileID: 8712277858512455685}
+  - component: {fileID: 8712277858512455688}
   m_Layer: 6
   m_Name: Rotoball
   m_TagString: Untagged
@@ -11424,7 +11405,7 @@ Transform:
   m_GameObject: {fileID: 1172633911105503260}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 5.432, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12305,7 +12286,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7305135998560514015}
-  m_Material: {fileID: 13400000, guid: 307942e48e94a0f43832b1bf9283a778, type: 2}
+  m_Material: {fileID: 13400000, guid: 8ec3c4d5060b4974181bb81742db3455, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12349,6 +12330,22 @@ MonoBehaviour:
   metersPerSecond: 1.5
   posZ: 0
   posX: 0
+--- !u!114 &8712277858512455688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305135998560514015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ba2abf26db76941967b4565e2b54a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proportionalGain: 20000
+  derrivativeGain: 1000
+  integralGain: 0
+  useVelocity: 1
 --- !u!4 &8729299336367756743
 Transform:
   m_ObjectHideFlags: 0

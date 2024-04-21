@@ -97,7 +97,7 @@ public class BodyConfiguration : MonoBehaviour
         //Debug.Log("Head Roll: " + headRoll + "Herd Neck: " + nerdNeck);
 
         //keep the hipHeight in a range beteen the ground and max height possible(-torso)
-        if (playerHeight <= playerHeightMax && playerHeight - torsoHeight - (rotoBallRadius / 6) >= 0f) //remove "rotoball radius/4" if want even lower coruch
+        if (playerHeight <= playerHeightMax && playerHeight - torsoHeight - (rotoBallRadius / 2f) >= 0f) //remove "rotoball radius/4" if want even lower coruch
         {
             hipHeight = playerHeight - torsoHeight;
         }
