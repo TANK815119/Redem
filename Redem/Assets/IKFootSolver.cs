@@ -44,9 +44,9 @@ public class IKFootSolver : MonoBehaviour
             }
 
             //check if player is in the air
-            if(info.transform.position.y < rotoball.position.y - 0.2f)
+            if(info.point.y < rotoball.position.y - 0.4f)
             {
-                ungrounded = false;
+                ungrounded = true;
             }
             else
             {
@@ -59,10 +59,12 @@ public class IKFootSolver : MonoBehaviour
         if (lerp < 1 && !otherFoot.stepping)
         {
             footPosition = Vector3.Lerp(oldPosition, newPosition, lerp);
-            footPosition.y = Mathf.Sin(lerp * Mathf.PI) * stepHeight;
+            footPosition.y += Mathf.Sin(lerp * Mathf.PI) * stepHeight;
 
             stepping = true;
-            lerp += Time.deltaTime * speed * hipBody.velocity.magnitude;
+            float fastMod = 1f;
+            if(fastMod < hipBody.velocity.magnitude) { fastMod = hipBody.velocity.magnitude; } //establishes speed floor
+            lerp += Time.deltaTime * speed * fastMod;
         }
         else
         {
@@ -74,7 +76,6 @@ public class IKFootSolver : MonoBehaviour
         //put feet in accordane to rotonall if not touching grounf
         if(ungrounded)
         {
-            ungrounded = true;
             newPosition = rotoball.position + (hip.right * footSpacing) + (Vector3.down * 0.2f);
             footPosition = newPosition;
         }

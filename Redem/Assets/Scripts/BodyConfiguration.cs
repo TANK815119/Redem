@@ -88,11 +88,15 @@ public class BodyConfiguration : MonoBehaviour
 
         //use head rotation to manipulate hip/head(leg/torso) height ratio height and nerneck
         float headRoll = headset.localEulerAngles.x;
-        if (headRoll > 0f && headRoll < 90f)
+        if (headRoll >= 0f && headRoll <= 90f)
         {
+            if(headRoll >= 75f)
+            {
+                //Debug.Log("supressing");
+                hipJoint.connectedMassScale = 0f;
+            }
             torsoHeight = torsoHeight - (Mathf.Abs(headRoll / 90f) * torsoHeight / 3f); //needs tweeking
             nerdNeck = nerdNeck - (Mathf.Abs(headRoll / 90f) * nerdNeck); //needs tweeking
-            
         }
         //Debug.Log("Head Roll: " + headRoll + "Herd Neck: " + nerdNeck);
 
