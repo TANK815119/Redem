@@ -90,11 +90,6 @@ public class BodyConfiguration : MonoBehaviour
         float headRoll = headset.localEulerAngles.x;
         if (headRoll >= 0f && headRoll <= 90f)
         {
-            if(headRoll >= 75f)
-            {
-                //Debug.Log("supressing");
-                hipJoint.connectedMassScale = 0f;
-            }
             torsoHeight = torsoHeight - (Mathf.Abs(headRoll / 90f) * torsoHeight / 3f); //needs tweeking
             nerdNeck = nerdNeck - (Mathf.Abs(headRoll / 90f) * nerdNeck); //needs tweeking
         }
@@ -116,14 +111,26 @@ public class BodyConfiguration : MonoBehaviour
         //float zNerdNeck = Mathf.Cos(Mathf.Deg2Rad * headCamera.eulerAngles.y) * nerdNeck; // using the transform rotation may be unwise as it may be "slow"/behind
         headJoint.connectedAnchor = new Vector3(0f * 10f, torsoHeight * 10f, nerdNeck * 10f);
     }
-
     private void PhysicsHip()
     {
         hipJoint.connectedAnchor = new Vector3(0f, (hipHeight - rotoBallRadius) * 10f, 0f);
-        hip.rotation = Quaternion.Euler(0f, 
-            (Quaternion.Euler(0f, turn, 0f) *
-            ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y, 
+
+        //calculate hip y rotation
+        if(!(headCamera.eulerAngles.x > 75f && headCamera.eulerAngles.x <= 95f) || !(headCamera.eulerAngles.z > 75f && headCamera.eulerAngles.z <= 95f))  // make sure not looking down too much, else must lerp
+        {
+            hip.rotation = Quaternion.Euler
+            (0f,
+            (Quaternion.Euler(0f, turn, 0f) * ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y,
             0f);
+        }
+        else 
+        {
+            Quaternion newQuaternion = Quaternion.Euler
+            (0f,
+            (Quaternion.Euler(0f, turn, 0f) * ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y,
+            0f);
+            hip.rotation = Quaternion.Slerp(hip.rotation, newQuaternion, 0.1f * Time.deltaTime);
+        }
     }
 
     private void PhysicsLegs()

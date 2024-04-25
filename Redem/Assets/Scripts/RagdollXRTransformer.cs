@@ -42,10 +42,15 @@ public class RagdollXRTransformer : MonoBehaviour
         }
         if (inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation))
         {
-            if(headsetRotation.eulerAngles.x >= headRotationLimit)
+            if(headsetRotation.eulerAngles.x > 75f && headsetRotation.eulerAngles.x <= 95f)
             {
                 Debug.Log("limiting");
                 headsetRotation = Quaternion.Euler(75f, headsetRotation.eulerAngles.y, headsetRotation.eulerAngles.z);
+            }
+            if(headsetRotation.eulerAngles.z > 75f && headsetRotation.eulerAngles.z <= 95f)
+            {
+                Debug.Log("limiting 2");
+                headsetRotation = Quaternion.Euler(headsetRotation.eulerAngles.x, headsetRotation.eulerAngles.y, 75f);
             }
             headset.localRotation = headsetRotation;
             hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
