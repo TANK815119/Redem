@@ -60,7 +60,18 @@ public class PIDController : MonoBehaviour
 
         //Debug.Log("Proportional: " + error + " | Derrivative: " + errorDerrivative + " | Integral: " + integrationStored);
 
-        return propotional + derrivative + integral; // likely make this absolute values as direction is already known
+        //final tuning
+        float power = propotional + derrivative + integral;
+        if (power > 2000f) // necessary to avoid wrong deltaAngles in RoomspaceLocomotion
+        {
+            power = 2000;
+        }
+        if(power < -2000f)
+        {
+            power = -2000;
+        }
+        Debug.Log(power);
+        return power; // likely make this absolute values as direction is already known
     }
 
     public void setPIDProperties(float propGain, float derrGain, float inteGain, bool useVel)

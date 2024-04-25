@@ -43,15 +43,13 @@ public class ControllerLocomotion : MonoBehaviour
         if(posX) { thumbstick.x = 1f; }
 
         //get run vigor
-        float planarLeftHandSpeed = (new Vector3(leftHand.velocity.x, 0f, leftHand.velocity.z)).magnitude;
-        float planarRighhtHandSpeed = (new Vector3(rightHand.velocity.x, 0f, rightHand.velocity.z)).magnitude;
-        float planarHandSpeed = (planarLeftHandSpeed + planarRighhtHandSpeed) / 2f;
-        float planarRotoballSpeed = (new Vector3(rotobody.velocity.x, 0f, rotobody.velocity.z)).magnitude;
-        if (planarHandSpeed > (planarRotoballSpeed + VelDiffTheta))
+        float planarHandSpeed = (leftHand.velocity.magnitude + rightHand.velocity.magnitude) / 2f;
+        float rotoballSpeed = rotobody.velocity.magnitude;
+        if (planarHandSpeed > (rotoballSpeed + VelDiffTheta))
         {
             if (runIntegral < runMult)
             {
-                runIntegral += runGain * (planarHandSpeed - planarRotoballSpeed) * Time.deltaTime;
+                runIntegral += runGain * (planarHandSpeed - rotoballSpeed) * Time.deltaTime;
             }
             else
             {

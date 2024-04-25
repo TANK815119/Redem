@@ -3581,7 +3581,7 @@ ConfigurableJoint:
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
-  m_ConnectedMassScale: 0.00001
+  m_ConnectedMassScale: 1
 --- !u!4 &923155032693515502
 Transform:
   m_ObjectHideFlags: 0
