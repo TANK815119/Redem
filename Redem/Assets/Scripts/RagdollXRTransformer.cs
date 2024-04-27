@@ -12,7 +12,6 @@ public class RagdollXRTransformer : MonoBehaviour
     [SerializeField] private Transform rightController;
     [SerializeField] private Transform hipTarget;
     [SerializeField] private BodyConfiguration bodyConfig;
-    [SerializeField] private float headRotationLimit = 75f;
 
     private InputData inputData;
     // Start is called before the first frame update
@@ -84,7 +83,12 @@ public class RagdollXRTransformer : MonoBehaviour
     }
     private void UpdateHipTarget()
     {
-        hipTarget.position = headset.position + bodyConfig.HipOffset();
+        //hip position
+        Vector3 hipOffset = bodyConfig.HipOffset();
+        hipTarget.position = headset.position + hipOffset;
+
+        //hip rotation
+        //float anteriorPelvicTilt = Mathf.Rad2Deg * Mathf.Atan2(hipOffset.y, hipOffset.z);
         hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
     }
 }

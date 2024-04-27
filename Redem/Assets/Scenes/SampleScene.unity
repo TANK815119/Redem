@@ -1828,7 +1828,7 @@ Transform:
   m_GameObject: {fileID: 1627881743}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.175, y: 5.6, z: 0.5}
+  m_LocalPosition: {x: 0.175, y: 5.4, z: 0.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1960,7 +1960,6 @@ MonoBehaviour:
   rightController: {fileID: 1654186487}
   hipTarget: {fileID: 404437365}
   bodyConfig: {fileID: 8621576869246139875}
-  headRotationLimit: 75
 --- !u!1 &1914524096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,7 +1985,7 @@ Transform:
   m_GameObject: {fileID: 1914524096}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.175, y: 5.6, z: 0.5}
+  m_LocalPosition: {x: -0.175, y: 5.4, z: 0.5}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12712,10 +12711,12 @@ MonoBehaviour:
   playerHeightMax: 1.9
   torsoLengthMax: 0.66
   rotoBallRadius: 0.2
+  anchorOriginHeight: 0.25
   crouchSpeed: 3
   jumpDepth: -0.6
   turnSpeed: 120
   nerdNeckMin: 0.125
+  nerdNeckMax: 0.4
 --- !u!1 &8672336704941130163
 GameObject:
   m_ObjectHideFlags: 0
@@ -12814,7 +12815,7 @@ MonoBehaviour:
   rotoball: {fileID: 7305135998560514015}
   radius: 0.2
   walkSpeed: 1.5
-  runMult: 3.333333
+  runMult: 2
   runDecay: 3
   runGain: 4
   VelDiffTheta: 0.1

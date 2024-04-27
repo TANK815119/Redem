@@ -37,7 +37,9 @@ public class IKFootSolver : MonoBehaviour
         Ray ray = new Ray(hip.position + (hip.right * footSpacing) + (Vector3.up * 0.2f), Vector3.down);
         if(Physics.Raycast(ray, out RaycastHit info, Mathf.Infinity, mask))
         {
-            if(!otherFoot.stepping && Vector3.Distance(newPosition, info.point) > stepDistance)
+            float fastMod = 1f;
+            if (fastMod < hipBody.velocity.magnitude * 0.5f) { fastMod = hipBody.velocity.magnitude * 0.5f; } //establishes speed floor
+            if (!otherFoot.stepping && Vector3.Distance(newPosition, info.point) > stepDistance * fastMod)
             {
                 lerp = 0;
                 newPosition = info.point;
@@ -76,7 +78,7 @@ public class IKFootSolver : MonoBehaviour
         //put feet in accordane to rotonall if not touching grounf
         if(ungrounded)
         {
-            newPosition = rotoball.position + (hip.right * footSpacing) + (Vector3.down * 0.2f);
+            newPosition = rotoball.position + (hip.right * footSpacing) + (Vector3.down * 0.4f);
             footPosition = newPosition;
         }
 

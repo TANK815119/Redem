@@ -28,6 +28,7 @@ public class RoomspaceLocomotion : MonoBehaviour
     void FixedUpdate()
     {
         rotoBody.angularVelocity = Vector3.zero;
+
         //update headset deltas
         Vector3 headsetPosition = headset.position - physicsHead.position;
         Vector3 deltaHeadsetPosition = headsetPosition - lastHeadsetPosition;

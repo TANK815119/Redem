@@ -15,10 +15,12 @@ public class BodyConfiguration : MonoBehaviour
     [SerializeField] private float playerHeightMax = 1.90f;
     [SerializeField] private float torsoLengthMax = 0.625f;
     [SerializeField] private float rotoBallRadius = 0.2f;
+    [SerializeField] private float anchorOriginHeight = 0.2f;
     [SerializeField] private float crouchSpeed = 1f; 
     [SerializeField] private float jumpDepth = 1f; 
     [SerializeField] private float turnSpeed = 120f; 
     [SerializeField] private float nerdNeckMin = 0.4f; 
+    [SerializeField] private float nerdNeckMax = 0.4f; 
 
     private InputData inputData;
     private ConfigurableJoint hipJoint;
@@ -78,12 +80,12 @@ public class BodyConfiguration : MonoBehaviour
         //torso/head offset calculations
         torsoHeight = torsoLengthMax; //for now
         nerdNeck = nerdNeckMin; //for now
-        
+
 
         ////use height(actual) to manipulate nerneck and torso length proportionatly @TODO major adjustments with if statements
-        //nerdNeck = Mathf.Clamp(nerdNeckMin + nerdNeckMin * (1f - playerHeight / playerHeightMax) * 1f, nerdNeckMin, nerdNeckMin * 2f); //needs tweeking
-        ////torsoHeight = Mathf.Clamp(torsoHeight - torsoHeight * (playerHeightMax - playerHeight / playerHeightMax) * 0.3333f, torsoLengthMax * 0.333f, torsoLengthMax); //needs tweeking
-        //torsoHeight = Mathf.Sqrt(torsoLengthMax * torsoLengthMax - nerdNeck * nerdNeck); // pythagorean therom;
+        nerdNeck = Mathf.Clamp(nerdNeckMin + nerdNeckMax * (1f - playerHeight / playerHeightMax) * 1f, nerdNeckMin, nerdNeckMax); //needs tweeking
+        //torsoHeight = Mathf.Clamp(torsoHeight - torsoHeight * (playerHeightMax - playerHeight / playerHeightMax) * 0.3333f, torsoLengthMax * 0.333f, torsoLengthMax); //needs tweeking
+        torsoHeight = Mathf.Sqrt(torsoLengthMax * torsoLengthMax - nerdNeck * nerdNeck); // pythagorean therom;
         ////Debug.Log("nerd neck: " + nerdNeck + " Torso Height: " + torsoHeight + " TorsoLength: " + Mathf.Sqrt(torsoHeight * torsoHeight + nerdNeck * nerdNeck));
 
         //use head rotation to manipulate hip/head(leg/torso) height ratio height and nerneck
@@ -96,7 +98,7 @@ public class BodyConfiguration : MonoBehaviour
         //Debug.Log("Head Roll: " + headRoll + "Herd Neck: " + nerdNeck);
 
         //keep the hipHeight in a range beteen the ground and max height possible(-torso)
-        if (playerHeight <= playerHeightMax && playerHeight - torsoHeight - (rotoBallRadius / 2f) >= 0f) //remove "rotoball radius/4" if want even lower coruch
+        if (playerHeight <= playerHeightMax && playerHeight - torsoHeight - anchorOriginHeight >= 0f) //remove "rotoball radius/4" if want even lower crouch
         {
             hipHeight = playerHeight - torsoHeight;
         }
