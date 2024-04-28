@@ -43,12 +43,12 @@ public class RagdollXRTransformer : MonoBehaviour
         {
             if(headsetRotation.eulerAngles.x > 75f && headsetRotation.eulerAngles.x <= 95f)
             {
-                Debug.Log("limiting");
+                //Debug.Log("limiting");
                 headsetRotation = Quaternion.Euler(75f, headsetRotation.eulerAngles.y, headsetRotation.eulerAngles.z);
             }
             if(headsetRotation.eulerAngles.z > 75f && headsetRotation.eulerAngles.z <= 95f)
             {
-                Debug.Log("limiting 2");
+                //Debug.Log("limiting 2");
                 headsetRotation = Quaternion.Euler(headsetRotation.eulerAngles.x, headsetRotation.eulerAngles.y, 75f);
             }
             headset.localRotation = headsetRotation;

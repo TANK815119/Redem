@@ -70,7 +70,6 @@ public class PIDController : MonoBehaviour
         {
             power = -2000;
         }
-        Debug.Log(power);
         return power; // likely make this absolute values as direction is already known
     }
 
