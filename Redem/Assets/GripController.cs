@@ -8,6 +8,7 @@ public class GripController : MonoBehaviour
     [SerializeField] bool isRightController = false;
 
     private bool gripping = false;
+    private bool clenched = false;
 
     private ConfigurableJoint joint;
     private List<Transform> grabList;
@@ -26,57 +27,92 @@ public class GripController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(clenched);
         float grip = (isRightController) ? GetRightGrip() : GetLeftGrip();
 
-        if(grip > 0.85f && !gripping && grabList.Count != 0)
+        if(grip > 0.85f && !gripping && !clenched)
         {
-            gripping = true;
-            GrabPoint grabPoint = grabList[0].GetComponent<GrabPoint>();
-
-            //change hand animation state
-            handAnim.Gripping = true;
-            handAnim.GripState = grabPoint.GrabType;
-
-            //form a joint with that object
-            joint = grabPoint.ParentTrans.gameObject.AddComponent<ConfigurableJoint>();
-
-            //position
-            joint.configuredInWorldSpace = true;
-            joint.connectedBody = handBody;
-            joint.autoConfigureConnectedAnchor = false;
-            joint.anchor = new Vector3(0f, 0f, 0f);
-            joint.targetPosition = grabPoint.GetCurrParentOffset() - 0.1f * grabPoint.transform.up;
-            
-            //rotation
-            joint.targetRotation = grabPoint.GetCurrParentRotationOffset() * grabPoint.ParentTrans.rotation * Quaternion.Inverse(handBody.transform.rotation);
-
-            //drives
-            JointDrive jointDrive = new JointDrive();
-            jointDrive.positionSpring = 99999f;
-            jointDrive.maximumForce = Mathf.Infinity;
-            joint.xDrive = jointDrive;
-            joint.yDrive = jointDrive;
-            joint.zDrive = jointDrive;
-            joint.angularXDrive = jointDrive;
-            joint.angularYZDrive = jointDrive;
+            if(grip > 0.975f)
+            {
+                clenched = true;
+            }
+            if(grabList.Count != 0)
+            {
+                CreateGrip();
+            }
         }
 
-        if(grip < 0.65 && gripping)
+        if(grip < 0.85f)
         {
-            gripping = false;
-
-            //change hand animation state
-            handAnim.Gripping = false;
-
-            //destroy the joint with the gripped object
-            Destroy(joint);
-            joint = null;
+            clenched = false;
+            if(gripping)
+            {
+                DestroyGrip();
+            }
         }
     }
 
     private void CreateGrip()
     {
+        gripping = true;
+        GrabPoint grabPoint = FindClosestGrabPoint(grabList, handBody.transform).GetComponent<GrabPoint>();
 
+        //change hand animation state
+        handAnim.Gripping = true;
+        handAnim.GripState = grabPoint.GrabType;
+
+        //form a joint with that object
+        joint = grabPoint.ParentTrans.gameObject.AddComponent<ConfigurableJoint>();
+
+        //position
+        joint.configuredInWorldSpace = true;
+        joint.connectedBody = handBody;
+        joint.autoConfigureConnectedAnchor = false;
+        joint.anchor = new Vector3(0f, 0f, 0f);
+        joint.targetPosition = grabPoint.GetCurrParentOffset() - 0.1f * grabPoint.transform.up; //hard coded for hand length
+
+        //rotation
+        joint.targetRotation = grabPoint.GetCurrParentRotationOffset() * grabPoint.ParentTrans.rotation * Quaternion.Inverse(handBody.transform.rotation);
+
+        //drives
+        JointDrive jointDrive = new JointDrive();
+        jointDrive.positionSpring = 99999f;
+        jointDrive.maximumForce = Mathf.Infinity;
+        joint.xDrive = jointDrive;
+        joint.yDrive = jointDrive;
+        joint.zDrive = jointDrive;
+        joint.angularXDrive = jointDrive;
+        joint.angularYZDrive = jointDrive;
+    }
+
+    private void DestroyGrip()
+    {
+        gripping = false;
+
+        //change hand animation state
+        handAnim.Gripping = false;
+
+        //destroy the joint with the gripped object
+        Destroy(joint);
+        joint = null;
+    }
+
+    private Transform FindClosestGrabPoint(List<Transform> grabList, Transform hand)
+    {
+        Vector3 handPoint = hand.position + 0.1f * hand.up; //hard coded hand length
+
+        //search through the list for the closest grab point
+        Transform closestGrabPoint = grabList[0];
+        for(int i = 0; i < grabList.Count; i++)
+        {
+            float oldDistance = (closestGrabPoint.position - handPoint).magnitude;
+            float thisDistance = (grabList[i].position - handPoint).magnitude;
+            if (thisDistance < oldDistance)
+            {
+                closestGrabPoint = grabList[i];
+            }
+        }
+        return closestGrabPoint;
     }
 
     private void OnTriggerEnter(Collider other)
