@@ -31,12 +31,13 @@ public class HandAnimation : MonoBehaviour
     [SerializeField] [Range(0.0f, 1.0f)] private float trigger;
     [SerializeField] [Range(0.0f, 1.0f)] private float thumb;
 
-    [SerializeField] private bool gripping;
-    [SerializeField] private int gripState = 0;
+    [SerializeField] public bool Gripping { get; set; }
+    [SerializeField] public int GripState{ get; set; }
+
     /*
-    0 - flatGrip- 
+    0 - flatGrip
     1 - cornerGrip
-    2 - cyclinderGrip
+    2 - cylinderGrip
     3 - sphereGrip
     4 - planeGrip
     */
@@ -80,9 +81,9 @@ public class HandAnimation : MonoBehaviour
             UpdateLeftController();
         }
 
-        if (gripping)
+        if (Gripping)
         {
-            switch(gripState)
+            switch(GripState)
             {
                 case 0: FlatGrip(); break;
                 case 1: CornerGrip(); break;
@@ -108,8 +109,6 @@ public class HandAnimation : MonoBehaviour
         {
             for(int y = 0; y < 4; y++) // hard-coded
             {
-                //Vector3 currInter = interArr[x * 4 + y];
-                //Vector3 currHand = handArr[x][y];
                 interArr[x * 4 + y].x = Mathf.Lerp(interArr[x * 4 + y].x, handArr[x][y].x, 25f * Time.deltaTime);
                 interArr[x * 4 + y].y = Mathf.Lerp(interArr[x * 4 + y].y, handArr[x][y].y, 25f * Time.deltaTime);
                 interArr[x * 4 + y].z = Mathf.Lerp(interArr[x * 4 + y].z, handArr[x][y].z, 25f * Time.deltaTime);
