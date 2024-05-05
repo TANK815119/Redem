@@ -11,6 +11,7 @@ public class GripController : MonoBehaviour
     private bool clenched = false;
 
     private ConfigurableJoint joint;
+    private GrabPoint grabbedPoint;
     private List<Transform> grabList;
     private HandAnimation handAnim;
     private Rigidbody handBody;
@@ -27,7 +28,6 @@ public class GripController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(clenched);
         float grip = (isRightController) ? GetRightGrip() : GetLeftGrip();
 
         if(grip > 0.85f && !gripping && !clenched)
@@ -56,6 +56,8 @@ public class GripController : MonoBehaviour
     {
         gripping = true;
         GrabPoint grabPoint = FindClosestGrabPoint(grabList, handBody.transform).GetComponent<GrabPoint>();
+        grabbedPoint = grabPoint;
+        grabbedPoint.grabbed = true;
 
         //change hand animation state
         handAnim.Gripping = true;
@@ -88,6 +90,7 @@ public class GripController : MonoBehaviour
     private void DestroyGrip()
     {
         gripping = false;
+        grabbedPoint.grabbed = false;
 
         //change hand animation state
         handAnim.Gripping = false;
@@ -121,12 +124,20 @@ public class GripController : MonoBehaviour
         {
             grabList.Add(other.transform);
         }
+        if (other.GetComponent<GrabPlane>() != null)
+        {
+            grabList.Add(other.GetComponent<GrabPlane>().FollowHand(transform));
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<GrabPoint>() != null)
         {
             grabList.Remove(other.transform);
+        }
+        if (other.GetComponent<GrabPlane>() != null)
+        {
+            grabList.Remove(other.GetComponent<GrabPlane>().UnfollowHand(transform));
         }
     }
 

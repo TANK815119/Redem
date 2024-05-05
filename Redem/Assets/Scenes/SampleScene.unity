@@ -573,9 +573,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &50175224
 GameObject:
@@ -1140,6 +1140,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 249877448}
+  - {fileID: 1820070536}
   m_Father: {fileID: 11964268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &184949329
@@ -1377,9 +1378,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &246966465
 GameObject:
@@ -1450,9 +1451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &249877447
 GameObject:
@@ -1501,9 +1502,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!135 &249877450
 SphereCollider:
@@ -2003,9 +2004,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &338627116
 GameObject:
@@ -2750,9 +2751,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &436608348
 GameObject:
@@ -2906,9 +2907,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &468512623
 GameObject:
@@ -3227,9 +3228,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &530658212
 GameObject:
@@ -4161,9 +4162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
@@ -4822,9 +4823,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &839646462
 GameObject:
@@ -5442,9 +5443,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!850595691 &873069424
 LightingSettings:
@@ -5579,9 +5580,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &876817658
 GameObject:
@@ -5735,9 +5736,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &882218220
 GameObject:
@@ -5808,9 +5809,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &887104271
 GameObject:
@@ -5914,9 +5915,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &943194292
 GameObject:
@@ -5987,9 +5988,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1031621400
 GameObject:
@@ -7353,9 +7354,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1053939266
 GameObject:
@@ -7426,9 +7427,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1061989672
 GameObject:
@@ -7665,9 +7666,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1096710728
 GameObject:
@@ -8210,9 +8211,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1183479580
 GameObject:
@@ -8283,9 +8284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1212604909
 GameObject:
@@ -8498,9 +8499,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1318460662
 GameObject:
@@ -9196,9 +9197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1516927818
 GameObject:
@@ -9549,9 +9550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1638370012
 GameObject:
@@ -9622,9 +9623,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1645966763
 GameObject:
@@ -10236,9 +10237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &1799621774
 GameObject:
@@ -10323,6 +10324,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799621774}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1820070535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1820070536}
+  - component: {fileID: 1820070538}
+  - component: {fileID: 1820070537}
+  m_Layer: 0
+  m_Name: GrabPlane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1820070536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820070535}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 1, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 180363536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1820070537
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820070535}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.05, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1820070538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820070535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a8d50ce820e85438d044ce6b6e63af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SoftGrip>k__BackingField: 0
+  <GrabType>k__BackingField: 0
+  markerPrefab: {fileID: 4334603996559081247, guid: 6142d7e2a92aa0a43808175194421ea2, type: 3}
 --- !u!1 &1825881874
 GameObject:
   m_ObjectHideFlags: 0
@@ -10859,9 +10929,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &2039714200
 GameObject:
@@ -11347,9 +11417,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!1 &2127014826
 GameObject:
@@ -11586,9 +11656,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
+  <grabbed>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
-  <ParentOffset>k__BackingField: {x: 0, y: 0, z: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
 --- !u!4 &13018386043644813
 Transform:
