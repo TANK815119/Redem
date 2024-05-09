@@ -6,6 +6,7 @@ using UnityEngine.XR;
 public class GripController : MonoBehaviour
 {
     [SerializeField] bool isRightController = false;
+    [SerializeField] bool falseGrip = false;
 
     private bool gripping = false;
     private bool clenched = false;
@@ -29,6 +30,11 @@ public class GripController : MonoBehaviour
     void Update()
     {
         float grip = (isRightController) ? GetRightGrip() : GetLeftGrip();
+
+        if(falseGrip == true)
+        {
+            grip = 1f;
+        }
 
         if(grip > 0.85f && !gripping && !clenched)
         {

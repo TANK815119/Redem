@@ -383,7 +383,7 @@ public class HandAnimation : MonoBehaviour
 
     }
 
-    private void PlaneGrip()
+    private void PlaneGrip() // IDK if nessecary--may be too similar to flat grip
     {
 
     }
