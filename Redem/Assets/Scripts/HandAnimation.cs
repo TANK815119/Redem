@@ -365,7 +365,7 @@ public class HandAnimation : MonoBehaviour
         }
         else
         {
-            thumbArr[0] = new Vector3(5f, 25f, 15f); //may need to be controlled by another float for grabs
+            thumbArr[0] = new Vector3(5f, 25f, -15f); //may need to be controlled by another float for grabs
             for (int i = 1; i < thumbArr.Length; i++) // note the int i = 1
             {
                 thumbArr[i] = new Vector3(0f, 0f, 0f);
@@ -375,12 +375,66 @@ public class HandAnimation : MonoBehaviour
 
     private void CylinderGrip()
     {
+        //pose cylinder grip
+        for (int x = 0; x < gripArr.Length; x++)
+        {
+            for (int y = 0; y < gripArr[x].Length; y++)
+            {
+                gripArr[x][y] = new Vector3(60f, 0f, 0f);
+            }
+        }
 
+        //pose cylinder trigger
+        for (int i = 0; i < indexArr.Length; i++)
+        {
+            indexArr[i] = new Vector3(60f, 0f, 0f);
+        }
+
+        //pose cylinder thumb
+        if(isRightController)
+        {
+            thumbArr[0] = new Vector3(45f, -45f, -15f);
+            thumbArr[1] = new Vector3(0f, 45f, 0f);
+            thumbArr[2] = new Vector3(15f, 0f, -45f);
+        }
+        else
+        {
+            thumbArr[0] = new Vector3(45f, 45f, 15f);
+            thumbArr[1] = new Vector3(0f, -45f, 0f);
+            thumbArr[2] = new Vector3(15f, 0f, 45f);
+        }
     }
 
     private void SphereGrip()
     {
+        //pose sphere grip
+        for (int x = 0; x < gripArr.Length; x++)
+        {
+            for (int y = 0; y < gripArr[x].Length; y++)
+            {
+                gripArr[x][y] = new Vector3(15f, 0f, 0f);
+            }
+        }
 
+        //pose sphere trigger
+        for (int i = 0; i < indexArr.Length; i++)
+        {
+            indexArr[i] = new Vector3(15f, 0f, 0f);
+        }
+
+        //pose sphere thumb
+        if (isRightController)
+        {
+            thumbArr[0] = new Vector3(45f, -90f, -15f);
+            thumbArr[1] = new Vector3(0f, 45f, -7.5f);
+            thumbArr[2] = new Vector3(0f, 0f, -7.5f);
+        }
+        else
+        {
+            thumbArr[0] = new Vector3(45f, 90f, 15f);
+            thumbArr[1] = new Vector3(0f, -45f, 7.5f);
+            thumbArr[2] = new Vector3(0f, 0f, 7.5f);
+        }
     }
 
     private void PlaneGrip() // IDK if nessecary--may be too similar to flat grip
