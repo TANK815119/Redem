@@ -179,7 +179,7 @@ public class GrabPlane : MonoBehaviour
         //essentially, just use closest point for the easiest result(it is likely just the math I would do)
         SphereCollider sphererCol = (SphereCollider)(trigCol);
         Vector3 directionToTarget = handPosition - sphererCol.transform.position; // Vector from sphere center to target point
-        Vector3 closestPoint = sphererCol.transform.position + directionToTarget.normalized * sphererCol.radius; // Closest point on sphere's surface
+        Vector3 closestPoint = sphererCol.transform.position + directionToTarget.normalized * (sphererCol.radius * sphererCol.transform.lossyScale.x); // Closest point on sphere's surface
         grabPoint.transform.position = closestPoint;
 
         //find rotation
@@ -188,13 +188,26 @@ public class GrabPlane : MonoBehaviour
         //grabPoint.transform.rotation *= Quaternion.LookRotation(handPosition, grabPoint.transform.position);
         grabPoint.transform.parent = trigCol.transform;
 
-        Vector3 surfaceVector = grabPoint.transform.position - trigCol.transform.position;
-        grabPoint.transform.up = surfaceVector;
+        //make virtual plane at tangent and put grabpoint in it
+        Vector3 surfaceVector = (grabPoint.transform.position - trigCol.transform.position).normalized;
+        GameObject planeObject = new GameObject();
+        planeObject.name = "FollowGrabPlane";
+        planeObject.transform.parent = transform.parent;
+        planeObject.transform.up = surfaceVector;
 
-        grabPoint.transform.localRotation = Quaternion.Euler(0f * grabPoint.transform.localRotation.eulerAngles.x + 90f, grabPoint.transform.localRotation.eulerAngles.y, 0f * grabPoint.transform.localRotation.eulerAngles.y);
+        //set the rotation in alignment to the virtual plane
+        grabPoint.transform.parent = planeObject.transform;
+        grabPoint.transform.rotation = handRotation;
+        grabPoint.transform.localRotation = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y, grabPoint.transform.localEulerAngles.z);
+        //grabPoint.transform.rotation = handRotation;
+
+        //grabPoint.transform.localRotation *= Quaternion.Euler(90f, 0f, 0f);
+        //grabPoint.transform.localRotation = Quaternion.Euler(grabPoint.transform.localEulerAngles.x, 0f, grabPoint.transform.localEulerAngles.z);
+        //grabPoint.transform.rotation *= Quaternion.Euler(0f, handRotation.y, 0f);
 
         //reset hierarchy
         grabPoint.transform.parent = trigCol.transform.transform.parent;
+        Destroy(planeObject);
     }
 
     private void UpdateCylinderFollow(GameObject grabPoint, Transform handTrans, float handLength)
@@ -210,30 +223,39 @@ public class GrabPlane : MonoBehaviour
         Vector3 pointOnAxis = capCol.transform.position + axisDirection * Vector3.Dot(handPosition - capCol.transform.position, axisDirection);
         //make radius 0, if want a 2d grip, maybe limit placement from "ends"?
         Vector3 direction = (handPosition - pointOnAxis).normalized;
-        Vector3 closestPoint = pointOnAxis + direction * capCol.radius;
+        Vector3 closestPoint = pointOnAxis + direction * (capCol.radius * capCol.transform.lossyScale.x);
         grabPoint.transform.position = closestPoint;
 
         //rotation
         grabPoint.transform.parent = trigCol.transform;
 
+        //make virtual plane at tangent and put grabpoint in it
         Vector3 surfaceVector = (grabPoint.transform.position - pointOnAxis).normalized;
-        Debug.DrawLine(pointOnAxis, grabPoint.transform.position, Color.red);
-        grabPoint.transform.up = surfaceVector;
+        GameObject planeObject = new GameObject();
+        planeObject.name = "FollowGrabPlane";
+        planeObject.transform.parent = transform.parent;
+        planeObject.transform.up = surfaceVector;
+
+        //set the rotation in alignment to the virtual plane
+        grabPoint.transform.parent = planeObject.transform;
+        grabPoint.transform.rotation = capCol.transform.rotation;
+        //grabPoint.transform.localRotation = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y, grabPoint.transform.localEulerAngles.z);
 
         //lock to clock or counter hand position akin to corner grip
-        Quaternion clockQuat = Quaternion.Euler(90f, -90f, 0f);
-        Quaternion counterQuat = Quaternion.Euler(90f, 90f, 0f);
-        if (Quaternion.Angle(clockQuat, handTrans.localRotation) < //mind boggling line of code
-            Quaternion.Angle(counterQuat, handTrans.localRotation))  //compares the global rotations of the hand the the (theorhetical)grabpoints
+        Quaternion clockQuat = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y - 90f, grabPoint.transform.localEulerAngles.z);
+        Quaternion counterQuat = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y + 90f, grabPoint.transform.localEulerAngles.z);
+        if (Quaternion.Angle(clockQuat, handRotation) < //mind boggling line of code
+            Quaternion.Angle(counterQuat, handRotation))  //compares the global rotations of the hand the the (theorhetical)grabpoints
         {
-            grabPoint.transform.localRotation *= clockQuat;
+            grabPoint.transform.localRotation = clockQuat;
         }
         else
         {
-            grabPoint.transform.localRotation *= counterQuat;
+            grabPoint.transform.localRotation = counterQuat;
         }
 
         //reset hierarchy
         grabPoint.transform.parent = trigCol.transform.transform.parent;
+        Destroy(planeObject);
     }
 }
