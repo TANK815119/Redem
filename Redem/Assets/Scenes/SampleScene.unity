@@ -741,7 +741,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -2437,7 +2438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -2510,7 +2512,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -2561,7 +2564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -2654,7 +2658,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -2970,7 +2975,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -3787,7 +3793,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -3943,7 +3950,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -4264,7 +4272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -5927,7 +5936,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -6825,7 +6835,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -7787,7 +7798,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -7924,7 +7936,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -8080,7 +8093,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -8153,7 +8167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -8309,7 +8324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -8382,7 +8398,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -10345,7 +10362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -10418,7 +10436,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -10657,7 +10676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -11047,7 +11067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -11119,7 +11140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -11490,7 +11512,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -11563,7 +11586,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -11709,6 +11733,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231012304}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1231154143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231154144}
+  m_Layer: 0
+  m_Name: Recoil Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1231154144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231154143}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0974, z: 0.3892}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 383361500316486321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1231477355
 GameObject:
   m_ObjectHideFlags: 0
@@ -11778,7 +11833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -13127,7 +13183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -13974,7 +14031,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -14047,7 +14105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -14781,7 +14840,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -14938,6 +14998,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799621774}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1800899785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1800899786}
+  m_Layer: 0
+  m_Name: Casing Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1800899786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800899785}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01331, y: 0.09217, z: 0.0847}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 383361500316486321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1820070535
 GameObject:
   m_ObjectHideFlags: 0
@@ -16495,7 +16586,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -17227,7 +17319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 0
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -17466,7 +17559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SoftGrip>k__BackingField: 0
-  <grabbed>k__BackingField: 0
+  <Grabbed>k__BackingField: 0
+  <IsRightController>k__BackingField: 0
   <GrabType>k__BackingField: 1
   <ParentBody>k__BackingField: {fileID: 0}
   <ParentTrans>k__BackingField: {fileID: 0}
@@ -18299,6 +18393,11 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000016868114, y: -0.3131006, z: 0.0016533062}
     m_Extent: {x: 0.8958289, y: 0.8694886, z: 0.20462573}
   m_DirtyAABB: 0
+--- !u!4 &383361500316486321 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+  m_PrefabInstance: {fileID: 6978339780249220563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &397820686549866437
 Transform:
   m_ObjectHideFlags: 0
@@ -23034,6 +23133,63 @@ Transform:
   - {fileID: 9042834974713670314}
   m_Father: {fileID: 5952257677305927248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4209209616824592245
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3376
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0712
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.8564
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 907791841202706039, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029521246166403605, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+      propertyPath: m_Name
+      value: Spent 45 ACP
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
 --- !u!1 &4213579176359999005
 GameObject:
   m_ObjectHideFlags: 0
@@ -26275,6 +26431,104 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1001 &6978339780249220563
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1437870742066377779, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: recoil
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437870742066377779, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 7489192354099321901}
+    - target: {fileID: 1437870742066377779, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: spentCasing
+      value: 
+      objectReference: {fileID: 1029521246166403605, guid: 344c6f3e3fb7cc042841d00780ed100d, type: 3}
+    - target: {fileID: 1437870742066377779, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: casingOrigin
+      value: 
+      objectReference: {fileID: 1800899786}
+    - target: {fileID: 1437870742066377779, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: recoilOrigin
+      value: 
+      objectReference: {fileID: 1231154144}
+    - target: {fileID: 2399101628822707768, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_Name
+      value: M1A1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038848574586448015, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LODs.Array.data[0].renderers.Array.data[6].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038848574586448015, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LODs.Array.data[1].renderers.Array.data[6].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5038848574586448015, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LODs.Array.data[2].renderers.Array.data[6].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.192
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1231154144}
+    - targetCorrespondingSourceObject: {fileID: 5632077393956751735, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1800899786}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2399101628822707768, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7489192354099321901}
+  m_SourcePrefab: {fileID: 100100000, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
 --- !u!114 &7010960241556756789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26772,6 +27026,107 @@ Transform:
   - {fileID: 1917790586247405825}
   m_Father: {fileID: 2451852478260267992}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7489192354099321900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2399101628822707768, guid: f0f337ffe8cc19c4394b328d914303d4, type: 3}
+  m_PrefabInstance: {fileID: 6978339780249220563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7489192354099321901
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7489192354099321900}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1f6398371a01f6443b847c7457c0d854, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7510814465234655715
 GameObject:
   m_ObjectHideFlags: 0
@@ -29428,3 +29783,5 @@ SceneRoots:
   - {fileID: 1589833768}
   - {fileID: 17896172}
   - {fileID: 530216697}
+  - {fileID: 6978339780249220563}
+  - {fileID: 4209209616824592245}
