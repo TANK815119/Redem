@@ -56,6 +56,13 @@ public class GripController : MonoBehaviour
                 DestroyGrip();
             }
         }
+
+
+        //if(joint != null && joint.currentForce.magnitude > 9999f) //currentFOrce only works one "limited" joints(works well now but may acause problems later)
+        //{
+        //    Debug.Log(joint.currentForce.magnitude);
+        //    DestroyGrip();
+        //}
     }
 
     private void CreateGrip()
@@ -84,14 +91,35 @@ public class GripController : MonoBehaviour
         joint.targetRotation = grabPoint.GetCurrParentRotationOffset() * grabPoint.ParentTrans.rotation * Quaternion.Inverse(handBody.transform.rotation);
 
         //drives
-        JointDrive jointDrive = new JointDrive();
-        jointDrive.positionSpring = 99999f;
-        jointDrive.maximumForce = Mathf.Infinity;
-        joint.xDrive = jointDrive;
-        joint.yDrive = jointDrive;
-        joint.zDrive = jointDrive;
-        joint.angularXDrive = jointDrive;
-        joint.angularYZDrive = jointDrive;
+        if(!grabPoint.SoftGrip)
+        {
+            JointDrive jointDrive = new JointDrive();
+            jointDrive.positionSpring = 99999f;
+            jointDrive.maximumForce = Mathf.Infinity;
+            joint.xDrive = jointDrive;
+            joint.yDrive = jointDrive;
+            joint.zDrive = jointDrive;
+            joint.angularXDrive = jointDrive;
+            joint.angularYZDrive = jointDrive;
+        }
+        else
+        {
+            //JointDrive jointDrive = new JointDrive();
+            //jointDrive.positionSpring = 99999f;
+            //jointDrive.maximumForce = Mathf.Infinity;
+            //joint.xDrive = jointDrive;
+            //joint.yDrive = jointDrive;
+            //joint.zDrive = jointDrive;
+            //joint.angularXDrive = jointDrive;
+            //joint.angularYZDrive = jointDrive;
+
+            //joint.xMotion = ConfigurableJointMotion.Limited;
+            //joint.yMotion = ConfigurableJointMotion.Limited;
+            //joint.zMotion = ConfigurableJointMotion.Limited;
+
+            //joint.targetPosition = Vector3.zero;
+            //joint.connectedAnchor = grabPoint.GetCurrParentOffset() + 0.1f * grabPoint.transform.up; //hard coded for hand length
+        }
     }
 
     private void DestroyGrip()

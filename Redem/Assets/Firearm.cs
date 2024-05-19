@@ -10,10 +10,13 @@ public class Firearm : MonoBehaviour
     [SerializeField] private bool triggerPresssed;
     [SerializeField] private bool automatic;
     [SerializeField] private float recoil = 20f;
+    [SerializeField] private float bulletMassScale = 1f;
     [SerializeField] private List<GrabPoint> pistolGrips;
     [SerializeField] private Transform recoilOrigin;
     [SerializeField] private Transform casingOrigin;
     [SerializeField] private GameObject spentCasing;
+    [SerializeField] private GameObject bullet;
+    
 
     private InputData inputData;
     private Rigidbody gunBody;
@@ -109,17 +112,22 @@ public class Firearm : MonoBehaviour
         //audio
         audioSource.PlayOneShot(audioSource.clip);
 
-        //bloom
-
+        //fire projectile
+        Rigidbody bulletBody = Instantiate(bullet, recoilOrigin.position, recoilOrigin.rotation).GetComponent<Rigidbody>();
+        bulletBody.velocity = gunBody.velocity;
+        bulletBody.mass *= bulletMassScale;
+        bulletBody.AddForce(bulletBody.transform.forward * recoil, ForceMode.Impulse);
 
         //recoil
-        Vector3 force = (recoilOrigin.position - gunBody.transform.position).normalized * -recoil;
+        //Vector3 force = (recoilOrigin.position - gunBody.transform.position).normalized * -recoil;
+        Vector3 force = gunBody.transform.forward * -recoil;
         Vector3 position = recoilOrigin.position;
         gunBody.AddForceAtPosition(force, position, ForceMode.Impulse);
 
         //spent casing
         Rigidbody casingBody =  Instantiate(spentCasing, casingOrigin.position, casingOrigin.rotation).GetComponent<Rigidbody>();
         casingBody.velocity = gunBody.velocity;
-        casingBody.AddExplosionForce(0.03f, gunBody.position, 1f, 0f, ForceMode.Impulse);
+        casingBody.AddForce(casingBody.transform.right * 0.03f + casingBody.transform.up * 0.03f, ForceMode.Impulse);
+        //casingBody.AddExplosionForce(0.03f, gunBody.position, 1f, 0f, ForceMode.Impulse);
     }
 }
