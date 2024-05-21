@@ -37,9 +37,9 @@ public class HandAnimation : MonoBehaviour
     /*
     0 - flatGrip
     1 - cornerGrip
-    2 - cylinderGrip
-    3 - sphereGrip
-    4 - planeGrip
+    2 - sphereGrip
+    3 - cylinderGrip
+    4 - lineGrip
     */
 
     // Start is called before the first frame update
@@ -87,9 +87,10 @@ public class HandAnimation : MonoBehaviour
             {
                 case 0: FlatGrip(); break;
                 case 1: CornerGrip(); break;
-                case 2: CylinderGrip(); break;
+                case 2: SphereGrip(); break;
                 case 3: SphereGrip(); break;
-                case 4: PlaneGrip(); break;
+                case 4: CylinderGrip(); break;
+                case 5: PlaneGrip(); break;
                 default: FlatGrip(); break;
             }
         }

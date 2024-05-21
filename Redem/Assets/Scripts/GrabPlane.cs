@@ -9,12 +9,15 @@ public class GrabPlane : MonoBehaviour
 
     [SerializeField] private GameObject markerPrefab;
     [SerializeField] private int surfaceType = 0;
+    [SerializeField] private bool showGizmo = false; //only functions for planes and corners
+    [SerializeField] [Range(0.0f, 1.0f)] private float gizmoScale = 1f; //only functions for planes and corners
 
     /*
     0 - plane - box collider(thin)
     1 - corner - cylinder collider
     2 - sphere - sphere collider
     3 - cylinder - cylinder collider
+    4 - line grip - cylinder collider
     */
 
     private Collider trigCol;
@@ -41,6 +44,7 @@ public class GrabPlane : MonoBehaviour
                     case 1: UpdateCornerFollow(grabList[i], followList[i], 0.1f); break;//hard coded hand length
                     case 2: UpdateSphereFollow(grabList[i], followList[i], 0.1f); break;//hard coded hand length
                     case 3: UpdateCylinderFollow(grabList[i], followList[i], 0.1f); break;//hard coded hand length
+                    case 4: UpdateLineFollow(grabList[i], followList[i], 0.1f); break;//hard coded hand length
                     default: UpdatePlaneFollow(grabList[i], followList[i], 0.1f); break;//hard coded hand length
                 }
             }
@@ -257,5 +261,102 @@ public class GrabPlane : MonoBehaviour
         //reset hierarchy
         grabPoint.transform.parent = trigCol.transform.transform.parent;
         Destroy(planeObject);
+    }
+
+    private void UpdateLineFollow(GameObject grabPoint, Transform handTrans, float handLength)
+    {
+        //allot like the sphereFollow, just locked on one axis for rotation.
+        //calculate the offset handPosition and rotation
+        Vector3 handPosition = handTrans.position + handLength * handTrans.up;
+        Quaternion handRotation = handTrans.rotation;
+
+        //position
+        CapsuleCollider capCol = (CapsuleCollider)(trigCol);
+        Vector3 axisDirection = capCol.transform.up;
+        Vector3 pointOnAxis = capCol.transform.position + axisDirection * Vector3.Dot(handPosition - capCol.transform.position, axisDirection);
+        //make radius 0, if want a 2d grip, maybe limit placement from "ends"?
+        Vector3 direction = (handPosition - pointOnAxis).normalized;
+        Vector3 closestPoint = pointOnAxis + direction * (0.001f * capCol.transform.lossyScale.x);
+        grabPoint.transform.position = closestPoint;
+
+        //rotation
+        grabPoint.transform.parent = trigCol.transform;
+
+        //make virtual plane at tangent and put grabpoint in it
+        Vector3 surfaceVector = (grabPoint.transform.position - pointOnAxis).normalized;
+        GameObject planeObject = new GameObject();
+        planeObject.name = "FollowGrabPlane";
+        planeObject.transform.parent = transform.parent;
+        planeObject.transform.up = surfaceVector;
+
+        //set the rotation in alignment to the virtual plane
+        grabPoint.transform.parent = planeObject.transform;
+        grabPoint.transform.rotation = capCol.transform.rotation;
+        //grabPoint.transform.localRotation = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y, grabPoint.transform.localEulerAngles.z);
+
+        //lock to clock or counter hand position akin to corner grip
+        Quaternion clockQuat = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y - 90f, grabPoint.transform.localEulerAngles.z);
+        Quaternion counterQuat = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y + 90f, grabPoint.transform.localEulerAngles.z);
+        if (Quaternion.Angle(clockQuat, handRotation) < //mind boggling line of code
+            Quaternion.Angle(counterQuat, handRotation))  //compares the global rotations of the hand the the (theorhetical)grabpoints
+        {
+            grabPoint.transform.localRotation = clockQuat;
+        }
+        else
+        {
+            grabPoint.transform.localRotation = counterQuat;
+        }
+
+        //reset hierarchy
+        grabPoint.transform.parent = trigCol.transform.transform.parent;
+        Destroy(planeObject);
+    }
+
+
+    /*
+    Every method past this point is essentially a different gizmo drawing,
+    each one having slightly different calculations to represent the orientation of their respective grips
+    */
+
+    private void OnDrawGizmos()
+    {
+        if (showGizmo)
+        {
+            switch (surfaceType)
+            {
+                case 0: PlaneGizmo(); break;//hard coded hand length
+                case 1: CornerGizmo(); break;//hard coded hand length
+                default: PlaneGizmo(); break;//hard coded hand length
+            }
+        }
+    }
+
+    private void PlaneGizmo() //up arrow in direction(normal) plane is facing
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position + transform.up * 0.1f * gizmoScale, transform.position); //arrow pointing up(normal) from surface of plane
+        Gizmos.DrawLine(transform.position + transform.up * 0.1f * gizmoScale, transform.position + transform.up * 0.075f * gizmoScale + transform.right * 0.025f * gizmoScale); //branch
+        Gizmos.DrawLine(transform.position + transform.up * 0.1f * gizmoScale, transform.position + transform.up * 0.075f * gizmoScale - transform.right * 0.025f * gizmoScale); //branch
+        Gizmos.DrawLine(transform.position + transform.up * 0.1f * gizmoScale, transform.position + transform.up * 0.075f * gizmoScale + transform.forward * 0.025f * gizmoScale); //branch
+        Gizmos.DrawLine(transform.position + transform.up * 0.1f * gizmoScale, transform.position + transform.up * 0.075f * gizmoScale - transform.forward * 0.025f * gizmoScale); //branch
+        Gizmos.DrawLine(transform.position, transform.position + transform.right * 0.025f * gizmoScale); //base
+        Gizmos.DrawLine(transform.position, transform.position - transform.right * 0.025f * gizmoScale); //base
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 0.025f * gizmoScale); //base
+        Gizmos.DrawLine(transform.position, transform.position - transform.forward * 0.025f * gizmoScale); //base
+    }
+
+    private void CornerGizmo() //both of the two possible orientations
+    {
+        Gizmos.color = Color.red;
+
+        //negative x(tail facing) arrow
+        Gizmos.DrawLine(transform.position, transform.position - transform.right * 0.1f * gizmoScale);
+        Gizmos.DrawLine(transform.position, transform.position - transform.right * 0.025f * gizmoScale + transform.up * 0.025f * gizmoScale); //branch
+        Gizmos.DrawLine(transform.position, transform.position - transform.right * 0.025f * gizmoScale - transform.up * 0.025f * gizmoScale); //branch
+
+        //positive z(tail facing) arrow
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 0.1f * gizmoScale);
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 0.025f * gizmoScale + transform.up * 0.025f * gizmoScale); //branch
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 0.025f * gizmoScale - transform.up * 0.025f * gizmoScale); //branch
     }
 }

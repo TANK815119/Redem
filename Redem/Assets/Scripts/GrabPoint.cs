@@ -12,6 +12,9 @@ public class GrabPoint : MonoBehaviour
     //[field: SerializeField] public Vector3 ParentOffset { get; private set; }
     [field: SerializeField] public Transform ParentTrans { get; private set; }
 
+    [SerializeField] private bool showGizmo = false;
+    [SerializeField] [Range(0.0f, 1.0f)] private float gizmoScale = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +31,17 @@ public class GrabPoint : MonoBehaviour
     public Quaternion GetCurrParentRotationOffset()
     {
         return transform.rotation * Quaternion.Inverse(ParentTrans.rotation);
+    }
+    private void OnDrawGizmos()
+    {
+        if(showGizmo)
+        {
+            //draw a weird low-poly hand
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position - transform.up * 0.05f * gizmoScale, transform.position - transform.forward * 0.025f * gizmoScale - transform.up * 0.05f * gizmoScale); //arrow pointing up from mid hand
+            Gizmos.DrawLine(transform.position, transform.position - transform.up * 0.1f * gizmoScale); //arrow pointing forward stem
+            Gizmos.DrawLine(transform.position, transform.position - transform.up * 0.05f * gizmoScale - transform.right * 0.025f * gizmoScale); //arrow pointing forward side
+            Gizmos.DrawLine(transform.position, transform.position - transform.up * 0.05f * gizmoScale + transform.right * 0.025f * gizmoScale); //arrow pointing forward side
+        }
     }
 }
