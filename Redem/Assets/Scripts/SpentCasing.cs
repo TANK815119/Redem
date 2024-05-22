@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //this script's enitre prupose is to despawn spent casings
-
-public class SpenCasing : MonoBehaviour
+//its a disty and expensive use of Instantiate and Destroy for sometthing
+//rapid like a bullet, buit this works for a test object
+//look into object "pools" for something more effective
+public class SpentCasing : MonoBehaviour
 {
     [SerializeField] private float despawnTimer = 10f;
     [SerializeField] private bool immortal = false;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7822510971738638760}
   - component: {fileID: 6513374956870510853}
   - component: {fileID: -3862628760599082050}
+  - component: {fileID: 385714036071285503}
   m_Layer: 0
   m_Name: 45 ACP
   m_TagString: Untagged
@@ -61,7 +62,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 2
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!114 &-3862628760599082050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +77,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   despawnTimer: 5
   immortal: 0
+--- !u!114 &385714036071285503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403819551235007710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d530bafe5b166af4a9ec08a231acc219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minForce: 10
+  combustRadius: 0
+  sparks: {fileID: 4299358432977560515, guid: b5bcefefe68284f4a9ab4ea7f3e0cfe6, type: 3}
 --- !u!1 &9079015841400855338
 GameObject:
   m_ObjectHideFlags: 0
