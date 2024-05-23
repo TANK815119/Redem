@@ -7,6 +7,7 @@ public class Triboluminescence : MonoBehaviour
     [SerializeField] private float minForce = 1f;
     [SerializeField] private float combustRadius = 0.5f;
     [SerializeField] private GameObject sparks;
+    [SerializeField] private GameObject flame;
 
     private List<Transform> flamableList; //list of flamable objects in range(sticks)
 
@@ -59,7 +60,10 @@ public class Triboluminescence : MonoBehaviour
             if(Vector3.Distance(contactPoint.point, flamableList[i].position) < combustRadius)
             {
                 //combuts the flamable object
-
+                GameObject fire = Instantiate(flame);
+                fire.transform.parent = flamableList[i].transform;
+                fire.transform.localPosition = Vector3.zero;
+                //fire.transform.localRotation = Quaternion.identity;
             }
         }
     }
