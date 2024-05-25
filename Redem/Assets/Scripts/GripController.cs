@@ -5,8 +5,10 @@ using UnityEngine.XR;
 
 public class GripController : MonoBehaviour
 {
-    [SerializeField] bool isRightController = false;
-    [SerializeField] bool falseGrip = false;
+    [SerializeField] private bool isRightController = false;
+    [SerializeField] private bool falseGrip = false;
+    [SerializeField] private AudioClip grip;
+    [SerializeField] private AudioClip ungrip;
 
     private bool gripping = false;
     private bool clenched = false;
@@ -120,6 +122,9 @@ public class GripController : MonoBehaviour
             //joint.targetPosition = Vector3.zero;
             //joint.connectedAnchor = grabPoint.GetCurrParentOffset() + 0.1f * grabPoint.transform.up; //hard coded for hand length
         }
+
+        //play audio
+        AudioSource.PlayClipAtPoint(grip, transform.position, 1f);
     }
 
     private void DestroyGrip()
@@ -133,6 +138,9 @@ public class GripController : MonoBehaviour
         //destroy the joint with the gripped object
         Destroy(joint);
         joint = null;
+
+        //play audio
+        AudioSource.PlayClipAtPoint(ungrip, transform.position, 1f);
     }
 
     private Transform FindClosestGrabPoint(List<Transform> grabList, Transform hand)

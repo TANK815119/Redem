@@ -92,6 +92,8 @@ MonoBehaviour:
   minForce: 10
   combustRadius: 0
   sparks: {fileID: 4299358432977560515, guid: b5bcefefe68284f4a9ab4ea7f3e0cfe6, type: 3}
+  flame: {fileID: 0}
+  sizzle: {fileID: 8300000, guid: c63dd5be81f7a564586c43579504b64e, type: 3}
 --- !u!1 &9079015841400855338
 GameObject:
   m_ObjectHideFlags: 0

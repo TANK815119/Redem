@@ -12,12 +12,15 @@ public class IKFootSolver : MonoBehaviour
     [SerializeField] private float footOffset;
     [SerializeField] private IKFootSolver otherFoot;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private List<AudioClip> stepClips;
+    private float ImpactCoolDown { get; set; }
 
     public bool stepping = false;
 
     private float footSpacing;
     private float lerp;
     private bool ungrounded = true;
+    private bool groundImpacted = false;
 
     private Vector3 oldPosition;
     private Vector3 newPosition;
@@ -35,7 +38,7 @@ public class IKFootSolver : MonoBehaviour
         //calculate next foot placement
         float maxDist = Mathf.Abs(hip.position.y - rotoball.position.y) + 0.3f;
         Ray ray = new Ray(hip.position + (hip.right * footSpacing) + (Vector3.up * 0.2f), Vector3.down);
-        if(Physics.Raycast(ray, out RaycastHit info, Mathf.Infinity, mask))
+        if(Physics.Raycast(ray, out RaycastHit info, Mathf.Infinity, mask, QueryTriggerInteraction.Ignore))
         {
             float fastMod = 1f;
             if (fastMod < hipBody.velocity.magnitude * 0.5f) { fastMod = hipBody.velocity.magnitude * 0.5f; } //establishes speed floor
@@ -67,12 +70,25 @@ public class IKFootSolver : MonoBehaviour
             float fastMod = 1f;
             if(fastMod < hipBody.velocity.magnitude) { fastMod = hipBody.velocity.magnitude; } //establishes speed floor
             lerp += Time.deltaTime * speed * fastMod;
+
+            groundImpacted = false;
         }
         else
         {
             stepping = false;
             footPosition = newPosition;
             oldPosition = newPosition;
+
+            //play step sound
+            if(!groundImpacted && ImpactCoolDown <= 0f)
+            {
+                int footstepIndex = Random.Range(0, stepClips.Count); //may randomy give out of bounds expression! @TODO test
+                AudioSource.PlayClipAtPoint(stepClips[footstepIndex], footPosition, 0.33f);
+
+                ImpactCoolDown = 0.25f;
+                otherFoot.ImpactCoolDown = 0.24f;
+                groundImpacted = true;
+            }
         }
 
         //put feet in accordane to rotonall if not touching grounf
@@ -82,6 +98,13 @@ public class IKFootSolver : MonoBehaviour
             footPosition = newPosition;
         }
 
+        if(ImpactCoolDown > 0f)
+        {
+            float fastMod = 1f;
+            if (fastMod < hipBody.velocity.magnitude / 2f) { fastMod = hipBody.velocity.magnitude / 2f; } //establishes speed floor
+            fastMod = hipBody.velocity.magnitude / 2f;
+            ImpactCoolDown -= Time.deltaTime * fastMod;
+        }
 
         transform.position = footPosition + Vector3.up * footOffset;
     }
