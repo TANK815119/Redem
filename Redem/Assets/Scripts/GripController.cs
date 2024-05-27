@@ -87,6 +87,7 @@ public class GripController : MonoBehaviour
         joint.connectedBody = handBody;
         joint.autoConfigureConnectedAnchor = false;
         joint.anchor = new Vector3(0f, 0f, 0f);
+        joint.connectedAnchor = new Vector3(0f, 0f, 0f);
         joint.targetPosition = grabPoint.GetCurrParentOffset() - 0.1f * grabPoint.transform.up; //hard coded for hand length
 
         //rotation
