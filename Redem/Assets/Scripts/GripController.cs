@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
+[RequireComponent(typeof(InputData))]
 public class GripController : MonoBehaviour
 {
     [SerializeField] private bool isRightController = false;
