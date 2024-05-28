@@ -1,31 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
+[RequireComponent(typeof(InputData))]
 public class InterfaceButton : MonoBehaviour
 {
     [SerializeField] private Transform cursor;
+    [SerializeField] private bool XROverideTouch = false;
+    public bool Selected { get; set; }
 
+    private InputData inputData;
     private bool cursorTouching = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        inputData = GetComponent<InputData>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(cursorTouching)
+        inputData.rightController.TryGetFeatureValue(CommonUsages.trigger, out float trigger);
+
+        bool triggerPressed = false;
+        if (trigger > 0.5f)
         {
-            Debug.Log("touching");
-            transform.Translate(new Vector3(0f, -0.5f, 0f), Space.Self);
+            triggerPressed = true;
+        }
+
+        //manipulate visuals
+        if (cursorTouching && !triggerPressed)
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.0025f);
+        }
+        else
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.001f);
+        }
+
+        //assign logic
+        if(cursorTouching && triggerPressed || XROverideTouch)
+        {
+            Selected = true;
+        }
+        else
+        {
+            Selected = false;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.transform.gameObject.name);
         if (other.transform.Equals(cursor))
         {
             cursorTouching = true;

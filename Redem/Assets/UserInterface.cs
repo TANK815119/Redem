@@ -14,6 +14,7 @@ public class UserInterface : MonoBehaviour
     [SerializeField] private GameObject cursor;
     [SerializeField] private LayerMask mask;
     [SerializeField] private Vector2 UIDirection = new Vector2(0.16f, -0.33f);
+    [SerializeField] private bool XROveride = false;
 
     private InputData inputData;
     private Vector3 innitialOffset;
@@ -34,40 +35,50 @@ public class UserInterface : MonoBehaviour
 
         if (menuPressed)
         {
-            if(!menu.activeInHierarchy)
-            {
-                //menu rotation is facing same direction as right hand innitially
-                menu.transform.forward = head.forward;
-                menu.transform.rotation = Quaternion.Euler(0f, menu.transform.eulerAngles.y, 0f);
-
-                //offset from hand to menu
-                innitialOffset = rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y;
-            }
-
-            rightUIHand.SetActive(true);
-            leftUIHand.SetActive(true);
-            menu.SetActive(true);
-
-            //menu position is a little forward of the right hand always
-            menu.transform.position = rightUIHand.transform.position + innitialOffset;
-
-
-            //interactions from the cursor to the moniter
-            //cursor.transform.position = rightUIHand.transform.position + rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y;
-            Ray ray = new Ray(rightUIHand.transform.position, rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y);
-            if (Physics.Raycast(ray, out RaycastHit info, Mathf.Infinity, mask))
-            {
-                if (info.collider.gameObject.Equals(monitor))
-                {
-                    cursor.transform.position = info.point;
-                }
-            }
+            ShowMenu();
         }
         else
         {
             rightUIHand.SetActive(false);
             leftUIHand.SetActive(false);
             menu.SetActive(false);
+        }
+
+        if (XROveride == true)
+        {
+            ShowMenu();
+        }
+    }
+
+    private void ShowMenu()
+    {
+        if (!menu.activeInHierarchy)
+        {
+            //menu rotation is facing same direction as right hand innitially
+            menu.transform.forward = head.forward;
+            menu.transform.rotation = Quaternion.Euler(0f, menu.transform.eulerAngles.y, 0f);
+
+            //offset from hand to menu
+            innitialOffset = rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y;
+        }
+
+        rightUIHand.SetActive(true);
+        leftUIHand.SetActive(true);
+        menu.SetActive(true);
+
+        //menu position is a little forward of the right hand always
+        menu.transform.position = rightUIHand.transform.position + innitialOffset;
+
+
+        //interactions from the cursor to the moniter
+        //cursor.transform.position = rightUIHand.transform.position + rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y;
+        Ray ray = new Ray(rightUIHand.transform.position, rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y);
+        if (Physics.Raycast(ray, out RaycastHit info, Mathf.Infinity, mask))
+        {
+            if (info.collider.gameObject.Equals(monitor))
+            {
+                cursor.transform.position = info.point;
+            }
         }
     }
 }
