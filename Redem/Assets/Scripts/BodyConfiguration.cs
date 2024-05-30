@@ -131,7 +131,9 @@ public class BodyConfiguration : MonoBehaviour
             (0f,
             (Quaternion.Euler(0f, turn, 0f) * ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y,
             0f);
-            hip.rotation = Quaternion.Slerp(hip.rotation, newQuaternion, 0.1f * Time.deltaTime);
+
+            //slow rotation at low angles
+            hip.rotation = Quaternion.Slerp(hip.rotation, newQuaternion, 0.01f * Time.deltaTime);
         }
     }
 

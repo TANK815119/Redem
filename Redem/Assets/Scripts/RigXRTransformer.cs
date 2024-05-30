@@ -13,6 +13,8 @@ public class RigXRTransformer : MonoBehaviour
     [SerializeField] private Transform anchor;
     [SerializeField] private float turnSpeed = 120f;
 
+    public float Scale { get; set; }
+
     private InputData inputData;
     private float turn;
     private Vector3 lastHeadsetPosition;
@@ -24,6 +26,8 @@ public class RigXRTransformer : MonoBehaviour
         RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
         lastHeadsetPosition = new Vector3(0f, 0f, 0f);
         headsetStack = new Vector3(0f, 0f, 0f);
+
+        Scale = 1f;
     }
     private void OnDisable()
     {
@@ -45,7 +49,8 @@ public class RigXRTransformer : MonoBehaviour
         //headset
         if (inputData.headset.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 headsetPosition))
         {
-            Vector3 deltaPosition = headsetPosition - lastHeadsetPosition;
+            headsetPosition *= Scale;
+            Vector3 deltaPosition = (headsetPosition - lastHeadsetPosition);
             headsetStack = headsetStack + Quaternion.Euler(0f, turn, 0f) * deltaPosition;
             headset.position = headsetStack + new Vector3(anchor.position.x, anchor.position.y, anchor.position.z);
             lastHeadsetPosition = headsetPosition;
@@ -58,10 +63,11 @@ public class RigXRTransformer : MonoBehaviour
         //left controller
         if (inputData.leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 leftPosition))
         {
-            leftController.position = Quaternion.Euler(0f, turn, 0f) *
+            leftPosition *= Scale;
+            leftController.position = (Quaternion.Euler(0f, turn, 0f) *
                 new Vector3(leftPosition.x - headsetPosition.x, 
                 leftPosition.y - headsetPosition.y, 
-                leftPosition.z - headsetPosition.z) + head.position;
+                leftPosition.z - headsetPosition.z)) + head.position;
         }
         if (inputData.leftController.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion leftRotation))
         {
@@ -71,10 +77,11 @@ public class RigXRTransformer : MonoBehaviour
         //rightController
         if (inputData.rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rightPosition))
         {
-            rightController.position = Quaternion.Euler(0f, turn, 0f) * 
+            rightPosition *= Scale;
+            rightController.position = (Quaternion.Euler(0f, turn, 0f) * 
                 new Vector3(rightPosition.x - headsetPosition.x, 
                 rightPosition.y - headsetPosition.y, 
-                rightPosition.z - headsetPosition.z) + head.position;
+                rightPosition.z - headsetPosition.z)) + head.position;
         }
         if (inputData.rightController.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rightRotation))
         {

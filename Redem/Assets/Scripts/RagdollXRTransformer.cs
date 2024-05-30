@@ -13,17 +13,22 @@ public class RagdollXRTransformer : MonoBehaviour
     [SerializeField] private Transform hipTarget;
     [SerializeField] private BodyConfiguration bodyConfig;
 
+    public float Scale { get; set; }
+
     private InputData inputData;
     // Start is called before the first frame update
     void Start()
     {
         inputData = GetComponent<InputData>();
         RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
+
+        Scale = 1f;
     }
 
     void Update()
     {
         UpdateHipTarget();
+        //ragdollCalculations.localScale = new Vector3(Scale, Scale, Scale);
     }
     void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
     {
@@ -35,8 +40,8 @@ public class RagdollXRTransformer : MonoBehaviour
         //headset
         if (inputData.headset.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 headsetPosition))
         {
-            headset.localPosition = headsetPosition;
-            hipTarget.position = headsetPosition + headset.parent.position + bodyConfig.HipOffset();
+            headset.localPosition = headsetPosition * (1f / Scale);
+            //hipTarget.position = headsetPosition + headset.parent.position + bodyConfig.HipOffset();
             
         }
         if (inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation))
@@ -64,7 +69,7 @@ public class RagdollXRTransformer : MonoBehaviour
         //left controller
         if (inputData.leftController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 leftPosition))
         {
-            leftController.localPosition = leftPosition;
+            leftController.localPosition = leftPosition * (1f / Scale);
         }
         if (inputData.leftController.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion leftRotation))
         {
@@ -74,7 +79,7 @@ public class RagdollXRTransformer : MonoBehaviour
         //rightController
         if (inputData.rightController.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 rightPosition))
         {
-            rightController.localPosition = rightPosition;
+            rightController.localPosition = rightPosition * (1f / Scale);
         }
         if (inputData.rightController.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rightRotation))
         {

@@ -9,6 +9,7 @@ public class InterfaceButton : MonoBehaviour
     [SerializeField] private Transform cursor;
     [SerializeField] private bool XROverideTouch = false;
     public bool Selected { get; set; }
+    public bool Held { get; set; }
 
     private InputData inputData;
     private bool cursorTouching = false;
@@ -19,7 +20,7 @@ public class InterfaceButton : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         inputData.rightController.TryGetFeatureValue(CommonUsages.trigger, out float trigger);
 
@@ -42,11 +43,21 @@ public class InterfaceButton : MonoBehaviour
         //assign logic
         if(cursorTouching && triggerPressed || XROverideTouch)
         {
-            Selected = true;
+            if(!Held)
+            {
+                Selected = true;
+            }
+            else
+            {
+                Selected = false;
+            }
+
+            Held = true;
         }
         else
         {
             Selected = false;
+            Held = false;
         }
     }
 
