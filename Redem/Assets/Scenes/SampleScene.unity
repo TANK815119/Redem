@@ -22955,6 +22955,7 @@ MonoBehaviour:
   rightController: {fileID: 1654186487}
   hipTarget: {fileID: 404437365}
   bodyConfig: {fileID: 8621576869246139875}
+  joint: {fileID: 907384698659176351}
 --- !u!1 &1700232454
 GameObject:
   m_ObjectHideFlags: 0
@@ -44797,6 +44798,7 @@ MonoBehaviour:
   turnSpeed: 120
   nerdNeckMin: 0.125
   nerdNeckMax: 0.4
+  ragdollHead: {fileID: 1212604910}
 --- !u!1 &8672336704941130163
 GameObject:
   m_ObjectHideFlags: 0

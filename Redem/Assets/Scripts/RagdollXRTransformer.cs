@@ -12,6 +12,7 @@ public class RagdollXRTransformer : MonoBehaviour
     [SerializeField] private Transform rightController;
     [SerializeField] private Transform hipTarget;
     [SerializeField] private BodyConfiguration bodyConfig;
+    [SerializeField] private ConfigurableJoint joint;
 
     public float Scale { get; set; }
 
@@ -46,18 +47,40 @@ public class RagdollXRTransformer : MonoBehaviour
         }
         if (inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation))
         {
-            if(headsetRotation.eulerAngles.x > 75f && headsetRotation.eulerAngles.x <= 95f)
+            bool angleLimited = false;
+            float angle = headsetRotation.eulerAngles.x;
+            if (headsetRotation.eulerAngles.x > 45f && headsetRotation.eulerAngles.x <= 90f)
             {
-                //Debug.Log("limiting");
-                headsetRotation = Quaternion.Euler(75f, headsetRotation.eulerAngles.y, headsetRotation.eulerAngles.z);
+                headsetRotation = Quaternion.Euler(0f, headsetRotation.eulerAngles.y, headsetRotation.eulerAngles.z);
+                angleLimited = true;
             }
-            if(headsetRotation.eulerAngles.z > 75f && headsetRotation.eulerAngles.z <= 95f)
+
+            headsetRotation = Quaternion.Euler(headsetRotation.eulerAngles.x, headsetRotation.eulerAngles.y, 0f);
+            //if (headsetRotation.eulerAngles.z > 45f && headsetRotation.eulerAngles.z <= 90f)
+            //{
+            //    //Debug.Log("limiting 2");
+            //    headsetRotation = Quaternion.Euler(headsetRotation.eulerAngles.x, headsetRotation.eulerAngles.y, 0f);
+            //    angleLimited = true;
+            //}
+
+            if (angleLimited)
             {
-                //Debug.Log("limiting 2");
-                headsetRotation = Quaternion.Euler(headsetRotation.eulerAngles.x, headsetRotation.eulerAngles.y, 75f);
+                //float yDifference = Quaternion.Angle(Quaternion.Euler(0f, headset.eulerAngles.y, 0f), Quaternion.Euler(0f, headsetRotation.eulerAngles.y, 0f));
+                //headset.localRotation = Quaternion.Euler(new Vector3(headsetRotation.eulerAngles.x,
+                //    Mathf.Lerp(headset.eulerAngles.y, headset.eulerAngles.y + yDifference, yDifference / 90f * Time.deltaTime),
+                //    headsetRotation.eulerAngles.z));
+                //headset.localRotation = Quaternion.Euler(headsetRotation.eulerAngles.x, headsetRotation.eulerAngles.y, headsetRotation.eulerAngles.z);
+                headset.localRotation = Quaternion.Slerp(headset.transform.localRotation, headsetRotation, ((90f - angle) / 45f) * Time.deltaTime);
+                //Debug.Log(headset.eulerAngles);
             }
-            headset.localRotation = headsetRotation;
-            hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
+            else
+            {
+                //Debug.Log("problem 2");
+                headset.localRotation = headsetRotation;
+            }
+
+            //headset.localRotation = headsetRotation;
+            //hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
         }
         //make sure the head doesnt go over the rotation limit
         //if (headset.localRotation.eulerAngles.x >= headRotationLimit)
@@ -90,10 +113,22 @@ public class RagdollXRTransformer : MonoBehaviour
     {
         //hip position
         Vector3 hipOffset = bodyConfig.HipOffset();
-        hipTarget.position = headset.position + hipOffset;
+        //hipTarget.position = Vector3.Lerp(hipTarget.position, headset.position + hipOffset, 0.01f * Time.deltaTime);
+
+        if (!(headset.eulerAngles.x > 45f && headset.eulerAngles.x <= 90f) && !(headset.eulerAngles.z > 45f && headset.eulerAngles.z <= 90f) || true)  // make sure not looking down too much, else must lerp
+        {
+            //Debug.Log("problem 3");
+            hipTarget.position = headset.position + hipOffset;
+            hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
+        }
+        //else
+        //{
+        //    Debug.Log("detect 2");
+        //    //hipTarget.position = Vector3.Lerp(hipTarget.position, headset.position + hipOffset, 0.01f * Time.deltaTime);
+        //}
 
         //hip rotation
         //float anteriorPelvicTilt = Mathf.Rad2Deg * Mathf.Atan2(hipOffset.y, hipOffset.z);
-        hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
+        //hipTarget.rotation = Quaternion.Euler(0f, headset.eulerAngles.y, 0f);
     }
 }

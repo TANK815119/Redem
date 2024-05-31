@@ -21,6 +21,7 @@ public class BodyConfiguration : MonoBehaviour
     [SerializeField] private float turnSpeed = 120f; 
     [SerializeField] private float nerdNeckMin = 0.4f; 
     [SerializeField] private float nerdNeckMax = 0.4f; 
+    [SerializeField] private Transform ragdollHead;
 
     private InputData inputData;
     private ConfigurableJoint hipJoint;
@@ -118,23 +119,33 @@ public class BodyConfiguration : MonoBehaviour
         hipJoint.connectedAnchor = new Vector3(0f, (hipHeight - rotoBallRadius) * 10f, 0f);
 
         //calculate hip y rotation
-        if(!(headCamera.eulerAngles.x > 75f && headCamera.eulerAngles.x <= 95f) || !(headCamera.eulerAngles.z > 75f && headCamera.eulerAngles.z <= 95f))  // make sure not looking down too much, else must lerp
+        if(!(ragdollHead.eulerAngles.x > 45f && ragdollHead.eulerAngles.x <= 90f) || !(ragdollHead.eulerAngles.z > 45f && ragdollHead.eulerAngles.z <= 90f) || true)  // make sure not looking down too much, else must lerp
         {
+            //Debug.Log("problem 1");
+            //hip.rotation = Quaternion.Euler
+            //(0f,
+            //(Quaternion.Euler(0f, turn, 0f) * ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y,
+            //0f);
             hip.rotation = Quaternion.Euler
             (0f,
-            (Quaternion.Euler(0f, turn, 0f) * ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y,
+            (Quaternion.Euler(0f, turn, 0f) * ragdollHead.rotation).eulerAngles.y,
             0f);
         }
-        else 
+        else
         {
-            Quaternion newQuaternion = Quaternion.Euler
-            (0f,
-            (Quaternion.Euler(0f, turn, 0f) * ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y,
-            0f);
-
-            //slow rotation at low angles
-            hip.rotation = Quaternion.Slerp(hip.rotation, newQuaternion, 0.01f * Time.deltaTime);
+            //do nothing
         }
+        //else 
+        //{
+        //    //Quaternion newQuaternion = Quaternion.Euler
+        //    //(0f,
+        //    //(Quaternion.Euler(0f, turn, 0f) * ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation)).eulerAngles.y,
+        //    //0f);
+
+        //    //Debug.Log("detect 1");
+        //    //slow rotation at low angles
+        //    //hip.rotation = Quaternion.Slerp(hip.rotation, newQuaternion, 0.1f * Time.deltaTime);
+        //}
     }
 
     private void PhysicsLegs()
@@ -221,8 +232,8 @@ public class BodyConfiguration : MonoBehaviour
 
     public Vector3 HipOffset() // get the positional difference between the head and hip  
     {
-        Quaternion headRotation = ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation);
+        //Quaternion headRotation = ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation);
         //return hip.position - head.position;
-        return Quaternion.Euler(0f, headRotation.eulerAngles.y, 0f) * new Vector3(0f, -torsoHeight, -nerdNeck);
+        return Quaternion.Euler(0f, ragdollHead.eulerAngles.y, 0f) * new Vector3(0f, -torsoHeight, -nerdNeck);
     }
 }
