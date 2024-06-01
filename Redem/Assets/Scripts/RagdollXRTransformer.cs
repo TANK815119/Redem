@@ -70,7 +70,7 @@ public class RagdollXRTransformer : MonoBehaviour
                 //    Mathf.Lerp(headset.eulerAngles.y, headset.eulerAngles.y + yDifference, yDifference / 90f * Time.deltaTime),
                 //    headsetRotation.eulerAngles.z));
                 //headset.localRotation = Quaternion.Euler(headsetRotation.eulerAngles.x, headsetRotation.eulerAngles.y, headsetRotation.eulerAngles.z);
-                headset.localRotation = Quaternion.Slerp(headset.transform.localRotation, headsetRotation, ((90f - angle) / 45f) * Time.deltaTime);
+                headset.localRotation = Quaternion.Slerp(headset.transform.localRotation, headsetRotation, Mathf.Pow(2f * ((90f - angle) / 45f), 2f) * Time.deltaTime);
                 //Debug.Log(headset.eulerAngles);
             }
             else
