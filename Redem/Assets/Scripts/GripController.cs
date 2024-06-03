@@ -125,6 +125,25 @@ public class GripController : MonoBehaviour
             //joint.connectedAnchor = grabPoint.GetCurrParentOffset() + 0.1f * grabPoint.transform.up; //hard coded for hand length
         }
 
+        //configure bodily collisions of the object
+        //body = 6
+        //leftHand = 8
+        //rightHand = 9
+        
+        if((isRightController && joint.gameObject.layer == 8) || (!isRightController && joint.gameObject.layer == 9))
+        {
+            SetAllToLayer(joint.transform, 6); //set to body
+        }
+        else if(isRightController)
+        {
+            SetAllToLayer(joint.transform, 9); //set to right hand
+
+        }
+        else if(!isRightController)
+        {
+            SetAllToLayer(joint.transform, 8); //set to left hand
+        }
+
         //play audio
         AudioSource.PlayClipAtPoint(grip, transform.position, 1f);
     }
@@ -136,6 +155,20 @@ public class GripController : MonoBehaviour
 
         //change hand animation state
         handAnim.Gripping = false;
+
+        //configure bodily collisions of the object
+        if(joint.gameObject.layer == 8 || joint.gameObject.layer == 9)
+        {
+            SetAllToLayer(joint.transform, 0); //set to default if one hand
+        }
+        else if(isRightController)
+        {
+            SetAllToLayer(joint.transform, 8); //set to left hand
+        }
+        else if(!isRightController)
+        {
+            SetAllToLayer(joint.transform, 9); //set to right hand
+        }
 
         //destroy the joint with the gripped object
         Destroy(joint);
@@ -202,5 +235,14 @@ public class GripController : MonoBehaviour
             return controllerGrip;
         }
         return 0f;
+    }
+
+    private void SetAllToLayer(Transform parent, int layer)
+    {
+        parent.gameObject.layer = layer;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            SetAllToLayer(parent.GetChild(i), layer);
+        }
     }
 }
