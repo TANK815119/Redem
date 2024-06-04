@@ -157,10 +157,19 @@ public class GrabPlane : MonoBehaviour
         //    xCompress = 45f;
         //}
         //Quaternion anteriorQuat = Quaternion.Euler(xCompress, capCol.transform.localRotation.eulerAngles.y, capCol.transform.localRotation.eulerAngles.z + 90f);
+
+        //gather the relative rotations of either angle possibiltiy
         Quaternion anteriorQuat = Quaternion.Euler(0f, -45f, 90f);
         Quaternion posteriorQuat = Quaternion.Euler(0f, -45f, -90f);
-        if(Quaternion.Angle(grabPoint.transform.parent.parent.parent.rotation * grabPoint.transform.parent.parent.localRotation * grabPoint.transform.parent.localRotation *  anteriorQuat, handRotation) < //mind boggling line of code
-            Quaternion.Angle(grabPoint.transform.parent.parent.parent.rotation * grabPoint.transform.parent.parent.localRotation * grabPoint.transform.parent.localRotation * posteriorQuat, handRotation))  //compares the global rotations of the hand the the (theorhetical)grabpoints
+
+        grabPoint.transform.localRotation = anteriorQuat;
+        float anteriorAngle = Quaternion.Angle(grabPoint.transform.rotation, handRotation);
+
+        grabPoint.transform.localRotation = posteriorQuat;
+        float posteriorAngle = Quaternion.Angle(grabPoint.transform.rotation, handRotation);
+
+        if (anteriorAngle < //used to be mind boggling line of code
+            posteriorAngle)  //compares the global rotations of the hand the the (theorhetical)grabpoints
         {
             grabPoint.transform.localRotation = anteriorQuat;
         }

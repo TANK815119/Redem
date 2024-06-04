@@ -181,19 +181,37 @@ public class GripController : MonoBehaviour
     private Transform FindClosestGrabPoint(List<Transform> grabList, Transform hand)
     {
         Vector3 handPoint = hand.position + 0.1f * hand.up; //hard coded hand length
+        Quaternion handRotation = hand.rotation;
 
         //search through the list for the closest grab point
-        Transform closestGrabPoint = grabList[0];
-        for(int i = 0; i < grabList.Count; i++)
+        int bestIndex = 0;
+        for (int i = 0; i < grabList.Count; i++)
         {
-            float oldDistance = (closestGrabPoint.position - handPoint).magnitude;
-            float thisDistance = (grabList[i].position - handPoint).magnitude;
-            if (thisDistance < oldDistance)
+            float bestEvaluation = GrabPointEvaluator((grabList[bestIndex].position - handPoint).magnitude, Quaternion.Angle(grabList[bestIndex].rotation, handRotation));
+            float thisEvaluation = GrabPointEvaluator((grabList[i].position - handPoint).magnitude, Quaternion.Angle(grabList[i].rotation, handRotation));
+            if (thisEvaluation > bestEvaluation)
             {
-                closestGrabPoint = grabList[i];
+                bestIndex = i;
             }
         }
-        return closestGrabPoint;
+        return grabList[bestIndex];
+    }
+
+    private float GrabPointEvaluator(float distance, float angleDistance) //returns valuer between 0 and 1 that dictates point fitness
+    {
+        //evalute distance
+        //Debug.Log("distance: " + distance);
+        float distanceFitness = (1f / 0.1f) * (0.1f - distance); //the 0.1f is hard coded as the max distance from hand to grabPoint
+
+        //evaluate rotation
+        //Debug.Log("angle: " + angleDistance);
+        float angleFitness = 1f - (angleDistance / 180f); //compress to between zero and one
+
+        //synthesize the distance and rotation values into one value between zero and one
+        float synthesisFitness = (distanceFitness * 1f + angleFitness * 1f) / 2f;
+        //Debug.Log("distance: " + distanceFitness + " + angle: " + angleFitness + " = fitness: " + synthesisFitness);
+
+        return synthesisFitness;
     }
 
     private void OnTriggerEnter(Collider other)
