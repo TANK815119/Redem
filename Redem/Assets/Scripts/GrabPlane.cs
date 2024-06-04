@@ -234,8 +234,16 @@ public class GrabPlane : MonoBehaviour
         CapsuleCollider capCol = (CapsuleCollider)(trigCol);
         Vector3 axisDirection = capCol.transform.up;
         Vector3 pointOnAxis = capCol.transform.position + axisDirection * Vector3.Dot(handPosition - capCol.transform.position, axisDirection);
-        //make radius 0, if want a 2d grip, maybe limit placement from "ends"?
-        Vector3 direction = (handPosition - pointOnAxis).normalized;
+
+        Vector3 direction = (handPosition - pointOnAxis).normalized; //the if statement can destroy the direction
+
+        //limit to the height of the cylinder
+        float maxDistance = capCol.height * capCol.transform.lossyScale.y * 0.5f;
+        if (Vector3.Distance(pointOnAxis, capCol.transform.position) > maxDistance)
+        {
+            pointOnAxis = capCol.transform.position + (axisDirection * Vector3.Dot(handPosition - capCol.transform.position, axisDirection)).normalized * maxDistance;
+        }
+
         Vector3 closestPoint = pointOnAxis + direction * (capCol.radius * capCol.transform.lossyScale.x);
         grabPoint.transform.position = closestPoint;
 
@@ -283,9 +291,17 @@ public class GrabPlane : MonoBehaviour
         CapsuleCollider capCol = (CapsuleCollider)(trigCol);
         Vector3 axisDirection = capCol.transform.up;
         Vector3 pointOnAxis = capCol.transform.position + axisDirection * Vector3.Dot(handPosition - capCol.transform.position, axisDirection);
-        //make radius 0, if want a 2d grip, maybe limit placement from "ends"?
-        Vector3 direction = (handPosition - pointOnAxis).normalized;
-        Vector3 closestPoint = pointOnAxis + direction * (0.001f * capCol.transform.lossyScale.x);
+
+        Vector3 direction = (handPosition - pointOnAxis).normalized; //the if statement can destroy the direction
+
+        //limit to the height of the cylinder
+        float maxDistance = capCol.height * capCol.transform.lossyScale.y * 0.5f;
+        if (Vector3.Distance(pointOnAxis, capCol.transform.position) > maxDistance)
+        {
+            pointOnAxis = capCol.transform.position + (axisDirection * Vector3.Dot(handPosition - capCol.transform.position, axisDirection)).normalized * maxDistance;
+        }
+
+        Vector3 closestPoint = pointOnAxis + direction * (0.025f);
         grabPoint.transform.position = closestPoint;
 
         //rotation
