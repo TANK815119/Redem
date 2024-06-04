@@ -263,10 +263,18 @@ public class GrabPlane : MonoBehaviour
         //grabPoint.transform.localRotation = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y, grabPoint.transform.localEulerAngles.z);
 
         //lock to clock or counter hand position akin to corner grip
+        //gather the relative rotations of either angle possibiltiy
         Quaternion clockQuat = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y - 90f, grabPoint.transform.localEulerAngles.z);
         Quaternion counterQuat = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y + 90f, grabPoint.transform.localEulerAngles.z);
-        if (Quaternion.Angle(clockQuat, handRotation) < //mind boggling line of code
-            Quaternion.Angle(counterQuat, handRotation))  //compares the global rotations of the hand the the (theorhetical)grabpoints
+
+        grabPoint.transform.localRotation = clockQuat;
+        float clockAngle = Quaternion.Angle(grabPoint.transform.rotation, handRotation);
+
+        grabPoint.transform.localRotation = counterQuat;
+        float counterrAngle = Quaternion.Angle(grabPoint.transform.rotation, handRotation);
+
+        if (clockAngle < //used to be mind boggling line of code
+            counterrAngle)  //compares the global rotations of the hand the the (theorhetical)grabpoints
         {
             grabPoint.transform.localRotation = clockQuat;
         }
@@ -320,10 +328,18 @@ public class GrabPlane : MonoBehaviour
         //grabPoint.transform.localRotation = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y, grabPoint.transform.localEulerAngles.z);
 
         //lock to clock or counter hand position akin to corner grip
+        //gather the relative rotations of either angle possibiltiy
         Quaternion clockQuat = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y - 90f, grabPoint.transform.localEulerAngles.z);
         Quaternion counterQuat = Quaternion.Euler(90f, grabPoint.transform.localEulerAngles.y + 90f, grabPoint.transform.localEulerAngles.z);
-        if (Quaternion.Angle(clockQuat, handRotation) < //mind boggling line of code
-            Quaternion.Angle(counterQuat, handRotation))  //compares the global rotations of the hand the the (theorhetical)grabpoints
+
+        grabPoint.transform.localRotation = clockQuat;
+        float clockAngle = Quaternion.Angle(grabPoint.transform.rotation, handRotation);
+
+        grabPoint.transform.localRotation = counterQuat;
+        float counterrAngle = Quaternion.Angle(grabPoint.transform.rotation, handRotation);
+
+        if (clockAngle < //used to be mind boggling line of code
+            counterrAngle)  //compares the global rotations of the hand the the (theorhetical)grabpoints
         {
             grabPoint.transform.localRotation = clockQuat;
         }
