@@ -15,9 +15,9 @@ TagManager:
   - UserInterface
   - LeftHand
   - RightHand
-  - 
-  - 
-  - 
+  - BothHandObject
+  - LeftHandObject
+  - RightHandObject
   - 
   - 
   - 

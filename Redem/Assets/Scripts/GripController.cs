@@ -126,22 +126,22 @@ public class GripController : MonoBehaviour
         }
 
         //configure bodily collisions of the object
-        //body = 6
-        //leftHand = 8
-        //rightHand = 9
+        //bothHandObject = 10
+        //leftHandObject = 11
+        //rightHandObject = 12
         
-        if((isRightController && joint.gameObject.layer == 8) || (!isRightController && joint.gameObject.layer == 9))
+        if((isRightController && joint.gameObject.layer == 11) || (!isRightController && joint.gameObject.layer == 12))
         {
-            SetAllToLayer(joint.transform, 6); //set to body
+            SetAllToLayer(joint.transform, 10); //set to body
         }
         else if(isRightController)
         {
-            SetAllToLayer(joint.transform, 9); //set to right hand
+            SetAllToLayer(joint.transform, 12); //set to right hand
 
         }
         else if(!isRightController)
         {
-            SetAllToLayer(joint.transform, 8); //set to left hand
+            SetAllToLayer(joint.transform, 11); //set to left hand
         }
 
         //play audio
@@ -157,17 +157,17 @@ public class GripController : MonoBehaviour
         handAnim.Gripping = false;
 
         //configure bodily collisions of the object
-        if(joint.gameObject.layer == 8 || joint.gameObject.layer == 9)
+        if(joint.gameObject.layer == 11 || joint.gameObject.layer == 12)
         {
             SetAllToLayer(joint.transform, 0); //set to default if one hand
         }
         else if(isRightController)
         {
-            SetAllToLayer(joint.transform, 8); //set to left hand
+            SetAllToLayer(joint.transform, 11); //set to left hand
         }
         else if(!isRightController)
         {
-            SetAllToLayer(joint.transform, 9); //set to right hand
+            SetAllToLayer(joint.transform, 12); //set to right hand
         }
 
         //destroy the joint with the gripped object
