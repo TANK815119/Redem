@@ -27,6 +27,7 @@ public class RigXRTransformer : MonoBehaviour
         lastHeadsetPosition = new Vector3(0f, 0f, 0f);
         headsetStack = new Vector3(0f, 0f, 0f);
 
+        
         Scale = 1f;
     }
     private void OnDisable()

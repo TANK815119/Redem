@@ -18,12 +18,16 @@ public class RagdollXRTransformer : MonoBehaviour
 
     private InputData inputData;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         inputData = GetComponent<InputData>();
         RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
 
         Scale = 1f;
+    }
+    private void OnDisable()
+    {
+        RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
     }
 
     void Update()
