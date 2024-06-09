@@ -12981,6 +12981,7 @@ GameObject:
   - component: {fileID: 2424242652533640881}
   - component: {fileID: 3703545828269150111}
   - component: {fileID: 8890670566987670493}
+  - component: {fileID: 6679474489129184551}
   m_Layer: 6
   m_Name: Head Camera
   m_TagString: Untagged
@@ -13154,6 +13155,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.11080994
   m_Center: {x: 0, y: 0.016341627, z: -0.09746648}
+--- !u!114 &6679474489129184551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186936894135656322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4430ca06fbbc8f049acfff367eebae4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkObject: {fileID: 5234144058827816941}
 --- !u!1 &8222927501826934080
 GameObject:
   m_ObjectHideFlags: 0
