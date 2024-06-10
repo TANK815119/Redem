@@ -3409,8 +3409,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 0
   falseGrip: 0
-  grip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
-  ungrip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
+  ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  NonNetworkOveride: 1
 --- !u!4 &510310188725310104
 Transform:
   m_ObjectHideFlags: 0
@@ -3532,6 +3533,7 @@ MonoBehaviour:
   nerdNeckMin: 0.125
   nerdNeckMax: 0.4
   ragdollHead: {fileID: 282707844370848360}
+  NonNetworkOveride: 1
 --- !u!4 &589774406283764810
 Transform:
   m_ObjectHideFlags: 0
@@ -4489,9 +4491,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 1
   handRoot: {fileID: 6190993272347894293}
-  grip: 0
-  trigger: 0
-  thumb: 0
+  grip:
+    m_InternalValue: 0
+  trigger:
+    m_InternalValue: 0
+  thumb:
+    m_InternalValue: 0
+  NonNetworkOveride: 1
 --- !u!1 &1110825386966297070
 GameObject:
   m_ObjectHideFlags: 0
@@ -8096,9 +8102,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 0
   handRoot: {fileID: 1857504321615136788}
-  grip: 0
-  trigger: 0
-  thumb: 0
+  grip:
+    m_InternalValue: 0
+  trigger:
+    m_InternalValue: 0
+  thumb:
+    m_InternalValue: 0
+  NonNetworkOveride: 1
 --- !u!1 &3027225927923473754
 GameObject:
   m_ObjectHideFlags: 0
@@ -18059,8 +18069,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 1
   falseGrip: 0
-  grip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
-  ungrip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
+  ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  NonNetworkOveride: 1
 --- !u!114 &9148636223416330892
 MonoBehaviour:
   m_ObjectHideFlags: 0

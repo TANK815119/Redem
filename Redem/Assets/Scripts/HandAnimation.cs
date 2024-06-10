@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using Unity.Netcode;
 
-public class HandAnimation : MonoBehaviour
+public class HandAnimation : NetworkBehaviour
 {
     [SerializeField] bool isRightController;
     [SerializeField] Transform handRoot;
@@ -27,12 +28,14 @@ public class HandAnimation : MonoBehaviour
 
     private InputData inputData;
 
-    [SerializeField] [Range(0.0f, 1.0f)] private float grip;
-    [SerializeField] [Range(0.0f, 1.0f)] private float trigger;
-    [SerializeField] [Range(0.0f, 1.0f)] private float thumb;
+    [SerializeField] [Range(0.0f, 1.0f)] private NetworkVariable<float> grip = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [SerializeField] [Range(0.0f, 1.0f)] private NetworkVariable<float> trigger = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [SerializeField] [Range(0.0f, 1.0f)] private NetworkVariable<float> thumb = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField] public bool Gripping { get; set; }
     [SerializeField] public int GripState{ get; set; }
+
+    [SerializeField] private bool NonNetworkOveride = false;
 
     /*
     0 - flatGrip
@@ -72,11 +75,11 @@ public class HandAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isRightController)
+        if (isRightController && (NonNetworkOveride || IsOwner))
         {
             UpdateRightController();
         }
-        else
+        else if(NonNetworkOveride || IsOwner)
         {
             UpdateLeftController();
         }
@@ -128,7 +131,7 @@ public class HandAnimation : MonoBehaviour
     private void HandPose()
     {
         //pose grip
-        float gripRotation = grip * 90f;
+        float gripRotation = grip.Value * 90f;
         for (int x = 0; x < gripArr.Length; x++)
         {
             for(int y = 0; y < gripArr[x].Length; y++)
@@ -138,17 +141,17 @@ public class HandAnimation : MonoBehaviour
         }
 
         //pose trigger
-        float indexRotation = trigger * 90f;
+        float indexRotation = trigger.Value * 90f;
         for (int i = 0; i < indexArr.Length; i++)
         {
             indexArr[i] = new Vector3(indexRotation, 0f, 0f);
         }
 
         //pose thumb
-        float thumbRotation = thumb * -60f;
+        float thumbRotation = thumb.Value * -60f;
         if(isRightController) 
         {
-            thumbArr[0] = new Vector3(thumb * 20f + 20f, 15f, 25f); //may need to be controlled by another float for grabs
+            thumbArr[0] = new Vector3(thumb.Value * 20f + 20f, 15f, 25f); //may need to be controlled by another float for grabs
             for (int i = 1; i < thumbArr.Length; i++) // note the int i = 1
             {
                 thumbArr[i] = new Vector3(0f, 0f, thumbRotation + 15f);
@@ -156,7 +159,7 @@ public class HandAnimation : MonoBehaviour
         }
         else
         {
-            thumbArr[0] = new Vector3(thumb * 20f + 20f, -15f, -25f); //may need to be controlled by another float for grabs
+            thumbArr[0] = new Vector3(thumb.Value * 20f + 20f, -15f, -25f); //may need to be controlled by another float for grabs
             for (int i = 1; i < thumbArr.Length; i++) // note the int i = 1
             {
                 thumbArr[i] = new Vector3(0f, 0f, -thumbRotation - 15f);
@@ -178,18 +181,18 @@ public class HandAnimation : MonoBehaviour
         {
             if (controllerGrip > 0f)
             {
-                if (grip >= 0.333f)
+                if (grip.Value >= 0.333f)
                 {
-                    grip = controllerGrip * (1 - 0.333f) + 0.333f; //smooshed range
+                    grip.Value = controllerGrip * (1 - 0.333f) + 0.333f; //smooshed range
                 }
-                else if (grip < 0.333f)
+                else if (grip.Value < 0.333f)
                 {
-                    grip += 5f * Time.deltaTime; //get into range
+                    grip.Value += 5f * Time.deltaTime; //get into range
                 }
             }
-            if (controllerGrip == 0f && grip > 0f) //gert out of range
+            if (controllerGrip == 0f && grip.Value > 0f) //gert out of range
             {
-                grip += -5f * Time.deltaTime;
+                grip.Value += -5f * Time.deltaTime;
             }
         }
 
@@ -198,31 +201,31 @@ public class HandAnimation : MonoBehaviour
         {
             if (controllerTrigger > 0f)
             {
-                if (trigger >= 0.333f)
+                if (trigger.Value >= 0.333f)
                 {
-                    trigger = controllerTrigger * (1 - 0.333f) + 0.333f; //smooshed range
+                    trigger.Value = controllerTrigger * (1 - 0.333f) + 0.333f; //smooshed range
                 }
-                else if (trigger < 0.333f)
+                else if (trigger.Value < 0.333f)
                 {
-                    trigger += 5f * Time.deltaTime; //get into range
+                    trigger.Value += 5f * Time.deltaTime; //get into range
                 }
             }
-            if (controllerTrigger == 0f && trigger > 0f) //gert out of range
+            if (controllerTrigger == 0f && trigger.Value > 0f) //gert out of range
             {
-                trigger += -5f * Time.deltaTime;
+                trigger.Value += -5f * Time.deltaTime;
             }
         }
 
         //thumb values
         if (inputData.rightController.TryGetFeatureValue(CommonUsages.primary2DAxisTouch, out bool controllerThumbTouch))
         {
-            if (controllerThumbTouch && thumb < 1f)
+            if (controllerThumbTouch && thumb.Value < 1f)
             {
-                thumb += 10f * Time.deltaTime;
+                thumb.Value += 10f * Time.deltaTime;
             }
-            if (!controllerThumbTouch && thumb > 0f)
+            if (!controllerThumbTouch && thumb.Value > 0f)
             {
-                thumb += -10f * Time.deltaTime;
+                thumb.Value += -10f * Time.deltaTime;
             }
         }
     }
@@ -234,18 +237,18 @@ public class HandAnimation : MonoBehaviour
         {
             if (controllerGrip > 0f)
             {
-                if (grip >= 0.333f)
+                if (grip.Value >= 0.333f)
                 {
-                    grip = controllerGrip * (1 - 0.333f) + 0.333f; //smooshed range
+                    grip.Value = controllerGrip * (1 - 0.333f) + 0.333f; //smooshed range
                 }
-                else if (grip < 0.333f)
+                else if (grip.Value < 0.333f)
                 {
-                    grip += 5f * Time.deltaTime; //get into range
+                    grip.Value += 5f * Time.deltaTime; //get into range
                 }
             }
-            if (controllerGrip == 0f && grip > 0f) //gert out of range
+            if (controllerGrip == 0f && grip.Value > 0f) //gert out of range
             {
-                grip += -5f * Time.deltaTime;
+                grip.Value += -5f * Time.deltaTime;
             }
         }
 
@@ -254,31 +257,31 @@ public class HandAnimation : MonoBehaviour
         {
             if (controllerTrigger > 0f)
             {
-                if (trigger >= 0.333f)
+                if (trigger.Value >= 0.333f)
                 {
-                    trigger = controllerTrigger * (1 - 0.333f) + 0.333f; //smooshed range
+                    trigger.Value = controllerTrigger * (1 - 0.333f) + 0.333f; //smooshed range
                 }
-                else if (trigger < 0.333f)
+                else if (trigger.Value < 0.333f)
                 {
-                    trigger += 5f * Time.deltaTime; //get into range
+                    trigger.Value += 5f * Time.deltaTime; //get into range
                 }
             }
-            if (controllerTrigger == 0f && trigger > 0f) //gert out of range
+            if (controllerTrigger == 0f && trigger.Value > 0f) //gert out of range
             {
-                trigger += -5f * Time.deltaTime;
+                trigger.Value += -5f * Time.deltaTime;
             }
         }
 
         //thumb values
         if (inputData.leftController.TryGetFeatureValue(CommonUsages.primary2DAxisTouch, out bool controllerThumbTouch))
         {
-            if (controllerThumbTouch && thumb < 1f)
+            if (controllerThumbTouch && thumb.Value < 1f)
             {
-                thumb += 10f * Time.deltaTime;
+                thumb.Value += 10f * Time.deltaTime;
             }
-            if (!controllerThumbTouch && thumb > 0f)
+            if (!controllerThumbTouch && thumb.Value > 0f)
             {
-                thumb += -10f * Time.deltaTime;
+                thumb.Value += -10f * Time.deltaTime;
             }
         }
     }

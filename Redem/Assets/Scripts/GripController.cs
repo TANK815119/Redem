@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using Unity.Netcode;
 
 [RequireComponent(typeof(InputData))]
-public class GripController : MonoBehaviour
+public class GripController : NetworkBehaviour
 {
     [SerializeField] private bool isRightController = false;
     [SerializeField] private bool falseGrip = false;
-    [SerializeField] private AudioClip grip;
-    [SerializeField] private AudioClip ungrip;
+    [SerializeField] private AudioClip gripClip;
+    [SerializeField] private AudioClip ungripClip;
+    [SerializeField] private bool NonNetworkOveride = false;
 
+    private NetworkVariable<float> grip = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     private bool gripping = false;
     private bool clenched = false;
 
@@ -32,16 +35,20 @@ public class GripController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float grip = (isRightController) ? GetRightGrip() : GetLeftGrip();
-
-        if(falseGrip == true)
+        float localGrip = (isRightController) ? GetRightGrip() : GetLeftGrip();
+        if(NonNetworkOveride || IsOwner)
         {
-            grip = 1f;
+            grip.Value = localGrip;
         }
 
-        if(grip > 0.85f && !gripping && !clenched)
+        if (falseGrip == true)
         {
-            if(grip > 0.975f)
+            grip.Value = 1f;
+        }
+
+        if(grip.Value > 0.85f && !gripping && !clenched)
+        {
+            if(grip.Value > 0.975f)
             {
                 clenched = true;
             }
@@ -51,7 +58,7 @@ public class GripController : MonoBehaviour
             }
         }
 
-        if(grip < 0.85f)
+        if(grip.Value < 0.85f)
         {
             clenched = false;
             if(gripping)
@@ -145,7 +152,7 @@ public class GripController : MonoBehaviour
         }
 
         //play audio
-        AudioSource.PlayClipAtPoint(grip, transform.position, 1f);
+        AudioSource.PlayClipAtPoint(gripClip, transform.position, 1f);
     }
 
     private void DestroyGrip()
@@ -175,7 +182,7 @@ public class GripController : MonoBehaviour
         joint = null;
 
         //play audio
-        AudioSource.PlayClipAtPoint(ungrip, transform.position, 1f);
+        AudioSource.PlayClipAtPoint(ungripClip, transform.position, 1f);
     }
 
     private Transform FindClosestGrabPoint(List<Transform> grabList, Transform hand)

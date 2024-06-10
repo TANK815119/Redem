@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.Rendering;
+using Unity.Netcode;
 
-public class BodyConfiguration : MonoBehaviour
+public class BodyConfiguration : NetworkBehaviour
 {
     [SerializeField] private Transform anchor;
     [SerializeField] private Transform hip;
@@ -22,6 +23,7 @@ public class BodyConfiguration : MonoBehaviour
     [SerializeField] private float nerdNeckMin = 0.4f; 
     [SerializeField] private float nerdNeckMax = 0.4f; 
     [SerializeField] private Transform ragdollHead;
+    [SerializeField] private bool NonNetworkOveride = false;
 
     private InputData inputData;
     private ConfigurableJoint hipJoint;
@@ -34,9 +36,10 @@ public class BodyConfiguration : MonoBehaviour
     private float hipHeight;
     private float nerdNeck;
 
-    private float virtualCrouch = 0f;
-    private float jumpCrouch = 0f;
-    private float turn = 0f;
+    private NetworkVariable<float> virtualCrouch = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> jumpCrouch = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> turn = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<Quaternion> headRotation = new NetworkVariable<Quaternion>(Quaternion.identity, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +61,7 @@ public class BodyConfiguration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        VirtualCrouch();
+        if (NonNetworkOveride || IsOwner) { VirtualCrouch(); }
         BodilyCaltulations();
         PhysicsHead();
         PhysicsHip();
@@ -67,7 +70,7 @@ public class BodyConfiguration : MonoBehaviour
     void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
     {
         BodilyCaltulations();
-        VirtualTurn();
+        if(NonNetworkOveride || IsOwner) { VirtualTurn(); }
         PhysicsHead();
         PhysicsHip();
         PhysicsLegs();
@@ -76,7 +79,7 @@ public class BodyConfiguration : MonoBehaviour
     private void BodilyCaltulations()
     {
         //fetch player's input height using the virtualcrouch
-        playerHeight = headset.localPosition.y + virtualCrouch;
+        playerHeight = headset.localPosition.y + virtualCrouch.Value;
 
         //torso/head offset calculations
         torsoHeight = torsoLengthMax; //for now
@@ -107,8 +110,12 @@ public class BodyConfiguration : MonoBehaviour
     private void PhysicsHead()
     {
         //update the head's rotation to be same as headset
-        headCamera.rotation = Quaternion.Euler(0f, turn, 0f) * 
-            ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ?  headsetRotation : headCamera.rotation);
+        if(NonNetworkOveride || IsOwner)
+        {
+            headRotation.Value = Quaternion.Euler(0f, turn.Value, 0f) *
+                ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation);
+        }
+        headCamera.rotation = headRotation.Value;
 
         //float xNerdNeck = Mathf.Sin(Mathf.Deg2Rad * headCamera.eulerAngles.y) * nerdNeck; // using the transform rotation may be unwise as it may be "slow"/behind
         //float zNerdNeck = Mathf.Cos(Mathf.Deg2Rad * headCamera.eulerAngles.y) * nerdNeck; // using the transform rotation may be unwise as it may be "slow"/behind
@@ -128,7 +135,7 @@ public class BodyConfiguration : MonoBehaviour
             //0f);
             hip.rotation = Quaternion.Euler
             (0f,
-            (Quaternion.Euler(0f, turn, 0f) * ragdollHead.rotation).eulerAngles.y,
+            (Quaternion.Euler(0f, turn.Value, 0f) * ragdollHead.rotation).eulerAngles.y,
             0f);
         }
         else
@@ -171,7 +178,7 @@ public class BodyConfiguration : MonoBehaviour
         {
             if (Mathf.Abs(thumbstick.x) > 0.5f)
             {
-                turn += turnSpeed * thumbstick.x * Time.deltaTime;  //delta tiem ought to work, even here
+                turn.Value += turnSpeed * thumbstick.x * Time.deltaTime;  //delta tiem ought to work, even here
 
             }
         }
@@ -182,50 +189,50 @@ public class BodyConfiguration : MonoBehaviour
         inputData.rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 thumbstick);
         inputData.rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool squating);
 
-        if (virtualCrouch < 0f)
+        if (virtualCrouch.Value < 0f)
         {
             if (thumbstick.y > 0.1f)
             {
-                virtualCrouch += thumbstick.y * crouchSpeed * Time.deltaTime;
+                virtualCrouch.Value += thumbstick.y * crouchSpeed * Time.deltaTime;
             }
-            if (!squating && jumpCrouch <= 0) //instant
+            if (!squating && jumpCrouch.Value <= 0) //instant
             {
-                virtualCrouch -= jumpCrouch;
-                jumpCrouch = 0f;
+                virtualCrouch.Value -= jumpCrouch.Value;
+                jumpCrouch.Value = 0f;
             }
         }
         else
         {
-            virtualCrouch = 0f;
+            virtualCrouch.Value = 0f;
         }
 
         if (playerHeight - torsoHeight >= 0f)
         {
             if (thumbstick.y < -0.4f)
             {
-                virtualCrouch += thumbstick.y * crouchSpeed * Time.deltaTime;
+                virtualCrouch.Value += thumbstick.y * crouchSpeed * Time.deltaTime;
             }
-            if (squating && jumpCrouch > jumpDepth)
+            if (squating && jumpCrouch.Value > jumpDepth)
             {
-                virtualCrouch += -crouchSpeed * Time.deltaTime;
-                jumpCrouch += -crouchSpeed * Time.deltaTime;
+                virtualCrouch.Value += -crouchSpeed * Time.deltaTime;
+                jumpCrouch.Value += -crouchSpeed * Time.deltaTime;
             }
         }
         else
         {
-            if(virtualCrouch - (playerHeight - torsoHeight) < 0f && playerHeight - torsoHeight < 0f)
+            if(virtualCrouch.Value - (playerHeight - torsoHeight) < 0f && playerHeight - torsoHeight < 0f)
             {
-                virtualCrouch -= (playerHeight - torsoHeight); //in event "mathematical" hip goes too low
+                virtualCrouch.Value -= (playerHeight - torsoHeight); //in event "mathematical" hip goes too low
             }
 
             //the pplayer is prepped to jump if "bottoms out"
-            if ((playerHeight - virtualCrouch) < Mathf.Abs(jumpDepth) && squating)
+            if ((playerHeight - virtualCrouch.Value) < Mathf.Abs(jumpDepth) && squating)
             {
-                jumpCrouch = jumpDepth;
+                jumpCrouch.Value = jumpDepth;
             }
             else if(squating)
             {
-                jumpCrouch = -(playerHeight - virtualCrouch);
+                jumpCrouch.Value = -(playerHeight - virtualCrouch.Value);
             }
         }
     }

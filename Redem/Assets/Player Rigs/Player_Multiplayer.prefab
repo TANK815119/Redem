@@ -2222,9 +2222,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 0
   handRoot: {fileID: 1857504320710919326}
-  grip: 0
-  trigger: 0
-  thumb: 0
+  grip:
+    m_InternalValue: 0
+  trigger:
+    m_InternalValue: 0
+  thumb:
+    m_InternalValue: 0
+  NonNetworkOveride: 0
 --- !u!114 &9148636222177256966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2251,8 +2255,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 0
   falseGrip: 0
-  grip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
-  ungrip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
+  ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  NonNetworkOveride: 0
 --- !u!136 &2384374564861089722
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8250,9 +8255,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 1
   handRoot: {fileID: 6190993271104532127}
-  grip: 0
-  trigger: 0
-  thumb: 0
+  grip:
+    m_InternalValue: 0
+  trigger:
+    m_InternalValue: 0
+  thumb:
+    m_InternalValue: 0
+  NonNetworkOveride: 0
 --- !u!114 &4943995761234252592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8279,8 +8288,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 1
   falseGrip: 0
-  grip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
-  ungrip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
+  ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  NonNetworkOveride: 0
 --- !u!136 &7453598612912435647
 CapsuleCollider:
   m_ObjectHideFlags: 0
