@@ -12152,7 +12152,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 7.275958e-12, y: 0.84050035, z: 0.09559999}
+  m_ConnectedAnchor: {x: 0, y: 0.8404999, z: 0.0956}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2

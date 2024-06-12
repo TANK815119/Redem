@@ -16,7 +16,7 @@ public class PseudoParent : MonoBehaviour
     private Quaternion followRotationInnitial;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         positionOffsetInnitial = transform.position - followTransform.position;
         rotationOffsetInnitial = transform.rotation * Quaternion.Inverse(followTransform.rotation);
