@@ -507,3 +507,32 @@ AssetImportParameters requested are different than current active one (requested
   custom:CustomObjectIndexerAttribute: 62b5816608c3102f162a1797e29626cf -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 35635.429068 seconds.
+  path: Assets/Player Rigs/Player-Pre Adjustment.prefab
+  artifactKey: Guid(2b38b058796e7154c9972fe23dba18b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Player Rigs/Player-Pre Adjustment.prefab using Guid(2b38b058796e7154c9972fe23dba18b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51920cc86ba96c90dab06f77c5372d36') in 0.363128 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 854
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Player Rigs/Player_PreMultiplayer.prefab
+  artifactKey: Guid(b3461dd247cde9b468ecd79f62a2fd3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Player Rigs/Player_PreMultiplayer.prefab using Guid(b3461dd247cde9b468ecd79f62a2fd3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '693659623823f0d980db0155560b9ada') in 0.082613 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 886
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Player Rigs/Player-Weak Ragdoll.prefab
+  artifactKey: Guid(4b88451cc24bece45acad9d8ba697b0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Player Rigs/Player-Weak Ragdoll.prefab using Guid(4b88451cc24bece45acad9d8ba697b0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b9b77e2eab5843821e79ff85cf1ac74') in 0.036080 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 801
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
