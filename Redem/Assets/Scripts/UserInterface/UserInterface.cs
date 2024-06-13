@@ -29,7 +29,7 @@ public class UserInterface : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         inputData.rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool menuPressed);
 
