@@ -25,6 +25,7 @@ public class IKFootSolver : MonoBehaviour
     private Vector3 oldPosition;
     private Vector3 newPosition;
     private Rigidbody hipBody;
+    private Vector3 lastHipPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +60,10 @@ public class IKFootSolver : MonoBehaviour
             }
         }
 
+        //calculate hipDelatPosition to replace velocity
+        float hipVelocity = Vector3.Distance(hipBody.transform.position, lastHipPosition) / Time.deltaTime;
+        lastHipPosition = hipBody.transform.position;
+
         //lerp foot from old to new foot position step-by-step
         Vector3 footPosition = Vector3.zero;
         if (lerp < 1 && !otherFoot.stepping)
@@ -68,7 +73,7 @@ public class IKFootSolver : MonoBehaviour
 
             stepping = true;
             float fastMod = 1f;
-            if(fastMod < hipBody.velocity.magnitude) { fastMod = hipBody.velocity.magnitude; } //establishes speed floor
+            if(fastMod < hipVelocity) { fastMod = hipVelocity; } //establishes speed floor
             lerp += Time.deltaTime * speed * fastMod;
 
             groundImpacted = false;
