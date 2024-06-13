@@ -5201,7 +5201,7 @@ GameObject:
   - component: {fileID: 489200525374966315}
   - component: {fileID: 2384374566238575408}
   - component: {fileID: 8065689123806388830}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Left Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9071,7 +9071,7 @@ GameObject:
   - component: {fileID: 6949067124147636305}
   - component: {fileID: 75597871706249861}
   - component: {fileID: 2178519260682915187}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Left Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11309,7 +11309,7 @@ GameObject:
   - component: {fileID: 2545708837324015333}
   - component: {fileID: 7568218047219345351}
   - component: {fileID: 7179831170514416395}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Right Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11669,7 +11669,7 @@ GameObject:
   - component: {fileID: 9134479588786050810}
   - component: {fileID: 7453598613815999797}
   - component: {fileID: 5431413212850196038}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Right Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
