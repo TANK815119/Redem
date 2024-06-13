@@ -22,6 +22,8 @@ public class GripController : NetworkBehaviour
     private List<Transform> grabList;
     private HandAnimation handAnim;
     private Rigidbody handBody;
+    private Collider handCollider;
+    private Collider forearmCollider;
     private InputData inputData;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,8 @@ public class GripController : NetworkBehaviour
         grabList = new List<Transform>();
         handAnim = gameObject.GetComponent<HandAnimation>();
         handBody = gameObject.GetComponent<Rigidbody>();
+        handCollider = gameObject.GetComponent<Collider>();
+        forearmCollider = transform.parent.gameObject.GetComponent<Collider>();
         inputData = gameObject.GetComponent<InputData>();
     }
 
@@ -132,24 +136,28 @@ public class GripController : NetworkBehaviour
             //joint.connectedAnchor = grabPoint.GetCurrParentOffset() + 0.1f * grabPoint.transform.up; //hard coded for hand length
         }
 
-        //configure bodily collisions of the object
-        //bothHandObject = 10
-        //leftHandObject = 11
-        //rightHandObject = 12
-        
-        if((isRightController && joint.gameObject.layer == 11) || (!isRightController && joint.gameObject.layer == 12))
-        {
-            SetAllToLayer(joint.transform, 10); //set to body
-        }
-        else if(isRightController)
-        {
-            SetAllToLayer(joint.transform, 12); //set to right hand
+        ////configure bodily collisions of the object with layers
+        ////bothHandObject = 10
+        ////leftHandObject = 11
+        ////rightHandObject = 12
 
-        }
-        else if(!isRightController)
-        {
-            SetAllToLayer(joint.transform, 11); //set to left hand
-        }
+        //if((isRightController && joint.gameObject.layer == 11) || (!isRightController && joint.gameObject.layer == 12))
+        //{
+        //    SetAllToLayer(joint.transform, 10); //set to body
+        //}
+        //else if(isRightController)
+        //{
+        //    SetAllToLayer(joint.transform, 12); //set to right hand
+
+        //}
+        //else if(!isRightController)
+        //{
+        //    SetAllToLayer(joint.transform, 11); //set to left hand
+        //}
+
+        //configure bodily collisions of the object with collision matricies
+        SetAllToCollision(handCollider, joint.transform, true);
+        SetAllToCollision(forearmCollider, joint.transform, true);
 
         //play audio
         AudioSource.PlayClipAtPoint(gripClip, transform.position, 1f);
@@ -163,19 +171,23 @@ public class GripController : NetworkBehaviour
         //change hand animation state
         handAnim.Gripping = false;
 
-        //configure bodily collisions of the object
-        if(joint.gameObject.layer == 11 || joint.gameObject.layer == 12)
-        {
-            SetAllToLayer(joint.transform, 0); //set to default if one hand
-        }
-        else if(isRightController)
-        {
-            SetAllToLayer(joint.transform, 11); //set to left hand
-        }
-        else if(!isRightController)
-        {
-            SetAllToLayer(joint.transform, 12); //set to right hand
-        }
+        ////configure bodily collisions of the object with layers
+        //if(joint.gameObject.layer == 11 || joint.gameObject.layer == 12)
+        //{
+        //    SetAllToLayer(joint.transform, 0); //set to default if one hand
+        //}
+        //else if(isRightController)
+        //{
+        //    SetAllToLayer(joint.transform, 11); //set to left hand
+        //}
+        //else if(!isRightController)
+        //{
+        //    SetAllToLayer(joint.transform, 12); //set to right hand
+        //}
+
+        //configure bodily collisions of the object with collision matricies
+        SetAllToCollision(handCollider, joint.transform, false);
+        SetAllToCollision(forearmCollider, joint.transform, false);
 
         //destroy the joint with the gripped object
         Destroy(joint);
@@ -268,6 +280,18 @@ public class GripController : NetworkBehaviour
         for (int i = 0; i < parent.childCount; i++)
         {
             SetAllToLayer(parent.GetChild(i), layer);
+        }
+    }
+
+    private void SetAllToCollision(Collider grabberCollider, Transform parent, bool collisionState)
+    {
+        if(parent.gameObject.TryGetComponent(out Collider objectCollider))
+        {
+            Physics.IgnoreCollision(grabberCollider, objectCollider, collisionState);
+        }
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            SetAllToCollision(grabberCollider, parent.GetChild(i), collisionState);
         }
     }
 }
