@@ -20,7 +20,7 @@ public class InterfaceButton : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         inputData.rightController.TryGetFeatureValue(CommonUsages.trigger, out float trigger);
 
@@ -75,5 +75,10 @@ public class InterfaceButton : MonoBehaviour
         {
             cursorTouching = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        cursorTouching = false;
     }
 }
