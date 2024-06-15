@@ -6,6 +6,7 @@ public class UI_Multiplayer : MonoBehaviour
 {
     [SerializeField] private InterfaceButton hostButton;
     [SerializeField] private InterfaceButton clientButton;
+    [SerializeField] private UI_KeyboardOutput keyboard;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +18,15 @@ public class UI_Multiplayer : MonoBehaviour
         if(hostButton.Selected)
         {
             SceneTransitionHandler.Singleton.InitializeAsHost = true;
+            SceneTransitionHandler.Singleton.InitializeAsMultiplayer = true;
+            //SceneTransitionHandler.Singleton.JoinRelayCode = keyboard.GetText(); -- not neccessary
             SceneTransitionHandler.Singleton.Initialize();
         }
         if(clientButton.Selected)
         {
             SceneTransitionHandler.Singleton.InitializeAsHost = false;
+            SceneTransitionHandler.Singleton.InitializeAsMultiplayer = true;
+            SceneTransitionHandler.Singleton.JoinRelayCode = keyboard.GetText();
             SceneTransitionHandler.Singleton.Initialize();
         }
     }

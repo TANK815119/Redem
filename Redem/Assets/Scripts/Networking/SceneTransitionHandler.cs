@@ -22,6 +22,8 @@ public class SceneTransitionHandler : MonoBehaviour
     private int m_numberOfClientLoaded;
 
     public bool InitializeAsHost { get; set; }
+    public bool InitializeAsMultiplayer { get; set; }
+    public string JoinRelayCode { get; set; }
 
     private void Update()
     {
