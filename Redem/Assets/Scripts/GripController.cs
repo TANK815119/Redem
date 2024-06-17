@@ -39,29 +39,39 @@ public class GripController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        //chack for phantom grips
+        if (joint == null && gripping == true)
+        {
+            DestroyPhantomGrip();
+        }
+
+        //yoink controller values
         float localGrip = (isRightController) ? GetRightGrip() : GetLeftGrip();
         if(NonNetworkOveride || IsOwner)
         {
             grip.Value = localGrip;
         }
-
         if (falseGrip == true)
         {
             grip.Value = 1f;
         }
 
+        //try to create grips
         if(grip.Value > 0.85f && !gripping && !clenched)
         {
             if(grip.Value > 0.975f)
             {
                 clenched = true;
             }
-            if(grabList.Count != 0)
+
+            //CullGrabList();//make sure there arent any artifacts of deleted objects
+            if (grabList.Count != 0)
             {
                 CreateGrip();
             }
         }
 
+        //try to detroy grips
         if(grip.Value < 0.85f)
         {
             clenched = false;
@@ -70,7 +80,6 @@ public class GripController : NetworkBehaviour
                 DestroyGrip();
             }
         }
-
 
         //if(joint != null && joint.currentForce.magnitude > 9999f) //currentFOrce only works one "limited" joints(works well now but may acause problems later)
         //{
@@ -81,8 +90,22 @@ public class GripController : NetworkBehaviour
 
     private void CreateGrip()
     {
+        Transform closestPoint = FindClosestGrabPoint(grabList, handBody.transform);
+
+        //make sure you arent trying to grab a deleted object
+        while (closestPoint == null)
+        {
+            if (grabList.Count <= 0)
+            {
+                return; //all grips were deleted
+            }
+
+            CullGrabList();
+            closestPoint = FindClosestGrabPoint(grabList, handBody.transform);
+        }
+
+        GrabPoint grabPoint = closestPoint.GetComponent<GrabPoint>();
         gripping = true;
-        GrabPoint grabPoint = FindClosestGrabPoint(grabList, handBody.transform).GetComponent<GrabPoint>();
         grabbedPoint = grabPoint;
         grabbedPoint.Grabbed = true;
         grabbedPoint.IsRightController = isRightController;
@@ -197,8 +220,24 @@ public class GripController : NetworkBehaviour
         AudioSource.PlayClipAtPoint(ungripClip, transform.position, 1f);
     }
 
+    private void DestroyPhantomGrip()
+    {
+        gripping = false;
+        handAnim.Gripping = false;
+        AudioSource.PlayClipAtPoint(ungripClip, transform.position, 1f);
+    }
+
     private Transform FindClosestGrabPoint(List<Transform> grabList, Transform hand)
     {
+        //check for any null values
+        for(int i = 0; i <  grabList.Count; i++)
+        {
+            if(grabList[i].Equals(null))
+            {
+                return null; //return null so the the CreateGrip while loop handles it
+            }
+        }
+
         Vector3 handPoint = hand.position + 0.1f * hand.up; //hard coded hand length
         Quaternion handRotation = hand.rotation;
 
@@ -214,6 +253,18 @@ public class GripController : NetworkBehaviour
             }
         }
         return grabList[bestIndex];
+    }
+
+    private void CullGrabList()
+    {
+        //remove null grabPoints
+        for (int i = 0; i < grabList.Count; i++)
+        {
+            if (grabList[i].Equals(null))
+            {
+                grabList.RemoveAt(i);
+            }
+        }
     }
 
     private float GrabPointEvaluator(float distance, float angleDistance) //returns valuer between 0 and 1 that dictates point fitness

@@ -9,7 +9,12 @@ public class NetworkOwnershipAura : NetworkBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.attachedRigidbody.gameObject.TryGetComponent<NetworkObject>(out NetworkObject otherNetObject) && NetworkManager.Singleton.IsHost)
+        if (other.attachedRigidbody == null)
+        {
+            return;
+        }
+
+        if (other.attachedRigidbody.gameObject.TryGetComponent(out NetworkObject otherNetObject) && NetworkManager.Singleton.IsHost)
         {
             //avoid ownership conflicts
             NetworkObject otherPlayerNetObject = NetworkManager.Singleton.ConnectedClients[otherNetObject.OwnerClientId].PlayerObject;

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 [RequireComponent(typeof(Collider))] //so that it may be detected by any Triboluminescent objects
-public class Flamable : MonoBehaviour
+public class Flamable : NetworkBehaviour
 {
     [SerializeField] private GameObject flame;
     [SerializeField] private List<Transform> burnPoints;
@@ -11,7 +12,7 @@ public class Flamable : MonoBehaviour
     [SerializeField] private AudioClip fireLite;
     private List<Transform> flames;
 
-    private bool burning = false;
+    private NetworkVariable<bool> burning = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class Flamable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(burning)
+        if(burning.Value)
         {
             //burning stuff
             for(int i = 0; i < burnPoints.Count; i++)
@@ -42,19 +43,19 @@ public class Flamable : MonoBehaviour
         {
             GameObject fire = Instantiate(flame);
             flames.Add(fire.transform);
-            burning = true;
+            burning.Value = true;
         }
     }    
 
     public bool IsBurning()
     {
-        return burning;
+        return burning.Value;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         Flamable flamable = collision.gameObject.GetComponent<Flamable>();
-        if (flamable != null && !flamable.IsBurning() && burning)
+        if (flamable != null && !flamable.IsBurning() && burning.Value)
         {
             flamable.Combust();
         }
