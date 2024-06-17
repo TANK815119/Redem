@@ -68,7 +68,7 @@ public class Triboluminescence : MonoBehaviour
             if (flamableList.Count > 5 && Vector3.Distance(contactPoint.point, flamableList[i].position) < combustRadius && flamable != null && !flamable.IsBurning())
             {
                 //combuts the flamable object
-                flamable.Combust();
+                flamable.Light();
                 //GameObject fire = Instantiate(flame);
                 //fire.transform.parent = flamableList[i].transform;
                 //fire.transform.localPosition = Vector3.zero;

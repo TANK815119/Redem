@@ -5,6 +5,7 @@ using UnityEngine;
 public class TargetLimb : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private float innitialDisableMoment = 0.1f;
     private ConfigurableJoint configurableJoint;
     Quaternion initial;
 
@@ -16,7 +17,14 @@ public class TargetLimb : MonoBehaviour
 
     private void FixedUpdate()
     {
-        configurableJoint.targetRotation = copyLimb();
+        if(innitialDisableMoment <= 0f)
+        {
+            configurableJoint.targetRotation = copyLimb();
+        }
+        else
+        {
+            innitialDisableMoment -= Time.fixedDeltaTime;
+        }
     }
 
     private Quaternion copyLimb()

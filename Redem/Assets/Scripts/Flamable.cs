@@ -12,7 +12,8 @@ public class Flamable : NetworkBehaviour
     [SerializeField] private AudioClip fireLite;
     private List<Transform> flames;
 
-    private NetworkVariable<bool> burning = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private bool burning = false;
+    private NetworkVariable<bool> lit = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +26,14 @@ public class Flamable : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(burning.Value)
+        if(lit.Value && !burning)
         {
-            //burning stuff
+            Combust();
+        }
+
+        if(burning)
+        {
+            //"parent" burning stuff
             for(int i = 0; i < burnPoints.Count; i++)
             {
                 flames[i].position = burnPoints[i].position;
@@ -35,7 +41,7 @@ public class Flamable : NetworkBehaviour
         }
     }
 
-    public void Combust()
+    private void Combust()
     {
         AudioSource.PlayClipAtPoint(fireLite, transform.position, 1f);
         fireCrackle.Play();
@@ -43,21 +49,26 @@ public class Flamable : NetworkBehaviour
         {
             GameObject fire = Instantiate(flame);
             flames.Add(fire.transform);
-            burning.Value = true;
+            burning = true;
         }
-    }    
+    }  
+    
+    public void Light()
+    {
+        lit.Value = true;
+    }
 
     public bool IsBurning()
     {
-        return burning.Value;
+        return burning;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         Flamable flamable = collision.gameObject.GetComponent<Flamable>();
-        if (flamable != null && !flamable.IsBurning() && burning.Value)
+        if (flamable != null && !flamable.IsBurning() && burning)
         {
-            flamable.Combust();
+            flamable.Light();
         }
     }
 }
