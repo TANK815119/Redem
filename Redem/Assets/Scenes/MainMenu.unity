@@ -16879,7 +16879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de3adae50c3bad42bb8a1277bbf847e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: SampleScene
+  sceneName: IslandTerrain
 --- !u!114 &2095423580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16928,7 +16928,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 0efc024b3b211304481d54c9c16ef4bd, type: 2}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
-    ConnectionApproval: 0
+    ConnectionApproval: 1
     ConnectionData: 
     EnableTimeResync: 0
     TimeResyncInterval: 30
@@ -17493,6 +17493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4719285805608089924}
+  innitialDisableMoment: 0.1
 --- !u!54 &186257846603956302
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17644,6 +17645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7758158815055890983}
+  innitialDisableMoment: 0.1
 --- !u!1 &346767637963696962
 GameObject:
   m_ObjectHideFlags: 0
@@ -17705,6 +17707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7655836136314619797}
+  innitialDisableMoment: 0.1
 --- !u!4 &404563464757286695
 Transform:
   m_ObjectHideFlags: 0
@@ -18318,6 +18321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3466942045396075061}
+  innitialDisableMoment: 0.1
 --- !u!23 &810915670991870550
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20689,6 +20693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3357232867143414324}
+  innitialDisableMoment: 0.1
 --- !u!1 &2180537593440332074
 GameObject:
   m_ObjectHideFlags: 0
@@ -21977,6 +21982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1348409351231809786}
+  innitialDisableMoment: 0.1
 --- !u!1 &2829512871074071266
 GameObject:
   m_ObjectHideFlags: 0
@@ -25134,6 +25140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8007672467276902720}
+  innitialDisableMoment: 0.1
 --- !u!54 &4736536234602892865
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29102,6 +29109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7863947055447724630}
+  innitialDisableMoment: 0.1
 --- !u!4 &7181390867074724227
 Transform:
   m_ObjectHideFlags: 0
@@ -32440,6 +32448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4187257068897976484}
+  innitialDisableMoment: 0.1
 --- !u!4 &9028875962074536873
 Transform:
   m_ObjectHideFlags: 0

@@ -1702,6 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4719285806516532686}
+  innitialDisableMoment: 0.1
 --- !u!1 &1360095707585177149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,6 +2005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3466942044286930623}
+  innitialDisableMoment: 0.1
 --- !u!1 &1470830003650896660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,6 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7655836135138265887}
+  innitialDisableMoment: 0.1
 --- !u!114 &3022115554896356660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5228,6 +5231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3357232865702887102}
+  innitialDisableMoment: 0.1
 --- !u!1 &3692316918253350908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5429,6 +5433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1348409352605230192}
+  innitialDisableMoment: 0.1
 --- !u!1 &3905730213383283183
 GameObject:
   m_ObjectHideFlags: 0
@@ -5935,6 +5940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4187257067319168046}
+  innitialDisableMoment: 0.1
 --- !u!1 &4142300807494709449
 GameObject:
   m_ObjectHideFlags: 0
@@ -8125,6 +8131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7863947056351878876}
+  innitialDisableMoment: 0.1
 --- !u!1 &5202461814976021735
 GameObject:
   m_ObjectHideFlags: 0
@@ -8427,6 +8434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7758158813611230893}
+  innitialDisableMoment: 0.1
 --- !u!114 &1105572885673886569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13728,7 +13736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
+  m_RequiresDepthTextureOption: 1
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
@@ -16097,6 +16105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8007672468046282186}
+  innitialDisableMoment: 0.1
 --- !u!1 &9087724955402357511
 GameObject:
   m_ObjectHideFlags: 0

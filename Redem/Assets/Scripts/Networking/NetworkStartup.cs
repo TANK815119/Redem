@@ -15,6 +15,7 @@ using Unity.Netcode.Transports.UTP;
 //or something else that can carry over the data
 public class NetworkStartup : MonoBehaviour
 {
+
     // Start is called before the first frame update
     private async void Start() //multiplayer
     {
