@@ -1514,6 +1514,7 @@ GameObject:
   - component: {fileID: 7070331955711068481}
   - component: {fileID: 8307794041763278902}
   - component: {fileID: 182882808842809763}
+  - component: {fileID: 5150340389792505778}
   m_Layer: 0
   m_Name: Left Brachium
   m_TagString: Untagged
@@ -1703,6 +1704,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4719285806516532686}
   innitialDisableMoment: 0.1
+--- !u!114 &5150340389792505778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258080669457975597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &1360095707585177149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1837,7 @@ GameObject:
   - component: {fileID: 2369855442928428106}
   - component: {fileID: 2161607857073586539}
   - component: {fileID: 801510079104567350}
+  - component: {fileID: 2212820011209854294}
   m_Layer: 0
   m_Name: Right Clavicle
   m_TagString: Untagged
@@ -2006,6 +2027,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 3466942044286930623}
   innitialDisableMoment: 0.1
+--- !u!114 &2212820011209854294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400079359565307418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &1470830003650896660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,6 +2127,7 @@ GameObject:
   - component: {fileID: 489200526346225313}
   - component: {fileID: 2384374564861089722}
   - component: {fileID: 8065689124710117076}
+  - component: {fileID: 8607945397315752360}
   m_Layer: 13
   m_Name: Left Hand
   m_TagString: Untagged
@@ -2250,7 +2291,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 100
+    positionSpring: 200
     positionDamper: 5
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -2398,6 +2439,25 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8607945397315752360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587578452100406480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0.5
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &1610202270609584424
 GameObject:
   m_ObjectHideFlags: 0
@@ -5043,6 +5103,7 @@ GameObject:
   - component: {fileID: 6949067123105694939}
   - component: {fileID: 75597873285584399}
   - component: {fileID: 2178519261859791353}
+  - component: {fileID: 360227247899835304}
   m_Layer: 13
   m_Name: Left Forearm
   m_TagString: Untagged
@@ -5232,6 +5293,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 3357232865702887102}
   innitialDisableMoment: 0.1
+--- !u!114 &360227247899835304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660699156780094867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &3692316918253350908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5245,6 +5325,7 @@ GameObject:
   - component: {fileID: 4858926283295967592}
   - component: {fileID: 3303679522240584460}
   - component: {fileID: 2829304595043404032}
+  - component: {fileID: 7832510896176042299}
   m_Layer: 0
   m_Name: Left Clavicle
   m_TagString: Untagged
@@ -5434,6 +5515,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1348409352605230192}
   innitialDisableMoment: 0.1
+--- !u!114 &7832510896176042299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3692316918253350908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &3905730213383283183
 GameObject:
   m_ObjectHideFlags: 0
@@ -5753,6 +5853,7 @@ GameObject:
   - component: {fileID: 4439113327740032885}
   - component: {fileID: 3480937639362801766}
   - component: {fileID: 9025660145302681847}
+  - component: {fileID: 8564191524271179472}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -5941,6 +6042,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4187257067319168046}
   innitialDisableMoment: 0.1
+--- !u!114 &8564191524271179472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4121407030723862305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &4142300807494709449
 GameObject:
   m_ObjectHideFlags: 0
@@ -7943,6 +8063,7 @@ GameObject:
   - component: {fileID: 2545708838701533807}
   - component: {fileID: 7568218047787330381}
   - component: {fileID: 7179831169946238849}
+  - component: {fileID: 4300898920363394649}
   m_Layer: 13
   m_Name: Right Forearm
   m_TagString: Untagged
@@ -8132,6 +8253,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7863947056351878876}
   innitialDisableMoment: 0.1
+--- !u!114 &4300898920363394649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191112718264942360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &5202461814976021735
 GameObject:
   m_ObjectHideFlags: 0
@@ -8243,6 +8383,7 @@ GameObject:
   - component: {fileID: 9134479589555559024}
   - component: {fileID: 7453598612912435647}
   - component: {fileID: 5431413211878998732}
+  - component: {fileID: 4414954918870361670}
   m_Layer: 13
   m_Name: Right Hand
   m_TagString: Untagged
@@ -8406,7 +8547,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 100
+    positionSpring: 200
     positionDamper: 5
     maximumForce: 3.4028233e+38
     useAcceleration: 0
@@ -8554,6 +8695,25 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4414954918870361670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408423227290993770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0.5
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &5506649455145930476
 GameObject:
   m_ObjectHideFlags: 0
@@ -14025,6 +14185,7 @@ GameObject:
   - component: {fileID: 617443131931050329}
   - component: {fileID: 3725406101352852724}
   - component: {fileID: 8640833468528866415}
+  - component: {fileID: 5620206264640830693}
   m_Layer: 13
   m_Name: Rotoball
   m_TagString: Untagged
@@ -14213,6 +14374,25 @@ MonoBehaviour:
   derrivativeGain: 1000
   integralGain: 0
   useVelocity: 1
+--- !u!114 &5620206264640830693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8357786987177994442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0.5
+  dynamicAngleDrag: 0.1
+  submersionRValue: 1
 --- !u!1 &8382818001112009493
 GameObject:
   m_ObjectHideFlags: 0
@@ -15593,6 +15773,7 @@ GameObject:
   - component: {fileID: 5960137888978482911}
   - component: {fileID: 5910841327546980647}
   - component: {fileID: 3728191583318848664}
+  - component: {fileID: 8151405969923595852}
   m_Layer: 0
   m_Name: Hips
   m_TagString: Untagged
@@ -15769,6 +15950,25 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8151405969923595852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8921764352316505376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &8970179436661385957
 GameObject:
   m_ObjectHideFlags: 0
@@ -15815,6 +16015,7 @@ GameObject:
   - component: {fileID: 7188076595665489283}
   - component: {fileID: 8251569920175988031}
   - component: {fileID: 4730020176250550568}
+  - component: {fileID: 6602740652646618345}
   m_Layer: 0
   m_Name: Right Brachium
   m_TagString: Untagged
@@ -16106,6 +16307,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 8007672468046282186}
   innitialDisableMoment: 0.1
+--- !u!114 &6602740652646618345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035771152253504739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 0}
+  staticDrag: 0
+  dynamicDrag: 0
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &9087724955402357511
 GameObject:
   m_ObjectHideFlags: 0

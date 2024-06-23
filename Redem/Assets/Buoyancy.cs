@@ -7,9 +7,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Buoyancy : MonoBehaviour
 {
+    [SerializeField] private bool debugMode = false;
     [SerializeField] private GameObject debugMarker;
-    [SerializeField] [Range(0f, 1f)] private float staticDrag = 0.5f;
-    [SerializeField] [Range(0f, 1f)] private float dynamicDrag = 0.5f;
+    [SerializeField] [Range(0f, 5f)] private float staticDrag = 0.5f;
+    [SerializeField] [Range(0f, 1f)] private float dynamicDrag = 0.2f;
+    [SerializeField] [Range(0f, 5f)] private float staticAngleDrag = 0.5f; // reduce to zero if small object
+    [SerializeField] [Range(0f, 1f)] private float dynamicAngleDrag = 0.1f; // reduce to zero if small object
+    [SerializeField] private float submersionRValue = 1f;
     private List<Collider> colliders;
     private List<Collider> waterTriggers;
     private Rigidbody rb;
@@ -18,6 +22,8 @@ public class Buoyancy : MonoBehaviour
 
     private Vector3 lastSubmersionCenter = Vector3.zero;
     private float lastSubmergedVolume = 0f;
+
+    private GameObject[] markers;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +51,15 @@ public class Buoyancy : MonoBehaviour
         for(int i = 0; i < colliders.Count; i++)
         {
             wholeVolume += ColliderVolume(colliders[i]);
+        }
+
+        if(debugMode)
+        {
+            markers = new GameObject[343 * 2];
+            for (int i = 0; i < markers.Length; i++)
+            {
+                markers[i] = Instantiate(debugMarker);
+            }
         }
     }
 
@@ -77,7 +92,10 @@ public class Buoyancy : MonoBehaviour
             lastSubmersionCenter = submersionCenter;
 
             Debug.Log("Center of submersion: " + submersionCenter);
-            debugMarker.transform.position = submersionCenter;
+            if(debugMode)
+            {
+                debugMarker.transform.position = submersionCenter;
+            }
 
             //apply upwards force at average based on volume submerged and gravity(archemedes princiopal)
             float bouyantForce = ArchimedesBouyantForce(submergedVolume, 1000f);
@@ -86,11 +104,11 @@ public class Buoyancy : MonoBehaviour
 
             //apply positional forces based on inverse of velocity at average position of submerged colliders
             //this should simulate water drag
-            Vector3 drag = HydroDrag(submergedVolume, staticDrag, dynamicDrag);
-            //rb.AddForceAtPosition(drag, submersionCenter, ForceMode.Force);
+            Vector3 drag = HydroDrag(Mathf.Sqrt(submergedVolume), staticDrag, dynamicDrag);
+            rb.AddForceAtPosition(drag, submersionCenter, ForceMode.Force);
 
-            Vector3 angularDrag = AngularHydroDrag(submergedVolume, staticDrag, dynamicDrag);
-            //rb.AddTorque(angularDrag, ForceMode.Force);
+            Vector3 angularDrag = AngularHydroDrag(Mathf.Sqrt(submergedVolume), staticAngleDrag, dynamicAngleDrag);
+            rb.AddTorque(angularDrag, ForceMode.Force);
         }
         else
         {
@@ -101,7 +119,10 @@ public class Buoyancy : MonoBehaviour
             Vector3 submersionCenter = Vector3.Lerp(lastSubmersionCenter, transform.position + rb.centerOfMass, (5f + rb.velocity.magnitude + rb.angularVelocity.magnitude) * Time.fixedDeltaTime);
             lastSubmersionCenter = submersionCenter;
 
-            debugMarker.transform.position = submersionCenter;
+            if (debugMode)
+            {
+                debugMarker.transform.position = submersionCenter;
+            }
         }
     }
 
@@ -127,13 +148,16 @@ public class Buoyancy : MonoBehaviour
         float totalVolume = 0f;
         for(int i = 0; i < submergedColliders.Count; i++)
         {
-            Vector3[] corners = GetBoundsCorners(submergedColliders[i].bounds);
+            Vector3[] corners = GetBoundsCorners(submergedColliders[i].bounds, i);
 
             //see how many corners overlap with the waterTrigger bounds
             int submergedCorners = SubmergedPointsCount(corners);
 
             //use # of submerged points to estimate this submergedvolume
-            float thisSubVolume = ((float)submergedCorners / 8f) * ColliderVolume(submergedColliders[i]);
+            float subPointFraction = (float)submergedCorners / 343f;
+            //float subPointModulator = Mathf.Pow((wholeVolume * 1000f) / rb.mass, 1/2);
+            float subPointFractionModulated = Mathf.Pow(subPointFraction, 1f);
+            float thisSubVolume = subPointFractionModulated * ColliderVolume(submergedColliders[i]);
             totalVolume += thisSubVolume;
         }
 
@@ -146,7 +170,7 @@ public class Buoyancy : MonoBehaviour
         List<Vector3> submergedPoints = new List<Vector3>();
         for (int i = 0; i < submergedColliders.Count; i++)
         {
-            Vector3[] corners = GetBoundsCorners(submergedColliders[i].bounds);
+            Vector3[] corners = GetBoundsCorners(submergedColliders[i].bounds, i);
 
             List<Vector3> thisSubPoints = SubmergedPointsList(corners);
 
@@ -156,25 +180,41 @@ public class Buoyancy : MonoBehaviour
             }
         }
 
+        ////create a bound for all submergedPoint
+        //Bounds submergedBound;
+        //if (submergedPoints.Count > 0)
+        //{
+        //    submergedBound = new Bounds(submergedPoints[0], Vector3.zero);
+        //}
+        //else
+        //{
+        //    submergedBound = new Bounds(transform.position, Vector3.zero); //default to the center of the object
+        //}
 
-        //create a bound for all submergedPoint
-        Bounds submergedBound;
+        //for (int i = 0; i < submergedPoints.Count; i++)
+        //{
+        //    submergedBound.Encapsulate(submergedPoints[i]);
+        //}
+
+        ////rerturn the center of the bound area
+        //return submergedBound.center;
+
+        //average all submerged points ASSUMES EVEN POINT DISTRIBUTION
+        Vector3 submersionCenter = Vector3.zero;
         if (submergedPoints.Count > 0)
         {
-            submergedBound = new Bounds(submergedPoints[0], Vector3.zero);
+            for(int i = 0; i < submergedPoints.Count; i++)
+            {
+                submersionCenter += submergedPoints[i];
+            }
+            submersionCenter = submersionCenter / submergedPoints.Count;
         }
         else
         {
-            submergedBound = new Bounds(transform.position, Vector3.zero); //default to the center of the object
+            submersionCenter = transform.position + rb.centerOfMass; //default to the center of mass of the object
         }
 
-        for (int i = 0; i < submergedPoints.Count; i++)
-        {
-            submergedBound.Encapsulate(submergedPoints[i]);
-        }
-
-        //rerturn the center of the bound area
-        return submergedBound.center;
+        return submersionCenter;
     }
 
     private float ArchimedesBouyantForce(float displacedVolume, float fluidDensity)
@@ -226,22 +266,105 @@ public class Buoyancy : MonoBehaviour
         }
     }
 
-    Vector3[] GetBoundsCorners(Bounds bounds)
+    Vector3[] GetBoundsCorners(Bounds bounds, int objIndex)
     {
-        Vector3[] corners = new Vector3[8];
+        Vector3[] corners = new Vector3[343];
 
         Vector3 center = bounds.center;
         Vector3 extents = bounds.extents;
 
-        // Calculate the 8 corners
-        corners[0] = center + new Vector3(extents.x, extents.y, extents.z);  // Top front right
-        corners[1] = center + new Vector3(extents.x, extents.y, -extents.z); // Top back right
-        corners[2] = center + new Vector3(extents.x, -extents.y, extents.z); // Bottom front right
-        corners[3] = center + new Vector3(extents.x, -extents.y, -extents.z);// Bottom back right
-        corners[4] = center + new Vector3(-extents.x, extents.y, extents.z); // Top front left
-        corners[5] = center + new Vector3(-extents.x, extents.y, -extents.z);// Top back left
-        corners[6] = center + new Vector3(-extents.x, -extents.y, extents.z);// Bottom front left
-        corners[7] = center + new Vector3(-extents.x, -extents.y, -extents.z);// Bottom back left
+        //// Calculate the 8 corners
+        //corners[0] = center + new Vector3(extents.x, extents.y, extents.z);  // Top front right
+        //corners[8] = center + new Vector3(extents.x/2f, extents.y, extents.z);
+        //corners[9] = center + new Vector3(extents.x, extents.y/2f, extents.z);
+        //corners[10] = center + new Vector3(extents.x, extents.y, extents.z/2f);
+        //corners[1] = center + new Vector3(extents.x, extents.y, -extents.z); // Top back right
+        //corners[11] = center + new Vector3(extents.x/2f, extents.y, -extents.z);
+        //corners[12] = center + new Vector3(extents.x, extents.y/2f, -extents.z);
+        //corners[13] = center + new Vector3(extents.x, extents.y, -extents.z/2f);
+        //corners[2] = center + new Vector3(extents.x, -extents.y, extents.z); // Bottom front right
+        //corners[14] = center + new Vector3(extents.x/2f, -extents.y, extents.z);
+        //corners[15] = center + new Vector3(extents.x, -extents.y/2f, extents.z);
+        //corners[16] = center + new Vector3(extents.x, -extents.y, extents.z/2f);
+        //corners[3] = center + new Vector3(extents.x, -extents.y, -extents.z);// Bottom back right
+        //corners[17] = center + new Vector3(extents.x/2f, -extents.y, -extents.z);
+        //corners[18] = center + new Vector3(extents.x, -extents.y/2f, -extents.z);
+        //corners[19] = center + new Vector3(extents.x, -extents.y, -extents.z/2f);
+        //corners[4] = center + new Vector3(-extents.x, extents.y, extents.z); // Top front left
+        //corners[20] = center + new Vector3(-extents.x/2f, extents.y, extents.z);
+        //corners[21] = center + new Vector3(-extents.x, extents.y/2f, extents.z);
+        //corners[22] = center + new Vector3(-extents.x, extents.y, extents.z/2f);
+        //corners[5] = center + new Vector3(-extents.x, extents.y, -extents.z);// Top back left
+        //corners[23] = center + new Vector3(-extents.x/2f, extents.y, -extents.z);
+        //corners[24] = center + new Vector3(-extents.x, extents.y/2f, -extents.z);
+        //corners[25] = center + new Vector3(-extents.x, extents.y, -extents.z/2f);
+        //corners[6] = center + new Vector3(-extents.x, -extents.y, extents.z);// Bottom front left
+        //corners[26] = center + new Vector3(-extents.x/2f, -extents.y, extents.z);
+        //corners[27] = center + new Vector3(-extents.x, -extents.y/2f, extents.z);
+        //corners[28] = center + new Vector3(-extents.x, -extents.y, extents.z/2f);
+        //corners[7] = center + new Vector3(-extents.x, -extents.y, -extents.z);// Bottom back left
+        //corners[29] = center + new Vector3(-extents.x/2f, -extents.y, -extents.z);
+        //corners[30] = center + new Vector3(-extents.x, -extents.y/2f, -extents.z);
+        //corners[31] = center + new Vector3(-extents.x, -extents.y, -extents.z/2f);
+
+        //Interpolate between adjacent points to make a higher fidelity point map
+        //List<Vector3> points = new List<Vector3>();
+        //for (int i = 0; i < corners.Length; i++)
+        //{
+        //    for (int j = 0; j < corners.Length; j++)
+        //    {
+        //        //interpolate nearby points
+        //        int coordinateMathces = 0;
+        //        Vector3 interpPoint = corners[i];
+
+        //        if(corners[i].x == corners[j].x) //x coordinate
+        //        {
+        //            coordinateMathces++;
+        //        }
+        //        else
+        //        {
+        //            interpPoint.x = (corners[i].x + corners[y].x) / 2f;
+        //        }
+        //        if (corners[i].y == corners[j].y) //y coordinate
+        //        {
+        //            coordinateMathces++;
+        //        }
+        //        else
+        //        {
+        //            interpPoint.x = (corners[i].x + corners[y].x) / 2f;
+        //        }
+        //        if (corners[i].x == corners[j].x) //z coordinate
+        //        {
+        //            coordinateMathces++;
+        //        }
+        //        else
+        //        {
+        //            interpPoint.x = (corners[i].x + corners[y].x) / 2f;
+        //        }
+        //    }
+        //}
+
+        //calculate the position of 7*7*7 = 343 3d points within the object
+        int index = 0;
+        int pointScale = 4; //essentiall the # of points deep, wide, high
+        float xUnit = extents.x / (float)(pointScale - 1);
+        float yUnit = extents.y / (float)(pointScale - 1);
+        float zUnit = extents.z / (float)(pointScale - 1);
+        for(int x = -(pointScale - 1); x < pointScale; x++)
+        {
+            for(int z = -(pointScale - 1); z < pointScale; z++)
+            {
+                for(int y = -(pointScale - 1); y < pointScale; y++)
+                {
+                    corners[index] = center + new Vector3(xUnit * x, yUnit * y, zUnit * z);
+                    if(debugMode)
+                    {
+                        markers[index * (objIndex + 1)].transform.position = corners[index];
+                    }
+                    index++;
+                }
+            }
+        }
 
         return corners;
     }

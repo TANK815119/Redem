@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2763124351999279235}
   - component: {fileID: 1199178017830256933}
   - component: {fileID: 6716845105329354292}
+  - component: {fileID: -2513479496600978387}
   m_Layer: 0
   m_Name: Rock_1
   m_TagString: Untagged
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1844707816
+  GlobalObjectIdHash: 3094794863
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -244,6 +245,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2513479496600978387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71889386162039449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 4334603996559081247, guid: 6142d7e2a92aa0a43808175194421ea2, type: 3}
+  staticDrag: 0
+  dynamicDrag: 0.2
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &2817709049563876364
 GameObject:
   m_ObjectHideFlags: 0

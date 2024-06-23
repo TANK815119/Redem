@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4652751105207340271}
   - component: {fileID: 8439256603288141458}
   - component: {fileID: 2894108344048358811}
+  - component: {fileID: -383922976209451707}
   m_Layer: 0
   m_Name: Stick_2
   m_TagString: Untagged
@@ -284,6 +285,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-383922976209451707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576871360335968939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  debugMarker: {fileID: 4334603996559081247, guid: 6142d7e2a92aa0a43808175194421ea2, type: 3}
+  staticDrag: 0
+  dynamicDrag: 0.2
+  staticAngleDrag: 0
+  dynamicAngleDrag: 0
+  submersionRValue: 1
 --- !u!1 &828398644937408702
 GameObject:
   m_ObjectHideFlags: 0
