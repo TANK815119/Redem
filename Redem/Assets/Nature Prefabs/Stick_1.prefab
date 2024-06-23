@@ -879,10 +879,10 @@ GameObject:
   - component: {fileID: 8501816074215815469}
   - component: {fileID: 5008067380436833908}
   - component: {fileID: 3990400347251259305}
+  - component: {fileID: 5202803403338548190}
   - component: {fileID: 977327182393738516}
   - component: {fileID: 6720620134198454425}
   - component: {fileID: 1544573403515423695}
-  - component: {fileID: 5202803403338548190}
   - component: {fileID: 6511068159725952649}
   - component: {fileID: 7539010008789623190}
   - component: {fileID: -1686777803876493893}
@@ -960,6 +960,26 @@ MonoBehaviour:
   - {fileID: 8708677149611783744}
   fireCrackle: {fileID: 6720620134198454425}
   fireLite: {fileID: 8300000, guid: 4d15638b1eef74144904efd780adb899, type: 3}
+--- !u!114 &5202803403338548190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222637920901615508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1535632605
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!135 &977327182393738516
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1093,26 +1113,6 @@ MonoBehaviour:
   volume: 1
   forceMinimum: 2
   cooldown: 0.25
---- !u!114 &5202803403338548190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6222637920901615508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1535632605
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &6511068159725952649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,13 +1167,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 4334603996559081247, guid: 6142d7e2a92aa0a43808175194421ea2, type: 3}
-  staticDrag: 0
+  staticDrag: 0.5
   dynamicDrag: 0.2
   staticAngleDrag: 0
   dynamicAngleDrag: 0
-  submersionRValue: 1
+  stableObject: 0
 --- !u!1 &6446001186704257116
 GameObject:
   m_ObjectHideFlags: 0

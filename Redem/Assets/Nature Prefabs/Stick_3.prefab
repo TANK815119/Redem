@@ -296,13 +296,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 4334603996559081247, guid: 6142d7e2a92aa0a43808175194421ea2, type: 3}
-  staticDrag: 0
+  staticDrag: 0.5
   dynamicDrag: 0.2
   staticAngleDrag: 0
   dynamicAngleDrag: 0
-  submersionRValue: 1
+  stableObject: 0
 --- !u!1 &1431955423057361137
 GameObject:
   m_ObjectHideFlags: 0
