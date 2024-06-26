@@ -7,19 +7,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Buoyancy : MonoBehaviour
 {
-    [SerializeField] private bool showGizmo = false;
-    [SerializeField] private GameObject debugMarker;
     [SerializeField] private float staticDrag = 5f;
-    [SerializeField] private float dynamicDrag = 0.0f;
     [SerializeField] private float angularDragCoefficient = 5f;
 
     private List<Collider> waterTriggers;
     private List<ColliderData> colliderData;
     private Rigidbody rb;
     private bool floating = false;
-    private float submergedVolume = 0f;
     private float submergedCrossSection = 0f;
-    private float wholeVolume = 0f;
     private float wholeCrossSection = 0f;
 
     // Start is called before the first frame update
@@ -47,7 +42,6 @@ public class Buoyancy : MonoBehaviour
         //caclulate the wholeVolume and wholeCorssSection
         for(int i = 0; i < colliderData.Count; i++)
         {
-            wholeVolume += colliderData[i].Volume;
             wholeCrossSection += colliderData[i].CrossSection;
         }
     }
@@ -55,52 +49,8 @@ public class Buoyancy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //if(floating && false)
-        //{
-        //    Debug.Log("water triggers: " + waterTriggers.Count);
-        //    //find which colliders are submerged
-        //    List<Collider> submergedColliders = SubmergedColliders();
-
-        //    //find submerged volume
-        //    float submergedVolume = SubmergedVolume(submergedColliders);
-
-        //    Debug.Log("aproximate submerged volume: " + submergedVolume);
-
-        //    //find average of submerged point extremtities
-        //    Vector3 submersionCenter = SubmergedBoundCenter(submergedColliders);
-
-        //    Debug.Log("Center of submersion: " + submersionCenter);
-        //    if(showGizmo)
-        //    {
-        //        gizmoCenterOfSubmersion = submersionCenter;
-        //    }
-
-        //    //apply upwards force at average based on volume submerged and gravity(archemedes princiopal)
-        //    float bouyantForce = ArchimedesBouyantForce(submergedVolume, 1000f);
-        //    Debug.Log("bouyant force: " + bouyantForce);
-        //    rb.AddForceAtPosition(Vector3.up * bouyantForce, submersionCenter, ForceMode.Force);
-
-        //    //apply positional forces based on inverse of velocity at average position of submerged colliders
-        //    //this should simulate water drag
-        //    Vector3 drag = HydroDrag(submergedVolume, staticDrag, dynamicDrag);
-        //    rb.AddForceAtPosition(drag, submersionCenter, ForceMode.Force);
-
-        //    if (stableObject)
-        //    {
-        //        Vector3 angularDrag = AngularHydroDrag(submergedVolume, staticAngleDrag, dynamicAngleDrag); //physically accurate rotation
-        //        rb.AddTorque(angularDrag, ForceMode.Force);
-        //    }
-        //    else
-        //    {
-        //        //use simple drag
-        //        float dragCoefficient = 10f * (submergedVolume / wholeVolume);
-        //        rb.angularVelocity = rb.angularVelocity * (1f - dragCoefficient * Time.fixedDeltaTime); 
-        //    }
-        //}
-
         if (floating)
         {
-            submergedVolume = 0f;
             submergedCrossSection = 0f;
             
             for (int i = 0; i < colliderData.Count; i++)
@@ -116,7 +66,7 @@ public class Buoyancy : MonoBehaviour
                     //calculate and apply the Hydraulic drag at the collider
                     //make sure to utilize both velocity and
                     //"real" angular velocty in whcihever direction is the tangent of rotation and distance from center of mass
-                    ApplyHydraulicDrag(colliderData[i], staticDrag, dynamicDrag, 1000f); //hard coded fluid density
+                    ApplyHydraulicDrag(colliderData[i], staticDrag, 1000f); //hard coded fluid density
                 }
             }
 
@@ -136,7 +86,7 @@ public class Buoyancy : MonoBehaviour
                 ApplyArchemedicBouyancy(colliderData[i], 1.25f); //hard coded fluid density of air
 
                 //calculate and apply the Hydraulic drag at the collider
-                ApplyHydraulicDrag(colliderData[i], staticDrag, dynamicDrag, 1.25f); //hard coded fluid density
+                ApplyHydraulicDrag(colliderData[i], staticDrag, 1.25f); //hard coded fluid density
 
             }
         }
@@ -147,7 +97,6 @@ public class Buoyancy : MonoBehaviour
     private void UpdateColliderData(ColliderData colData)
     {
         colData.FractionSubmerged = GetFractionSubmerged(colData.Collider.bounds);
-        submergedVolume += colData.Volume * colData.FractionSubmerged;
         submergedCrossSection += colData.CrossSection * colData.FractionSubmerged;
 
         if (colData.FractionSubmerged > 0f)
@@ -173,7 +122,7 @@ public class Buoyancy : MonoBehaviour
         rb.AddForceAtPosition(Vector3.up * force, colliderCenter);
     }
 
-    private void ApplyHydraulicDrag(ColliderData colData, float statDrag, float dynDrag, float fluidDensity)
+    private void ApplyHydraulicDrag(ColliderData colData, float statDrag, float fluidDensity)
     {
         //caclulate positional vector from purely rigidbody
         Vector3 positionalVelocity = rb.velocity;
@@ -184,12 +133,10 @@ public class Buoyancy : MonoBehaviour
 
         //add the two forces together
         Vector3 totalVelocity = positionalVelocity + rotationalVelocity;
-        //Vector3 totalAcceleration = totalVelocity / Time.fixedDeltaTime;
 
         //calculate drag
         float crossSectionArea = colData.CrossSection * colData.FractionSubmerged;
         Vector3 staticDragForce = CalculateDragForce(fluidDensity, statDrag, crossSectionArea, totalVelocity);
-        //Vector3 dynamicDragForce = CalculateDragForce(fluidDensity, dynDrag, crossSectionArea, totalAcceleration);
 
         //make sure the force is physically possible
         float linearKineticEnergy = 0.5f * rb.mass * rb.velocity.sqrMagnitude; // F = 0.5mv^2
@@ -203,7 +150,6 @@ public class Buoyancy : MonoBehaviour
         }
 
         //addfore in the opposite direction
-        //Debug.Log(gameObject.name + " " + staticDragForce + " values -0.5f" + fluidDensity + " * " + staticDrag + " * " + crossSectionArea + " * " + totalVelocity.magnitude * totalVelocity.magnitude + " total corss: " + wholeCrossSection);
         rb.AddForceAtPosition(staticDragForce, GetColliderWorldCenter(colData.Collider));
     }
 
@@ -264,128 +210,10 @@ public class Buoyancy : MonoBehaviour
     }
 
     //old methods-------------------------------------------------------------------
-    private List<ColliderData> GetSubmergedColliders() //submersion is based on if it intersects
-    {
-        List<ColliderData> submergedColliders = new List<ColliderData>();
-        for(int x = 0; x < colliderData.Count; x++)
-        {
-            for(int y = 0; y < waterTriggers.Count; y++)
-            {
-                if(waterTriggers[y].bounds.Intersects(colliderData[x].Collider.bounds))
-                {
-                    submergedColliders.Add(colliderData[x]);
-                }
-            }
-        }
-
-        return submergedColliders;
-    }
-
-    private float SubmergedVolume(List<Collider> submergedColliders)
-    {
-        float totalVolume = 0f;
-        for(int i = 0; i < submergedColliders.Count; i++)
-        {
-            for(int j = 0; j < waterTriggers.Count; j++)
-            {
-                //find, for ratio of collider volumme, the size of the intersection
-                Bounds intersectionBounds = GetIntersection(submergedColliders[i].bounds, waterTriggers[j].bounds);
-                float intersectionVolume = intersectionBounds.extents.x * intersectionBounds.extents.y * intersectionBounds.extents.z;
-                float objectVolume = submergedColliders[i].bounds.extents.x * submergedColliders[i].bounds.extents.y * submergedColliders[i].bounds.extents.z;
-
-                float thisSubVolume = (intersectionVolume/objectVolume) * ColliderVolume(submergedColliders[i]);
-                totalVolume += thisSubVolume;
-            }
-        }
-
-        return totalVolume;
-    }
-
-    private Vector3 SubmergedBoundCenter(List<Collider> submergedColliders)
-    {
-        // list of all submergedPoints on the colliders
-        List<Vector3> submergedPoints = new List<Vector3>();
-        if(showGizmo)
-        {
-            gizmoPointMap = new Vector3[submergedColliders.Count][];
-        }
-        for (int i = 0; i < submergedColliders.Count; i++)
-        {
-            Vector3[] corners = GetBoundsCorners(submergedColliders[i].bounds);
-
-            if(showGizmo)
-            {
-                gizmoPointMap[i] = corners;
-            }
-
-            List<Vector3> thisSubPoints = SubmergedPointsList(corners);
-
-            for(int j = 0; j < thisSubPoints.Count; j++)
-            {
-                submergedPoints.Add(thisSubPoints[j]);
-            }
-        }
-
-        //average all submerged points ASSUMES EVEN POINT DISTRIBUTION
-        Vector3 submersionCenter = Vector3.zero;
-        if (submergedPoints.Count > 0)
-        {
-            for (int i = 0; i < submergedPoints.Count; i++)
-            {
-                submersionCenter += submergedPoints[i];
-            }
-            submersionCenter = submersionCenter / submergedPoints.Count;
-        }
-        else
-        {
-            submersionCenter = transform.TransformPoint(rb.centerOfMass); //default to the center of mass of the object
-        }
-
-        ////fetch the center of submersion for all submerged colliders and average them
-        //Vector3 submersionCenter = Vector3.zero;
-        //if (submergedColliders.Count > 0 & waterTriggers.Count > 0)
-        //{
-        //    for (int i = 0; i < submergedColliders.Count; i++)
-        //    {
-        //        for (int j = 0; j < waterTriggers.Count; j++)
-        //        {
-        //            submersionCenter += GetIntersection(submergedColliders[i].bounds, waterTriggers[j].bounds).center;
-        //        }
-        //    }
-        //    submersionCenter = submersionCenter / (submergedColliders.Count * waterTriggers.Count);
-        //}
-        //else
-        //{
-        //    submersionCenter = transform.TransformPoint(rb.centerOfMass); //default to the center of mass of the object
-        //}
-
-
-        return submersionCenter;
-    }
 
     private float ArchimedesBouyantForce(float displacedVolume, float fluidDensity)
     {
         return -1f * fluidDensity * Physics.gravity.y * displacedVolume;
-    }
-
-    private Vector3 HydroDrag(float submergedVolume, float statDrag, float dynDrag)
-    {
-        float submersionFraction = submergedVolume / wholeVolume;
-
-        Vector3 momentum = rb.mass * rb.velocity * statDrag; // momentum = m*v for static drag ///USING MASS IN DRAG DOWSNT MAKE SENSE, REID
-        Vector3 force = rb.mass * (rb.velocity / Time.fixedDeltaTime) * dynDrag; // force = m*a for dynamic drag
-
-        return -submersionFraction * (momentum + force);
-    }
-
-    private Vector3 AngularHydroDrag(float submergedVolume, float statDrag, float dynDrag)
-    {
-        float submersionFraction = submergedVolume / wholeVolume;
-
-        Vector3 momentum = rb.mass * rb.angularVelocity * statDrag; // momentum = m*v for static drag
-        Vector3 force = rb.mass * (rb.angularVelocity / Time.fixedDeltaTime) * dynDrag; // force = m*a for dynamic drag
-
-        return -submersionFraction * (momentum + force);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -406,74 +234,8 @@ public class Buoyancy : MonoBehaviour
             if (waterTriggers.Count == 0)
             {
                 floating = false;
-                //lastSubmersionCenter = Vector3.zero;
-                //lastSubmergedVolume = 0f;
             }
         }
-    }
-
-    Vector3[] GetBoundsCorners(Bounds bounds)
-    {
-        Vector3[] corners = new Vector3[343];
-
-        Vector3 center = bounds.center;
-        Vector3 extents = bounds.extents;
-
-        //calculate the position of 7*7*7 = 343 3d points within the object
-        int index = 0;
-        int pointScale = 4; //essentiall the # of points deep, wide, high
-        float xUnit = extents.x / (float)(pointScale - 1);
-        float yUnit = extents.y / (float)(pointScale - 1);
-        float zUnit = extents.z / (float)(pointScale - 1);
-        for(int x = -(pointScale - 1); x < pointScale; x++)
-        {
-            for(int z = -(pointScale - 1); z < pointScale; z++)
-            {
-                for(int y = -(pointScale - 1); y < pointScale; y++)
-                {
-                    corners[index] = center + new Vector3(xUnit * x, yUnit * y, zUnit * z);
-                    index++;
-                }
-            }
-        }
-
-        return corners;
-    }
-
-    private int SubmergedPointsCount(Vector3[] points)
-    {
-        //see how many corners overlap with the waterTrigger bounds
-        int submergedCorners = 0;
-        for (int x = 0; x < points.Length; x++)
-        {
-            for (int y = 0; y < waterTriggers.Count; y++)
-            {
-                if (waterTriggers[y].bounds.Contains(points[x]))
-                {
-                    submergedCorners++;
-                }
-            }
-        }
-
-        return submergedCorners;
-    }
-
-    private List<Vector3> SubmergedPointsList(Vector3[] points)
-    {
-        //see which many corners overlap with the waterTrigger bounds
-        List<Vector3> submergedPoints = new List<Vector3>();
-        for (int x = 0; x < points.Length; x++)
-        {
-            for (int y = 0; y < waterTriggers.Count; y++)
-            {
-                if (waterTriggers[y].bounds.Contains(points[x]))
-                {
-                    submergedPoints.Add(points[x]);
-                }
-            }
-        }
-
-        return submergedPoints;
     }
 
     private float ColliderVolume(Collider collider)
@@ -525,29 +287,6 @@ public class Buoyancy : MonoBehaviour
         {
             // Return an empty bounds if there is no intersection
             return new Bounds();
-        }
-    }
-
-    private Vector3 gizmoCenterOfSubmersion;
-    private Vector3[][] gizmoPointMap;
-    private void OnDrawGizmos()
-    {
-        if(showGizmo )
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(gizmoCenterOfSubmersion, 0.1f);
-
-            if(gizmoPointMap != null)
-            {
-                for (int x = 0; x < gizmoPointMap.Length; x++)
-                {
-                    for (int y = 0; y < gizmoPointMap[x].Length; y++)
-                    {
-                        Gizmos.color = Color.gray;
-                        Gizmos.DrawWireCube(gizmoPointMap[x][y], new Vector3(0.05f, 0.05f, 0.05f));
-                    }
-                }
-            }
         }
     }
 
