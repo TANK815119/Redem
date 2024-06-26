@@ -1716,13 +1716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
-  staticDrag: 0
+  staticDrag: 5
   dynamicDrag: 0
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &1360095707585177149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,13 +2037,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
   staticDrag: 0
   dynamicDrag: 0
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &1470830003650896660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,13 +2447,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
-  staticDrag: 0
+  staticDrag: 5
   dynamicDrag: 0.5
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &1610202270609584424
 GameObject:
   m_ObjectHideFlags: 0
@@ -5305,13 +5299,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
-  staticDrag: 0
+  staticDrag: 5
   dynamicDrag: 0
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &3692316918253350908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5527,13 +5519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
   staticDrag: 0
   dynamicDrag: 0
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &3905730213383283183
 GameObject:
   m_ObjectHideFlags: 0
@@ -6054,13 +6044,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
   staticDrag: 0
   dynamicDrag: 0
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &4142300807494709449
 GameObject:
   m_ObjectHideFlags: 0
@@ -8265,13 +8253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
-  staticDrag: 0
+  staticDrag: 5
   dynamicDrag: 0
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &5202461814976021735
 GameObject:
   m_ObjectHideFlags: 0
@@ -8707,13 +8693,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
-  staticDrag: 0
+  staticDrag: 5
   dynamicDrag: 0.5
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &5506649455145930476
 GameObject:
   m_ObjectHideFlags: 0
@@ -14386,13 +14370,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
   staticDrag: 0
   dynamicDrag: 0
-  staticAngleDrag: 0.5
-  dynamicAngleDrag: 0.1
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &8382818001112009493
 GameObject:
   m_ObjectHideFlags: 0
@@ -15962,13 +15944,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
   staticDrag: 0
   dynamicDrag: 0
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &8970179436661385957
 GameObject:
   m_ObjectHideFlags: 0
@@ -16319,13 +16299,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  showGizmo: 0
   debugMarker: {fileID: 0}
-  staticDrag: 0
+  staticDrag: 5
   dynamicDrag: 0
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  submersionRValue: 1
+  angularDragCoefficient: 5
 --- !u!1 &9087724955402357511
 GameObject:
   m_ObjectHideFlags: 0
