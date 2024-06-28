@@ -70,7 +70,7 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _DeepWaterColor: {r: 0, g: 0.5913054, b: 0.972549, a: 0.9490196}
+    - _DeepWaterColor: {r: 0, g: 0.5913054, b: 0.972549, a: 1}
     - _ShallowWaterColor: {r: 0.43329456, g: 0.85348815, b: 0.8584906, a: 0.3882353}
   m_BuildTextureStacks: []
 --- !u!114 &6944384500528818016

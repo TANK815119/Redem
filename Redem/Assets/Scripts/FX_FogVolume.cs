@@ -10,7 +10,7 @@ public class FX_FogVolume : MonoBehaviour
     [SerializeField] private float defaultCutoffAudioFrequency = 22000f;
     [SerializeField] private float volumeCutoffAudioFrequency = 500f; //muffled
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other) //may not be performant, was originally OnTriggerEnter, bu thtat had problems on volume seems
     {
         if(other.CompareTag("PlayerCamera"))
         {

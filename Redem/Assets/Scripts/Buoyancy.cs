@@ -266,7 +266,7 @@ public class Buoyancy : MonoBehaviour
         }
 
         //bring y value to surface of first waterTrigger
-        impactPoint.y = waterTriggers[0].bounds.extents.y + waterTriggers[0].transform.position.y;
+        impactPoint.y = waterTriggers[0].bounds.extents.y  + GetColliderWorldCenter(waterTriggers[0]).y;
 
         return impactPoint;
     }
