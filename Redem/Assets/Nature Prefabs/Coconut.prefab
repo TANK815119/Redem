@@ -176,13 +176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 4334603996559081247, guid: 6142d7e2a92aa0a43808175194421ea2, type: 3}
-  staticDrag: 0.5
-  dynamicDrag: 0.2
-  staticAngleDrag: 0
-  dynamicAngleDrag: 0
-  stableObject: 0
+  staticDrag: 5
+  angularDragCoefficient: 5
+  splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
+  splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &4351658487611426152
 GameObject:
   m_ObjectHideFlags: 0

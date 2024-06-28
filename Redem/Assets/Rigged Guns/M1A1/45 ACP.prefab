@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6513374956870510853}
   - component: {fileID: -3862628760599082050}
   - component: {fileID: 385714036071285503}
+  - component: {fileID: -660497893524244979}
   m_Layer: 0
   m_Name: 45 ACP
   m_TagString: Untagged
@@ -92,8 +93,23 @@ MonoBehaviour:
   minForce: 10
   combustRadius: 0
   sparks: {fileID: 4299358432977560515, guid: b5bcefefe68284f4a9ab4ea7f3e0cfe6, type: 3}
-  flame: {fileID: 0}
   sizzle: {fileID: 8300000, guid: c63dd5be81f7a564586c43579504b64e, type: 3}
+--- !u!114 &-660497893524244979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403819551235007710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staticDrag: 5
+  angularDragCoefficient: 5
+  splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
+  splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &9079015841400855338
 GameObject:
   m_ObjectHideFlags: 0

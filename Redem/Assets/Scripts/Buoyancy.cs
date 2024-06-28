@@ -17,6 +17,14 @@ public class Buoyancy : MonoBehaviour
     private float submergedCrossSection = 0f;
     private float wholeCrossSection = 0f;
 
+    //for vfx
+    [SerializeField] private GameObject splashVisual;
+    [SerializeField] private AudioClip splashSound;
+    private float minimumEffectVelocity = 0.25f;
+    private bool impact = false;
+    private bool leftWater = true;
+    private float cooldown = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,14 +75,23 @@ public class Buoyancy : MonoBehaviour
                     //make sure to utilize both velocity and
                     //"real" angular velocty in whcihever direction is the tangent of rotation and distance from center of mass
                     ApplyHydraulicDrag(colliderData[i], staticDrag, 1000f); //hard coded fluid density
+
+                    
                 }
             }
 
             //apply rotation drag using air equation
             float dragCoefficient = angularDragCoefficient * (submergedCrossSection / wholeCrossSection);
             ApplyAngularNewtonianDrag(dragCoefficient);
+
+            //VFX
+            if (impact && splashVisual != null && splashSound != null && submergedCrossSection > 0f)
+            {
+                ImpactEffects();
+                impact = false;
+            }
         }
-        else
+        else //essentuially, when in air
         {
             //make sure the objec does not exceed its terminal velocity
             for(int i = 0; i < colliderData.Count; i++)
@@ -89,6 +106,11 @@ public class Buoyancy : MonoBehaviour
                 ApplyHydraulicDrag(colliderData[i], staticDrag, 1.25f); //hard coded fluid density
 
             }
+        }
+
+        if(cooldown >= 0f)
+        {
+            cooldown -= Time.fixedDeltaTime;
         }
     }
 
@@ -140,12 +162,17 @@ public class Buoyancy : MonoBehaviour
 
         //make sure the force is physically possible
         float linearKineticEnergy = 0.5f * rb.mass * rb.velocity.sqrMagnitude; // F = 0.5mv^2
-        float rotationKineticEnergy = 0.5f * (rb.mass * relativePosition.magnitude) * rb.angularVelocity.sqrMagnitude; //F = 0.5IW^2
-        float kineticEnergyParsel = (linearKineticEnergy + rotationKineticEnergy); // calculates how much KE is in this part of the object, assuming uniform denstity
-        float reactiveKineticEnergy = staticDragForce.magnitude; //calculated reactionary force
-        if(reactiveKineticEnergy > kineticEnergyParsel)
+
+        float rotationalInertia = rb.mass * relativePosition.sqrMagnitude; // Simplified moment of inertia approximation
+        float rotationKineticEnergy = 0.5f * rotationalInertia * rb.angularVelocity.sqrMagnitude; //F = 0.5IW^2
+
+        float kineticEnergyParcel = (linearKineticEnergy + rotationKineticEnergy); // calculates how much KE is in this part of the object, assuming uniform denstity
+
+        float reactiveKineticEnergy = staticDragForce.magnitude * totalVelocity.magnitude; // Force times distance gives energy
+
+        if (reactiveKineticEnergy > kineticEnergyParcel*10f)
         {
-            staticDragForce = kineticEnergyParsel * staticDragForce.normalized; //squash down to physical limit
+            staticDragForce *= (kineticEnergyParcel*10f / reactiveKineticEnergy); // Scale down to physical limit
             //must mean there is some physical impossibility happening
         }
 
@@ -157,6 +184,22 @@ public class Buoyancy : MonoBehaviour
     {
         rb.angularVelocity = rb.angularVelocity * (1f - dragCoefficient * Time.fixedDeltaTime);
     }
+
+    private void ImpactEffects() // (should) only be called after the object has been in the water for one physics update
+    {
+        Vector3 impactPoisition = EstimateImpactPosition();
+
+        //visual
+        Instantiate(splashVisual, impactPoisition, Quaternion.identity);
+
+        //audio
+        float volume = Mathf.Min(rb.velocity.magnitude / 20f, 1f);
+        Debug.Log(gameObject.name + " " + volume);
+        AudioSource.PlayClipAtPoint(splashSound, impactPoisition, volume); ; //no volume set
+
+        cooldown = 0.25f; //hard coded cooldown length
+    }
+
 
     //new helper methods-----------------------------------------------------------
 
@@ -209,6 +252,24 @@ public class Buoyancy : MonoBehaviour
 
     }
 
+    private Vector3 EstimateImpactPosition() // can only be called after the object has been in the water for one physics update
+    {
+        Vector3 impactPoint = Vector3.zero;
+
+        //position of first underwater collider
+        for(int i = 0; i < colliderData.Count; i++)
+        {
+            if(colliderData[i].Submerged)
+            {
+                impactPoint = GetColliderWorldCenter(colliderData[i].Collider);
+            }
+        }
+
+        //bring y value to surface of first waterTrigger
+        impactPoint.y = waterTriggers[0].bounds.extents.y + waterTriggers[0].transform.position.y;
+
+        return impactPoint;
+    }
     //old methods-------------------------------------------------------------------
 
     private float ArchimedesBouyantForce(float displacedVolume, float fluidDensity)
@@ -223,6 +284,13 @@ public class Buoyancy : MonoBehaviour
             waterTriggers.Add(other);
             floating = true;
         }
+
+        //effects
+        if(cooldown <= 0f && rb.velocity.magnitude > minimumEffectVelocity && leftWater == true) //could probably set more condisitons here
+        {
+            impact = true;
+        }
+        leftWater = false;
     }
 
     private void OnTriggerExit(Collider other)
@@ -234,6 +302,7 @@ public class Buoyancy : MonoBehaviour
             if (waterTriggers.Count == 0)
             {
                 floating = false;
+                leftWater = true;
             }
         }
     }

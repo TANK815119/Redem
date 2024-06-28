@@ -1716,11 +1716,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 5
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 0}
+  splashSound: {fileID: 0}
 --- !u!1 &1360095707585177149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,11 +2036,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 0
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 0}
+  splashSound: {fileID: 0}
 --- !u!1 &1470830003650896660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,11 +2445,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 5
-  dynamicDrag: 0.5
   angularDragCoefficient: 5
+  splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
+  splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &1610202270609584424
 GameObject:
   m_ObjectHideFlags: 0
@@ -5299,11 +5296,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 5
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 0}
+  splashSound: {fileID: 0}
 --- !u!1 &3692316918253350908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,11 +5515,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 0
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 0}
+  splashSound: {fileID: 0}
 --- !u!1 &3905730213383283183
 GameObject:
   m_ObjectHideFlags: 0
@@ -6044,11 +6039,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 0
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 0}
+  splashSound: {fileID: 0}
 --- !u!1 &4142300807494709449
 GameObject:
   m_ObjectHideFlags: 0
@@ -6253,7 +6247,7 @@ Transform:
   m_GameObject: {fileID: 4196829537945591161}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11382252, y: 0.07354286, z: 0.6494672, w: 0.7482168}
-  m_LocalPosition: {x: 0.8349192, y: 1.5085, z: -0.0487}
+  m_LocalPosition: {x: 0.8517, y: 1.5085, z: -0.062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8253,11 +8247,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 5
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 0}
+  splashSound: {fileID: 0}
 --- !u!1 &5202461814976021735
 GameObject:
   m_ObjectHideFlags: 0
@@ -8693,11 +8686,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 5
-  dynamicDrag: 0.5
   angularDragCoefficient: 5
+  splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
+  splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &5506649455145930476
 GameObject:
   m_ObjectHideFlags: 0
@@ -10308,7 +10300,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.034170154, y: 0.07042954, z: -0.028640598}
+  m_ConnectedAnchor: {x: -0.032230206, y: 0.0899934, z: -0.020156693}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -10947,7 +10939,7 @@ Transform:
   m_GameObject: {fileID: 6702551674341179512}
   serializedVersion: 2
   m_LocalRotation: {x: 0.113821514, y: -0.07353825, z: -0.64946836, w: 0.74821633}
-  m_LocalPosition: {x: -0.8349192, y: 1.5085, z: -0.0487}
+  m_LocalPosition: {x: -0.8517, y: 1.5085, z: -0.062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12389,9 +12381,10 @@ GameObject:
   - component: {fileID: 4736536235644830411}
   - component: {fileID: 6580254878772697346}
   - component: {fileID: 5266293909592397723}
+  - component: {fileID: 1481440886352933650}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: PlayerCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12714,6 +12707,22 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1481440886352933650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616866454359359189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staticDrag: 5
+  angularDragCoefficient: 5
+  splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
+  splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &7710047297102096066
 GameObject:
   m_ObjectHideFlags: 0
@@ -13786,6 +13795,7 @@ GameObject:
   - component: {fileID: 3703545828269150111}
   - component: {fileID: 8890670566987670493}
   - component: {fileID: 6679474489129184551}
+  - component: {fileID: 508790630801749275}
   m_Layer: 0
   m_Name: Head Camera
   m_TagString: Untagged
@@ -13890,7 +13900,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -13972,6 +13982,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkObject: {fileID: 5234144058827816941}
+--- !u!169 &508790630801749275
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186936894135656322}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8222927501826934080
 GameObject:
   m_ObjectHideFlags: 0
@@ -14370,11 +14405,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 0
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
+  splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &8382818001112009493
 GameObject:
   m_ObjectHideFlags: 0
@@ -15565,7 +15599,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.034217898, y: 0.07078608, z: -0.027421938}
+  m_ConnectedAnchor: {x: 0.032277845, y: 0.09035002, z: -0.018938191}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -15944,11 +15978,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 0
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 0}
+  splashSound: {fileID: 0}
 --- !u!1 &8970179436661385957
 GameObject:
   m_ObjectHideFlags: 0
@@ -16299,11 +16332,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d41ad6dad5dcf748b58b0c61a1db614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmo: 0
-  debugMarker: {fileID: 0}
   staticDrag: 5
-  dynamicDrag: 0
   angularDragCoefficient: 5
+  splashVisual: {fileID: 0}
+  splashSound: {fileID: 0}
 --- !u!1 &9087724955402357511
 GameObject:
   m_ObjectHideFlags: 0
