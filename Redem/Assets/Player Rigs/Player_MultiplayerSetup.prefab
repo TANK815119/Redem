@@ -8113,6 +8113,7 @@ MonoBehaviour:
   gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
   ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
   NonNetworkOveride: 1
+  otherHand: {fileID: 7455791236059125338}
 --- !u!136 &4937366643895181359
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -20777,6 +20778,7 @@ MonoBehaviour:
   gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
   ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
   NonNetworkOveride: 1
+  otherHand: {fileID: 6763362915648940333}
 --- !u!136 &6265713378561695433
 CapsuleCollider:
   m_ObjectHideFlags: 0

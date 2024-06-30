@@ -12,12 +12,15 @@ public class GripController : NetworkBehaviour
     [SerializeField] private AudioClip gripClip;
     [SerializeField] private AudioClip ungripClip;
     [SerializeField] private bool NonNetworkOveride = false;
+    [SerializeField] private GripController otherHand;
 
     private NetworkVariable<float> grip = new NetworkVariable<float>(0f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     private bool gripping = false;
     private bool clenched = false;
+    private bool twoHanded = false;
 
     private ConfigurableJoint joint;
+    private ConfigurableJoint wristJoint;
     private GrabPoint grabbedPoint;
     private List<Transform> grabList;
     private HandAnimation handAnim;
@@ -34,6 +37,7 @@ public class GripController : NetworkBehaviour
         handCollider = gameObject.GetComponent<Collider>();
         forearmCollider = transform.parent.gameObject.GetComponent<Collider>();
         inputData = gameObject.GetComponent<InputData>();
+        wristJoint = gameObject.GetComponent<ConfigurableJoint>();
     }
 
     // Update is called once per frame
@@ -164,23 +168,16 @@ public class GripController : NetworkBehaviour
         ////leftHandObject = 11
         ////rightHandObject = 12
 
-        //if((isRightController && joint.gameObject.layer == 11) || (!isRightController && joint.gameObject.layer == 12))
-        //{
-        //    SetAllToLayer(joint.transform, 10); //set to body
-        //}
-        //else if(isRightController)
-        //{
-        //    SetAllToLayer(joint.transform, 12); //set to right hand
-
-        //}
-        //else if(!isRightController)
-        //{
-        //    SetAllToLayer(joint.transform, 11); //set to left hand
-        //}
-
         //configure bodily collisions of the object with collision matricies
         SetAllToCollision(handCollider, joint.transform, true);
         SetAllToCollision(forearmCollider, joint.transform, true);
+
+        //confiure wrist strnegth based on whether or not the grab is two-handed
+        if(this.GetGrabbedObject().Equals(otherHand.GetGrabbedObject())) //twohanded
+        {
+            MakeTwoHandedGrip(true);
+            otherHand.MakeTwoHandedGrip(true);
+        }
 
         //play audio
         AudioSource.PlayClipAtPoint(gripClip, transform.position, 1f);
@@ -194,23 +191,16 @@ public class GripController : NetworkBehaviour
         //change hand animation state
         handAnim.Gripping = false;
 
-        ////configure bodily collisions of the object with layers
-        //if(joint.gameObject.layer == 11 || joint.gameObject.layer == 12)
-        //{
-        //    SetAllToLayer(joint.transform, 0); //set to default if one hand
-        //}
-        //else if(isRightController)
-        //{
-        //    SetAllToLayer(joint.transform, 11); //set to left hand
-        //}
-        //else if(!isRightController)
-        //{
-        //    SetAllToLayer(joint.transform, 12); //set to right hand
-        //}
-
         //configure bodily collisions of the object with collision matricies
         SetAllToCollision(handCollider, joint.transform, false);
         SetAllToCollision(forearmCollider, joint.transform, false);
+
+        //confiure wrist strnegth based on whether or not the grab is two-handed(should still work as the joint still exisits)
+        MakeTwoHandedGrip(false);
+        if (this.GetGrabbedObject().Equals(otherHand.GetGrabbedObject())) //twohanded
+        {
+            otherHand.MakeTwoHandedGrip(false);
+        }
 
         //destroy the joint with the gripped object
         Destroy(joint);
@@ -343,6 +333,35 @@ public class GripController : NetworkBehaviour
         for (int i = 0; i < parent.childCount; i++)
         {
             SetAllToCollision(grabberCollider, parent.GetChild(i), collisionState);
+        }
+    }
+
+    public void MakeTwoHandedGrip(bool isTwoHanded) //makes the joint much weaker if twohanded
+    {
+        JointDrive jointDrive = wristJoint.slerpDrive;
+        if (isTwoHanded && !twoHanded)
+        {
+            jointDrive.positionSpring = jointDrive.positionSpring / 100f;
+            twoHanded = true;
+        }
+        else if(twoHanded)
+        {
+            jointDrive.positionSpring = jointDrive.positionSpring * 100f;
+            twoHanded = false;
+        }
+
+        wristJoint.angularXDrive = jointDrive;
+    }
+
+    public GameObject GetGrabbedObject()
+    {
+        if(joint != null)
+        {
+            return joint.gameObject;
+        }
+        else
+        {
+            return null; //hopefully shouldnt create error
         }
     }
 }

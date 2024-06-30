@@ -194,7 +194,7 @@ public class Buoyancy : MonoBehaviour
 
         //audio
         float volume = Mathf.Min(rb.velocity.magnitude / 20f, 1f);
-        Debug.Log(gameObject.name + " " + volume);
+        
         AudioSource.PlayClipAtPoint(splashSound, impactPoisition, volume); ; //no volume set
 
         cooldown = 0.25f; //hard coded cooldown length
@@ -213,7 +213,7 @@ public class Buoyancy : MonoBehaviour
             if(waterTriggers[i].bounds.Intersects(colliderBounds))
             {
                 Bounds intersectionBounds = GetIntersection(waterTriggers[i].bounds, colliderBounds);
-                boundVolumeSubmerged = intersectionBounds.extents.x * intersectionBounds.extents.y * intersectionBounds.extents.z;
+                boundVolumeSubmerged += intersectionBounds.extents.x * intersectionBounds.extents.y * intersectionBounds.extents.z;
             }
         }
 
@@ -270,6 +270,27 @@ public class Buoyancy : MonoBehaviour
 
         return impactPoint;
     }
+
+    private void CullWaterTriggers() //removes watertriggers that arent intersected with at all
+    {
+        for(int i = 0; i < waterTriggers.Count; i++)
+        {
+            bool usefuleTrigger = false;
+            for (int j = 0; j < colliderData.Count; j++)
+            {
+                if (waterTriggers[i].bounds.Intersects(colliderData[j].Collider.bounds))
+                {
+                    usefuleTrigger = true;
+                }
+            }
+
+            if(!usefuleTrigger)
+            {
+                waterTriggers.RemoveAt(i);
+            }
+        }
+    }
+
     //old methods-------------------------------------------------------------------
 
     private float ArchimedesBouyantForce(float displacedVolume, float fluidDensity)
@@ -297,7 +318,7 @@ public class Buoyancy : MonoBehaviour
     {
         if (other.gameObject.layer == 8 && waterTriggers.Contains(other)) //8 is water layer
         {
-            waterTriggers.Remove(other);
+            CullWaterTriggers(); //essentially a fancy(and expensive) remove)
 
             if (waterTriggers.Count == 0)
             {

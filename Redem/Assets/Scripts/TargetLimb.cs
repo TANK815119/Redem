@@ -7,7 +7,7 @@ public class TargetLimb : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float innitialDisableMoment = 0.1f;
     private ConfigurableJoint configurableJoint;
-    Quaternion initial;
+    private Quaternion initial;
 
     void Start()
     {
