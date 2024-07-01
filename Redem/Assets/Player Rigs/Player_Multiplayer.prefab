@@ -2116,12 +2116,12 @@ GameObject:
   - component: {fileID: 3165418517771447305}
   - component: {fileID: 922191193913679808}
   - component: {fileID: 397868984622539430}
-  - component: {fileID: 3022115554896356660}
   - component: {fileID: 9148636222177256966}
-  - component: {fileID: 489200526346225313}
   - component: {fileID: 2384374564861089722}
   - component: {fileID: 8065689124710117076}
   - component: {fileID: 8607945397315752360}
+  - component: {fileID: 2782509832275312562}
+  - component: {fileID: 3146873072883427658}
   m_Layer: 13
   m_Name: Left Hand
   m_TagString: Untagged
@@ -2314,27 +2314,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7655836135138265887}
   innitialDisableMoment: 0.1
---- !u!114 &3022115554896356660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587578452100406480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683707d103f92e14bba7b5de09d25eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRightController: 0
-  handRoot: {fileID: 1857504320710919326}
-  grip:
-    m_InternalValue: 0
-  trigger:
-    m_InternalValue: 0
-  thumb:
-    m_InternalValue: 0
-  NonNetworkOveride: 0
 --- !u!114 &9148636222177256966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2347,25 +2326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b7c8b71d6a58e449229d417f66ace2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &489200526346225313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587578452100406480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c39d48badae294e4ba2ab65efaf5fbdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRightController: 0
-  falseGrip: 0
-  gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
-  ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
-  NonNetworkOveride: 0
-  wristJoint: {fileID: 922191193913679808}
-  otherHand: {fileID: 9134479589555559024}
 --- !u!136 &2384374564861089722
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2451,6 +2411,37 @@ MonoBehaviour:
   angularDragCoefficient: 5
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
+--- !u!114 &2782509832275312562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587578452100406480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd6c1f7beb9e1b4c9b7d9e909f4453a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRightController: 0
+  falseGrip: 0
+  gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
+  ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  otherGripControllerHand: {fileID: 4866904221844975862}
+--- !u!114 &3146873072883427658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587578452100406480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c67c2fe0a76eea4ea0615c60a51fead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRightController: 0
+  handRoot: {fileID: 1857504320710919326}
 --- !u!1 &1610202270609584424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,11 +2677,11 @@ GameObject:
   - component: {fileID: 6600255252438452530}
   - component: {fileID: 5303972410253934613}
   - component: {fileID: 3360871624648254352}
-  - component: {fileID: 587177741531058738}
   - component: {fileID: 8135119872564783107}
   - component: {fileID: 1870992128992899171}
   - component: {fileID: 6722022883932261091}
   - component: {fileID: 2753556778386078845}
+  - component: {fileID: 5141586806512725931}
   m_Layer: 13
   m_Name: Anchor
   m_TagString: Untagged
@@ -2812,35 +2803,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &587177741531058738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078799089953584314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f6ebeaf12653f47a9f936ab78c6d2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anchor: {fileID: 7121142289825623259}
-  hip: {fileID: 5516296232901827765}
-  head: {fileID: 7102022203639554171}
-  headCamera: {fileID: 8726894876391410192}
-  headset: {fileID: 3622637259532973585}
-  legs: {fileID: 5250860566743129539}
-  playerHeightMax: 1.9
-  torsoLengthMax: 0.66
-  rotoBallRadius: 0.2
-  anchorOriginHeight: 0.25
-  crouchSpeed: 3
-  jumpDepth: -0.6
-  turnSpeed: 120
-  nerdNeckMin: 0.125
-  nerdNeckMax: 0.4
-  ragdollHead: {fileID: 282707842791970530}
-  NonNetworkOveride: 0
 --- !u!114 &8135119872564783107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2997,6 +2959,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5141586806512725931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078799089953584314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a39f8511fe0cd545aa504907e09ef64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anchor: {fileID: 7121142289825623259}
+  hip: {fileID: 5516296232901827765}
+  head: {fileID: 7102022203639554171}
+  headCamera: {fileID: 8726894876391410192}
+  headset: {fileID: 3622637259532973585}
+  legs: {fileID: 5250860566743129539}
+  playerHeightMax: 1.9
+  torsoLengthMax: 0.66
+  rotoBallRadius: 0.2
+  anchorOriginHeight: 0.25
+  crouchSpeed: 3
+  jumpDepth: -0.6
+  turnSpeed: 120
+  nerdNeckMin: 0.125
+  nerdNeckMax: 0.4
+  ragdollHead: {fileID: 282707842791970530}
 --- !u!1 &2126991344262872675
 GameObject:
   m_ObjectHideFlags: 0
@@ -8359,12 +8349,12 @@ GameObject:
   - component: {fileID: 610498247932545898}
   - component: {fileID: 3449914715642981513}
   - component: {fileID: 331690223126045346}
-  - component: {fileID: 1105572885673886569}
   - component: {fileID: 4943995761234252592}
-  - component: {fileID: 9134479589555559024}
   - component: {fileID: 7453598612912435647}
   - component: {fileID: 5431413211878998732}
   - component: {fileID: 4414954918870361670}
+  - component: {fileID: 4866904221844975862}
+  - component: {fileID: 7365604345937520789}
   m_Layer: 13
   m_Name: Right Hand
   m_TagString: Untagged
@@ -8557,27 +8547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7758158813611230893}
   innitialDisableMoment: 0.1
---- !u!114 &1105572885673886569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408423227290993770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683707d103f92e14bba7b5de09d25eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRightController: 1
-  handRoot: {fileID: 6190993271104532127}
-  grip:
-    m_InternalValue: 0
-  trigger:
-    m_InternalValue: 0
-  thumb:
-    m_InternalValue: 0
-  NonNetworkOveride: 0
 --- !u!114 &4943995761234252592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8590,25 +8559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b7c8b71d6a58e449229d417f66ace2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9134479589555559024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5408423227290993770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c39d48badae294e4ba2ab65efaf5fbdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRightController: 1
-  falseGrip: 0
-  gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
-  ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
-  NonNetworkOveride: 0
-  wristJoint: {fileID: 3449914715642981513}
-  otherHand: {fileID: 489200526346225313}
 --- !u!136 &7453598612912435647
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8694,6 +8644,37 @@ MonoBehaviour:
   angularDragCoefficient: 5
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
+--- !u!114 &4866904221844975862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408423227290993770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd6c1f7beb9e1b4c9b7d9e909f4453a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRightController: 1
+  falseGrip: 0
+  gripClip: {fileID: 8300000, guid: da99f0e048ce9f141b0907960ff8a244, type: 3}
+  ungripClip: {fileID: 8300000, guid: 5a7eaad78c88c7f49b0716e373bec093, type: 3}
+  otherGripControllerHand: {fileID: 2782509832275312562}
+--- !u!114 &7365604345937520789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408423227290993770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c67c2fe0a76eea4ea0615c60a51fead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRightController: 1
+  handRoot: {fileID: 6190993271104532127}
 --- !u!1 &5506649455145930476
 GameObject:
   m_ObjectHideFlags: 0
@@ -14645,7 +14626,7 @@ MonoBehaviour:
   leftController: {fileID: 302958889230629228}
   rightController: {fileID: 6121694201187743736}
   hipTarget: {fileID: 8665659574245473810}
-  bodyConfig: {fileID: 587177741531058738}
+  bodyConfiguration: {fileID: 5141586806512725931}
   joint: {fileID: 3728191583318848664}
 --- !u!114 &8410103365208806811
 MonoBehaviour:
