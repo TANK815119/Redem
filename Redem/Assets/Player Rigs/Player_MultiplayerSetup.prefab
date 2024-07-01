@@ -1139,7 +1139,7 @@ Transform:
   m_GameObject: {fileID: 289931483000662314}
   serializedVersion: 2
   m_LocalRotation: {x: 0.113821514, y: -0.07353825, z: -0.64946836, w: 0.74821633}
-  m_LocalPosition: {x: -0.8349192, y: 1.5085, z: -0.0487}
+  m_LocalPosition: {x: -0.8517, y: 1.5085, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8175,6 +8175,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 0
   handRoot: {fileID: 6649508304416636144}
+  grip: 0
+  trigger: 0
+  thumb: 0
 --- !u!1 &2392054180021682420
 GameObject:
   m_ObjectHideFlags: 0
@@ -20057,7 +20060,7 @@ Transform:
   m_GameObject: {fileID: 5715622417659097812}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11382252, y: 0.07354286, z: 0.6494672, w: 0.7482168}
-  m_LocalPosition: {x: 0.8349192, y: 1.5085, z: -0.0487}
+  m_LocalPosition: {x: 0.8517, y: 1.5085, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20831,6 +20834,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRightController: 1
   handRoot: {fileID: 8874318236159063683}
+  grip: 0
+  trigger: 0
+  thumb: 0
 --- !u!1 &5892802693872932190
 GameObject:
   m_ObjectHideFlags: 0
