@@ -20,32 +20,15 @@ namespace Rekabsen
 
         void Start()
         {
-            //Texture2D texture = playerMaterial.mainTexture as Texture2D;
-
-            //if (texture == null || !texture.isReadable)
-            //{
-            //    Debug.LogError("Texture is not readable/writable.");
-            //    return;
-            //}
-
-            //Texture2D newTexture = new Texture2D(texture.width, texture.height);
-            //newTexture.SetPixels(texture.GetPixels());
-            //staticTexture = newTexture;
-
             //// Create a new uncompressed texture the same size as the base texture
             staticTexture = new Texture2D(baseTexture.width, baseTexture.height, TextureFormat.RGBA32, false);
-            //Graphics.CopyTexture(playerMaterial.mainTexture, 0, 0, staticTexture, 0, 0);
 
             //copy every single picure
-            Color[] colors = baseTexture.GetPixels();
-            staticTexture.SetPixels(colors);
+            Color32[] colors = baseTexture.GetPixels32(0);
+            staticTexture.SetPixels32(colors, 0);
+            staticTexture.Apply();
 
-            //for (int x = 0; x < baseTexture.width; x++)
-            //{
-            //    for(int y = 0; y < baseTexture.height; y++)
-            //    {
-            //    }
-            //}
+            playerMaterial.mainTexture = staticTexture;
 
             UpdateStatshDisplay();
         }
@@ -58,20 +41,22 @@ namespace Rekabsen
         public void UpdateStatshDisplay()
         {
             //create a new texture based on static texure
-            Texture2D dynamicTexture = new Texture2D(baseTexture.width, baseTexture.height, TextureFormat.RGBA32, false);
-            Graphics.CopyTexture(staticTexture, dynamicTexture);
+            //Texture2D dynamicTexture = new Texture2D(baseTexture.width, baseTexture.height, TextureFormat.RGBA32, false);
+            //Graphics.CopyTexture(staticTexture, dynamicTexture);
+            Color32[] colors = baseTexture.GetPixels32(0);
+            staticTexture.SetPixels32(colors, 0);
 
             // Draw the health value on the texture
-            DrawHealth(dynamicTexture);// 
-            DrawHunger(dynamicTexture);
-            DrawTemp(dynamicTexture);
+            DrawHealth(staticTexture);// 
+            DrawHunger(staticTexture);
+            DrawTemp(staticTexture);
 
             // Apply the changes
-            dynamicTexture.Compress(true); //IDK if high quality
+            //staticTexture.Compress(false); //IDK if high quality
 
-            dynamicTexture.Apply();
+            staticTexture.Apply();
 
-            playerMaterial.mainTexture = dynamicTexture;
+            //playerMaterial.mainTexture = staticTexture;
         }
 
         private void DrawHealth(Texture2D dynamicTexture)
