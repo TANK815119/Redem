@@ -97,9 +97,9 @@ namespace Rekabsen
         private void CheckDisplay() //uodate display when a segment is lost
         {
             //calculate segments
-            int healthSegments = (int)(health / (100f / 8f));
-            int hungerSegments = (int)(hunger / (100f / 8f));
-            int tempSegments = (int)(temp / (100f / 8f));
+            int healthSegments = (int)(health / (maxHealth / 8f));
+            int hungerSegments = (int)(hunger / (maxHealth / 8f));
+            int tempSegments = (int)(temp / (maxHealth / 8f));
 
             //check for change
             bool segmentChange = false;

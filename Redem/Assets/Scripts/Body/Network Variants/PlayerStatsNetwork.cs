@@ -98,9 +98,9 @@ namespace Rekabsen
         private void CheckDisplay() //uodate display when a segment is lost
         {
             //calculate segments
-            int healthSegments = (int)(health.Value / (100f / 8f));
-            int hungerSegments = (int)(hunger.Value / (100f / 8f));
-            int tempSegments = (int)(temp.Value / (100f / 8f));
+            int healthSegments = (int)(health.Value / (maxHealth / 8f));
+            int hungerSegments = (int)(hunger.Value / (maxHealth / 8f));
+            int tempSegments = (int)(temp.Value / (maxHealth / 8f));
 
             //check for change
             bool segmentChange = false;
@@ -119,6 +119,29 @@ namespace Rekabsen
             lastHealthSegments = healthSegments;
             lastHungerSegments = hungerSegments;
             lastTempSegments = tempSegments;
+        }
+
+        public void Feed(float noursishment)
+        {
+            if(hunger.Value + noursishment <= maxHunger)
+            {
+                hunger.Value += noursishment;
+            }
+            else //extra goes to health
+            {
+                float healthIncrease = hunger.Value + noursishment - 100f;
+                hunger.Value = 100f; //top off
+
+                //icrease health
+                if(health.Value + healthIncrease <= maxHealth)
+                {
+                    health.Value += healthIncrease;
+                }
+                else
+                {
+                    health.Value = 100f;
+                }
+            }
         }
     }
 }
