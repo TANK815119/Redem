@@ -17,13 +17,20 @@ namespace Rekabsen
         private float maxHealth;
         private float maxHunger;
         private float maxTemp;
+        private bool dead = false;
 
         //health stats
         [SerializeField] private float hurtPerSecond = 100f / (6f * 60f); //lose all health every 6 minutes
-        [SerializeField] private float hungerPerSecond = 100f / (12f * 60f); //lose all health every 12 minutes
+        [SerializeField] private float hungerPerSecond = 100f / (12f * 60f); //lose all hunger every 12 minutes
+        [SerializeField] private float tempPerSecond = 100f / (3f * 60f); //lose all temp every 3 minutes
 
         [SerializeField] AudioSource hungerGrowl;
-
+        [SerializeField] AudioSource hurtPain;
+        [SerializeField] AudioSource teethChatter;
+        [SerializeField] List<ConfigurableJoint> playerJoints;
+        [SerializeField] RoomspaceLocomotion roomLoco;
+        [SerializeField] ControllerLocomotion controlLoco;
+        [SerializeField] Buoyancy noseProxy;
 
         // Start is called before the first frame update
         void Start()
@@ -61,7 +68,24 @@ namespace Rekabsen
 
         private bool TempUpdate()
         {
-            return false;
+            //ill also need some night time + fire code here when the time comes
+            if (noseProxy.IsSubmerged() && temp.Value >= 0f)
+            {
+                temp.Value -= tempPerSecond * Time.deltaTime;
+            }
+            else if (temp.Value < 100f)
+            {
+                temp.Value += tempPerSecond * 2f * Time.deltaTime;
+            }
+
+            if (temp.Value > 0f)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void HealthUpdate(bool starving, bool cold)
@@ -75,12 +99,17 @@ namespace Rekabsen
                 }
                 if (cold)
                 {
-                    totalHurt += hurtPerSecond * Time.deltaTime;
+                    totalHurt += hurtPerSecond * 2f * Time.deltaTime;
                 }
 
                 health.Value -= totalHurt;
+
+                if (dead)
+                {
+                    Revive();
+                }
             }
-            else
+            else if (!dead)
             {
                 Die();
             }
@@ -88,8 +117,44 @@ namespace Rekabsen
 
         private void Die()
         {
-            //make player go completely limp
-            Debug.Log("player is dead!");
+            //make player go completely limp and disable y-axis spring(important for leg joint)
+            for (int i = 0; i < playerJoints.Count; i++)
+            {
+                JointDrive rotation = playerJoints[i].slerpDrive;
+                rotation.positionSpring = rotation.positionSpring / 100000f;
+                playerJoints[i].slerpDrive = rotation;
+
+                JointDrive positional = playerJoints[i].yDrive;
+                positional.positionSpring = positional.positionSpring / 1000000f;
+                playerJoints[i].yDrive = positional;
+            }
+
+            //disable locomotion
+            roomLoco.enabled = false;
+            controlLoco.enabled = false;
+
+            dead = true;
+        }
+
+        private void Revive()
+        {
+            //make player go completely STRONG and disable y-axis spring(important for leg joint)
+            for (int i = 0; i < playerJoints.Count; i++)
+            {
+                JointDrive rotation = playerJoints[i].slerpDrive;
+                rotation.positionSpring = rotation.positionSpring * 100000f;
+                playerJoints[i].slerpDrive = rotation;
+
+                JointDrive positional = playerJoints[i].yDrive;
+                positional.positionSpring = positional.positionSpring * 1000000f;
+                playerJoints[i].yDrive = positional;
+            }
+
+            //disable locomotion
+            roomLoco.enabled = true;
+            controlLoco.enabled = true;
+
+            dead = false;
         }
 
         private int lastHealthSegments = 0;
@@ -99,14 +164,35 @@ namespace Rekabsen
         {
             //calculate segments
             int healthSegments = (int)(health.Value / (maxHealth / 8f));
-            int hungerSegments = (int)(hunger.Value / (maxHealth / 8f));
-            int tempSegments = (int)(temp.Value / (maxHealth / 8f));
+            int hungerSegments = (int)(hunger.Value / (maxHunger / 8f));
+            int tempSegments = (int)(temp.Value / (maxTemp / 8f));
 
             //check for change
             bool segmentChange = false;
-            if (healthSegments != lastHealthSegments) { segmentChange = true; }
-            if (hungerSegments != lastHungerSegments) { segmentChange = true; hungerGrowl.Play(); }
-            if (tempSegments != lastTempSegments) { segmentChange = true; }
+            if (healthSegments != lastHealthSegments) 
+            { 
+                segmentChange = true;
+                if (healthSegments < 7f)
+                {
+                    hurtPain.Play();
+                }
+            }
+            if (hungerSegments != lastHungerSegments) 
+            { 
+                segmentChange = true; 
+                if(hungerSegments < 7f)
+                {
+                    hungerGrowl.Play();
+                }
+            }
+            if (tempSegments != lastTempSegments) 
+            { 
+                segmentChange = true;
+                if(tempSegments < 7f)
+                {
+                    teethChatter.Play();
+                }
+            }
 
             //update stats if changed
             if (segmentChange)
@@ -123,7 +209,7 @@ namespace Rekabsen
 
         public void Feed(float noursishment)
         {
-            if(hunger.Value + noursishment <= maxHunger)
+            if (hunger.Value + noursishment <= maxHunger)
             {
                 hunger.Value += noursishment;
             }
@@ -133,7 +219,7 @@ namespace Rekabsen
                 hunger.Value = 100f; //top off
 
                 //icrease health
-                if(health.Value + healthIncrease <= maxHealth)
+                if (health.Value + healthIncrease <= maxHealth)
                 {
                     health.Value += healthIncrease;
                 }

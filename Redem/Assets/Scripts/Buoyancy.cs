@@ -397,4 +397,9 @@ public class Buoyancy : MonoBehaviour
             Submerged = false;
         }
     }
+
+    public bool IsSubmerged()
+    {
+        return (floating && submergedCrossSection / wholeCrossSection > 0.5f);
+    }
 }
