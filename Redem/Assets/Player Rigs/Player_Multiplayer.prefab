@@ -1517,7 +1517,7 @@ GameObject:
   - component: {fileID: 5150340389792505778}
   m_Layer: 0
   m_Name: Left Brachium
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1837,7 +1837,7 @@ GameObject:
   - component: {fileID: 2212820011209854294}
   m_Layer: 0
   m_Name: Right Clavicle
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2124,7 +2124,7 @@ GameObject:
   - component: {fileID: 3146873072883427658}
   m_Layer: 13
   m_Name: Left Hand
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2690,7 +2690,7 @@ GameObject:
   - component: {fileID: 5141586806512725931}
   m_Layer: 13
   m_Name: Anchor
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5331,7 +5331,7 @@ GameObject:
   - component: {fileID: 360227247899835304}
   m_Layer: 13
   m_Name: Left Forearm
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5550,7 +5550,7 @@ GameObject:
   - component: {fileID: 7832510896176042299}
   m_Layer: 0
   m_Name: Left Clavicle
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6075,7 +6075,7 @@ GameObject:
   - component: {fileID: 8564191524271179472}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6999,7 +6999,7 @@ GameObject:
   - component: {fileID: 6914322790321417531}
   m_Layer: 13
   m_Name: Legs
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7394,7 +7394,7 @@ GameObject:
   - component: {fileID: 1839425444689520438}
   m_Layer: 13
   m_Name: Hip
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8282,7 +8282,7 @@ GameObject:
   - component: {fileID: 4300898920363394649}
   m_Layer: 13
   m_Name: Right Forearm
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8599,7 +8599,7 @@ GameObject:
   - component: {fileID: 7365604345937520789}
   m_Layer: 13
   m_Name: Right Hand
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9238,7 +9238,7 @@ GameObject:
   - component: {fileID: 7608254071269426554}
   m_Layer: 13
   m_Name: Buffer
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14032,7 +14032,7 @@ GameObject:
   - component: {fileID: 508790630801749275}
   m_Layer: 0
   m_Name: Head Camera
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14441,7 +14441,7 @@ GameObject:
   - component: {fileID: 5620206264640830693}
   m_Layer: 13
   m_Name: Rotoball
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16026,7 +16026,7 @@ GameObject:
   - component: {fileID: 8151405969923595852}
   m_Layer: 0
   m_Name: Hips
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16265,7 +16265,7 @@ GameObject:
   - component: {fileID: 6602740652646618345}
   m_Layer: 0
   m_Name: Right Brachium
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
