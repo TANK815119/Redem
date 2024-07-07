@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8014663746126324951}
   - component: {fileID: 8520931075549267693}
   - component: {fileID: -910354025972041399}
-  - component: {fileID: 1816406798716317988}
   - component: {fileID: 7822857932257488630}
   m_Layer: 0
   m_Name: Bone_1
@@ -97,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 49239656
+  GlobalObjectIdHash: 3428554386
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -161,30 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minForce: 3
   suctionClip: {fileID: 8300000, guid: 0969a33fe070dbe4a8ca6761ac7415f0, type: 3}
-  hitClip: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
---- !u!136 &1816406798716317988
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28993789520532668}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 2
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  hitClip: {fileID: 8300000, guid: 9f335719e85c55749926bc243b89c1da, type: 3}
 --- !u!114 &7822857932257488630
 MonoBehaviour:
   m_ObjectHideFlags: 0

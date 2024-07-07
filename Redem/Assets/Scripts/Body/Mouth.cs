@@ -22,11 +22,8 @@ namespace Rekabsen
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.name + " looked");
-
             if (other.TryGetComponent(out Edible edible))
             {
-                Debug.Log(other.gameObject.name + " added");
                 inMouth.Add(edible);
             }
         }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,31 +9,29 @@ namespace Rekabsen
     public class HammerListener : MonoBehaviour
     {
         public List<Rigidbody> TouchingBodies { get; set; }
+        private Rigidbody rb;
+        private Rigidbody hammerBody;
 
-        void Start()
+        void Awake()
         {
             TouchingBodies = new List<Rigidbody>();
+            if(TryGetComponent(out Rigidbody thisBody))
+            {
+                rb = thisBody;
+            }
         }
 
         private void OnCollisionEnter(Collision collision) //oncollision stay for the case that object is touched before componenet added PROBALY SHOUDL REMOVE!!
         {
-            if (collision.rigidbody != null && !IsExcludedTags(collision.gameObject.tag) && !TouchingBodies.Contains(collision.rigidbody))
+            if (collision.rigidbody != null && !IsExcludedTags(collision.gameObject.tag) && !TouchingBodies.Contains(collision.rigidbody) && !collision.rigidbody.Equals(rb) && !collision.rigidbody.Equals(hammerBody))
             {
                 TouchingBodies.Add(collision.rigidbody);
             }
         }
 
-        //private void OnCollisionStay(Collision collision) //oncollision stay for the case that object is touched before componenet added PROBALY SHOUDL REMOVE!!
-        //{
-        //    if (collision.rigidbody != null && !IsExcludedTags(collision.gameObject.tag) && !TouchingBodies.Contains(collision.rigidbody))
-        //    {
-        //        TouchingBodies.Add(collision.rigidbody);
-        //    }
-        //}
-
         private void OnCollisionExit(Collision collision)
         {
-            if (collision.rigidbody != null && !IsExcludedTags(collision.gameObject.tag) && TouchingBodies.Contains(collision.rigidbody))
+            if (collision.rigidbody != null && !IsExcludedTags(collision.gameObject.tag) && TouchingBodies.Contains(collision.rigidbody) && !collision.rigidbody.Equals(rb) && !collision.rigidbody.Equals(hammerBody))
             {
                 TouchingBodies.Remove(collision.rigidbody);
             }
@@ -43,6 +40,11 @@ namespace Rekabsen
         private bool IsExcludedTags(string tag)
         {
             return tag.Equals("Body") || tag.Equals("PlayerCamera");
+        }
+
+        public void SetHammerBody(Rigidbody hammer)
+        {
+            hammerBody = hammer;
         }
     }
 }
