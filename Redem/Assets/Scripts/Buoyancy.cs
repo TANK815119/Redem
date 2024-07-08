@@ -9,6 +9,7 @@ public class Buoyancy : MonoBehaviour
 {
     [SerializeField] private float staticDrag = 5f;
     [SerializeField] private float angularDragCoefficient = 5f;
+    [SerializeField] private bool useHydraulicRotationalDrag = true;
 
     private List<Collider> waterTriggers;
     private List<ColliderData> colliderData;
@@ -150,8 +151,13 @@ public class Buoyancy : MonoBehaviour
         Vector3 positionalVelocity = rb.velocity;
 
         //calculate tangential velocity at the center of the collider
-        Vector3 relativePosition = GetColliderWorldCenter(colData.Collider) - (transform.position + rb.centerOfMass);
-        Vector3 rotationalVelocity = Vector3.Cross(rb.angularVelocity, relativePosition);
+        Vector3 relativePosition = Vector3.zero;
+        Vector3 rotationalVelocity = Vector3.zero;
+        if(useHydraulicRotationalDrag)
+        {
+            relativePosition = GetColliderWorldCenter(colData.Collider) - (transform.position + rb.centerOfMass);
+            rotationalVelocity = Vector3.Cross(rb.angularVelocity, relativePosition);
+        }
 
         //add the two forces together
         Vector3 totalVelocity = positionalVelocity + rotationalVelocity;
@@ -163,7 +169,7 @@ public class Buoyancy : MonoBehaviour
         //make sure the force is physically possible
         float linearKineticEnergy = 0.5f * rb.mass * rb.velocity.sqrMagnitude; // F = 0.5mv^2
 
-        float rotationalInertia = rb.mass * relativePosition.sqrMagnitude; // Simplified moment of inertia approximation
+        float rotationalInertia = rb.mass * relativePosition.sqrMagnitude; // Simplified moment of inertia approximation that only works when useHydraulicRotationalDrag
         float rotationKineticEnergy = 0.5f * rotationalInertia * rb.angularVelocity.sqrMagnitude; //F = 0.5IW^2
 
         float kineticEnergyParcel = (linearKineticEnergy + rotationKineticEnergy); // calculates how much KE is in this part of the object, assuming uniform denstity

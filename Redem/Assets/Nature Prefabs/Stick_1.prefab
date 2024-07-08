@@ -878,8 +878,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8501816074215815469}
   - component: {fileID: 5008067380436833908}
-  - component: {fileID: 3990400347251259305}
   - component: {fileID: 5202803403338548190}
+  - component: {fileID: 3990400347251259305}
   - component: {fileID: 977327182393738516}
   - component: {fileID: 6720620134198454425}
   - component: {fileID: 1544573403515423695}
@@ -938,6 +938,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5202803403338548190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222637920901615508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1535632605
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &3990400347251259305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -960,26 +980,6 @@ MonoBehaviour:
   - {fileID: 8708677149611783744}
   fireCrackle: {fileID: 6720620134198454425}
   fireLite: {fileID: 8300000, guid: 4d15638b1eef74144904efd780adb899, type: 3}
---- !u!114 &5202803403338548190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6222637920901615508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1535632605
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!135 &977327182393738516
 SphereCollider:
   m_ObjectHideFlags: 0

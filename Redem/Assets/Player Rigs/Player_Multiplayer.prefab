@@ -1463,7 +1463,7 @@ MonoBehaviour:
   otherFoot: {fileID: 3460061857559076539}
   mask:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 98355
   stepClips:
   - {fileID: 8300000, guid: 2ad797cc664f344488c7cbb706526b88, type: 3}
   - {fileID: 8300000, guid: 02060b47ba5869340916bd6937c6c544, type: 3}
@@ -11683,7 +11683,7 @@ MonoBehaviour:
   otherFoot: {fileID: 828246484454172301}
   mask:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 98355
   stepClips:
   - {fileID: 8300000, guid: 2ad797cc664f344488c7cbb706526b88, type: 3}
   - {fileID: 8300000, guid: 02060b47ba5869340916bd6937c6c544, type: 3}
