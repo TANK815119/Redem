@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3428554386
+  GlobalObjectIdHash: 49239656
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &2558081948079062131
@@ -942,6 +943,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2636452200115597677}
     m_Modifications:
+    - target: {fileID: 3682483472517594416, guid: 837579cd99bf3ff419ca58e5f970e702, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6374453486470273709, guid: 837579cd99bf3ff419ca58e5f970e702, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

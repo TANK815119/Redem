@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IslandGenerated.unity
     guid: d44c66b43c5ece44b908e42554e36a4e
+  - enabled: 1
+    path: Assets/Scenes/MainIsland.unity
+    guid: 0d7380c8cc0f1e0469b5cee3a2c14fdd
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a4f9907d991fb90489ee2312e0430647, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 83b193fe051ee6e4aa3468df898cce1e, type: 2}

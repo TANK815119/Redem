@@ -1718,6 +1718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 0}
   splashSound: {fileID: 0}
 --- !u!1 &1360095707585177149
@@ -2038,6 +2039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 0
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 0}
   splashSound: {fileID: 0}
 --- !u!1 &1470830003650896660
@@ -2409,6 +2411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!114 &2782509832275312562
@@ -5532,6 +5535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 0}
   splashSound: {fileID: 0}
 --- !u!1 &3692316918253350908
@@ -5751,6 +5755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 0
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 0}
   splashSound: {fileID: 0}
 --- !u!1 &3905730213383283183
@@ -6275,6 +6280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 0
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 0}
   splashSound: {fileID: 0}
 --- !u!1 &4142300807494709449
@@ -8483,6 +8489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 0}
   splashSound: {fileID: 0}
 --- !u!1 &5202461814976021735
@@ -8884,6 +8891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!114 &4866904221844975862
@@ -12955,6 +12963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &7710047297102096066
@@ -14084,7 +14093,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 2800
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -14641,6 +14650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 0
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &8382818001112009493
@@ -16214,6 +16224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 0
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 0}
   splashSound: {fileID: 0}
 --- !u!1 &8970179436661385957
@@ -16568,6 +16579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 0}
   splashSound: {fileID: 0}
 --- !u!1 &9087724955402357511

@@ -925,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2737069714
+  GlobalObjectIdHash: 1725567861
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -1086,7 +1086,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1787,6 +1787,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1772851844878403641, guid: bdc9d85a69ea5c8479c8b2abe63a82a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145785391993171944, guid: bdc9d85a69ea5c8479c8b2abe63a82a0, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7986660676896251483, guid: bdc9d85a69ea5c8479c8b2abe63a82a0, type: 3}
