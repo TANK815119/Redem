@@ -1169,6 +1169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticDrag: 5
   angularDragCoefficient: 5
+  useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
 --- !u!1 &6446001186704257116

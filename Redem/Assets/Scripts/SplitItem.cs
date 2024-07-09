@@ -9,7 +9,6 @@ using Unity.Netcode;
 public class SplitItem : NetworkBehaviour
 {
     [SerializeField] private float minForce = 10f;
-    [SerializeField] private int offspringCount = 2;
     [SerializeField] private NetworkVariable<float> health = new NetworkVariable<float>(50f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     [SerializeField] private GameObject spawnObject;
     [SerializeField] private AudioClip damage;
@@ -28,19 +27,20 @@ public class SplitItem : NetworkBehaviour
     private void AttemptSplit()
     {
         //spawn the offspring
-        for(int i = 0; i < offspringCount; i++)
+        GameObject parent = Instantiate(spawnObject, transform.position, transform.rotation);
+
+        //attempt to spawn the parent
+        if (parent.TryGetComponent(out NetworkObject parentNet))
         {
-            GameObject splitPiece = Instantiate(spawnObject, transform.position, transform.rotation);
-            if (splitPiece.TryGetComponent(out NetworkObject networkObject))
-            {
-                networkObject.Spawn();
-            }
-            else
-            {
-                Debug.LogError("The spawnObject in SplitAttempt lacks a NetworkObject component");
-            }
+            parentNet.Spawn();
         }
 
+        //attempt to spawn children
+        NetworkObject[] netChildren = parent.GetComponentsInChildren<NetworkObject>();
+        for(int i = 0; i < netChildren.Length; i++)
+        {
+            netChildren[i].Spawn();
+        }
 
         //delete the mother
         if (this.TryGetComponent(out NetworkObject motherNetObject))

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8344240888873366764}
   - component: {fileID: 5710348663463465342}
   - component: {fileID: 6561781523457335133}
+  - component: {fileID: 3917480725626863229}
   m_Layer: 16
   m_Name: Tree_2
   m_TagString: Untagged
@@ -77,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4100812651
+  GlobalObjectIdHash: 2574958963
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -127,6 +128,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3917480725626863229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247158900317986161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fff80ae2aaae34c972921a58e46af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minForce: 10
+  health:
+    m_InternalValue: 50
+  spawnObject: {fileID: 6557135406926233853, guid: 2be59726a58741e45ba6312441777530, type: 3}
+  damage: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
 --- !u!1 &863557225220855590
 GameObject:
   m_ObjectHideFlags: 0
