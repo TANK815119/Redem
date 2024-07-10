@@ -18,6 +18,8 @@ namespace Rekabsen
         private float maxHunger;
         private float maxTemp;
         private bool dead = false;
+        public bool NearFire { get; set; }
+        public bool IsDay { get; set; }
 
         //health stats
         [SerializeField] private float hurtPerSecond = 100f / (6f * 60f); //lose all health every 6 minutes
@@ -38,6 +40,8 @@ namespace Rekabsen
             maxHealth = health.Value;
             maxHunger = hunger.Value;
             maxTemp = temp.Value;
+            NearFire = false;
+            IsDay = true;
         }
 
         // Update is called once per frame
@@ -71,11 +75,15 @@ namespace Rekabsen
             //ill also need some night time + fire code here when the time comes
             if (noseProxy.IsSubmerged() && temp.Value >= 0f)
             {
+                temp.Value -= tempPerSecond * Time.deltaTime * 4f;
+            }
+            else if(!IsDay && !NearFire && temp.Value >= 0f)
+            {
                 temp.Value -= tempPerSecond * Time.deltaTime;
             }
-            else if (temp.Value < 100f)
+            else if (temp.Value < 100f) //regenerate
             {
-                temp.Value += tempPerSecond * 2f * Time.deltaTime;
+                temp.Value += tempPerSecond * 4f * Time.deltaTime;
             }
 
             if (temp.Value > 0f)
@@ -99,7 +107,7 @@ namespace Rekabsen
                 }
                 if (cold)
                 {
-                    totalHurt += hurtPerSecond * 2f * Time.deltaTime;
+                    totalHurt += hurtPerSecond * 4f * Time.deltaTime;
                 }
 
                 health.Value -= totalHurt;

@@ -98,5 +98,10 @@ namespace Rekabsen
 
             objectConsumed.Value = false;
         }
+
+        public PlayerStatsNetwork GetStats()
+        {
+            return stats;
+        }
     }
 }

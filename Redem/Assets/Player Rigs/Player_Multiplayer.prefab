@@ -3195,7 +3195,7 @@ MonoBehaviour:
   temp:
     m_InternalValue: 100
   statDisplay: {fileID: 4138153939713512278}
-  hurtPerSecond: 0.2777778
+  hurtPerSecond: 0.5555556
   hungerPerSecond: 0.1388889
   tempPerSecond: 0.5555556
   hungerGrowl: {fileID: 511336969899096573}
@@ -14549,7 +14549,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357786987177994442}
   serializedVersion: 4
-  m_Mass: 20
+  m_Mass: 40
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
