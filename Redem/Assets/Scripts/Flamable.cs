@@ -12,10 +12,12 @@ namespace Rekabsen
         [SerializeField] private List<Transform> burnPoints;
         [SerializeField] private AudioSource fireCrackle;
         [SerializeField] private AudioClip fireLite;
+        [SerializeField] private float burnDuration = 8f * 60f; //burn duration
         private List<Transform> flames;
 
         private bool burning = false;
         private NetworkVariable<bool> lit = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        private NetworkVariable<bool> spent = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         // Start is called before the first frame update
         void Start()
         {
@@ -39,6 +41,29 @@ namespace Rekabsen
                 for (int i = 0; i < burnPoints.Count; i++)
                 {
                     flames[i].position = burnPoints[i].position;
+                }
+            }
+
+            //essentially run down burn timer
+            if (lit.Value)
+            {
+                if(burnDuration > 0f)
+                {
+                    burnDuration -= Time.deltaTime;
+                }
+                else
+                {
+                    spent.Value = true;
+                }
+            }
+
+            //destroy the object if run out of burn timer
+            if(spent.Value && IsHost)
+            {
+                if (this.TryGetComponent(out NetworkObject netObject))
+                {
+                    netObject.Despawn(true);
+                    Destroy(this);
                 }
             }
         }
