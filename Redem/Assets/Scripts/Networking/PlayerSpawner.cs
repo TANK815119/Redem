@@ -31,4 +31,9 @@ public class PlayerSpawner : NetworkBehaviour
         Debug.Log(position);
         return position;
     }
+
+    public override void OnDestroy()
+    {
+        NetworkManager.ConnectionApprovalCallback -= CustomConnectionApprovalCallback;
+    }
 }

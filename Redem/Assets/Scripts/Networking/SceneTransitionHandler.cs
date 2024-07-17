@@ -145,4 +145,9 @@ public class SceneTransitionHandler : MonoBehaviour
         SetSceneState(SceneStates.Start);
         SceneManager.LoadScene(1);
     }
+
+    public void SetSceneName(string newSceneName)
+    {
+        sceneName = newSceneName;
+    }
 }
