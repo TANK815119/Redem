@@ -26,9 +26,17 @@ namespace Rekabsen
 
         private void SceneTransition()
         {
+            if (NetworkManager.Singleton == null || !NetworkManager.Singleton.IsListening)
+            {
+                Debug.LogError("NetworkManager is not properly initialized or not listening.");
+                return;
+            }
+
+            Debug.Log("SceneTransition called. Scene Name: " + sceneName);
             SceneTransitionHandler.Singleton.SetSceneName(sceneName);
             if (IsHost)
             {
+                Debug.Log("Initializing as Host.");
                 SceneTransitionHandler.Singleton.InitializeAsHost = true;
                 SceneTransitionHandler.Singleton.InitializeAsMultiplayer = true;
                 //SceneTransitionHandler.Singleton.JoinRelayCode = keyboard.GetText(); -- not neccessary
@@ -36,6 +44,7 @@ namespace Rekabsen
             }
             if (!IsHost)
             {
+                Debug.Log("Initializing as Client.");
                 SceneTransitionHandler.Singleton.InitializeAsHost = false;
                 SceneTransitionHandler.Singleton.InitializeAsMultiplayer = true;
                 //SceneTransitionHandler.Singleton.JoinRelayCode = keyboard.GetText(); should be same as innitial join

@@ -15,48 +15,69 @@ using Unity.Netcode.Transports.UTP;
 //or something else that can carry over the data
 public class NetworkStartup : MonoBehaviour
 {
-
+    private static bool isNetworkInitialized = false;
     // Start is called before the first frame update
     private async void Start() //multiplayer
     {
-        if(SceneTransitionHandler.Singleton.InitializeAsMultiplayer)
+        if (!isNetworkInitialized)
         {
-            await UnityServices.InitializeAsync();
+            isNetworkInitialized = true;
 
-            AuthenticationService.Instance.SignedIn += () =>
+            if (SceneTransitionHandler.Singleton.InitializeAsMultiplayer)
             {
-                Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
-            };
-            //Debug.Log("after sign in created, before anonymous sign in");
-            //await AuthenticationService.Instance.SignInAnonymouslyAsync(); //stops here, apparently im "already signed in, so I removed it
-            //try
-            //{
-            //    await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            //}
-            //catch (RelayServiceException e)
-            //{
-            //    Debug.Log(e);
-            //}
-            //Debug.Log("after anonymopus sign in, before decide client or host");
-            if (SceneTransitionHandler.Singleton.InitializeAsHost) //host
-            {
-                //Debug.Log("after decided host, before create relay");
-                CreateRelay();
+                await UnityServices.InitializeAsync();
+
+                AuthenticationService.Instance.SignedIn += () =>
+                {
+                    Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
+                };
+                //Debug.Log("after sign in created, before anonymous sign in");
+                //await AuthenticationService.Instance.SignInAnonymouslyAsync(); //stops here, apparently im "already signed in, so I removed it
+                //try
+                //{
+                //    await AuthenticationService.Instance.SignInAnonymouslyAsync();
+                //}
+                //catch (RelayServiceException e)
+                //{
+                //    Debug.Log(e);
+                //}
+                //Debug.Log("after anonymopus sign in, before decide client or host");
+                if (SceneTransitionHandler.Singleton.InitializeAsHost) //host
+                {
+                    //Debug.Log("after decided host, before create relay");
+                    CreateRelay();
+                }
+                else // client
+                {
+                    JoinRelay(SceneTransitionHandler.Singleton.JoinRelayCode); //I pray this works; it seems so rickety
+                }
             }
-            else // client
+            else //single player
             {
-                JoinRelay(SceneTransitionHandler.Singleton.JoinRelayCode); //I pray this works; it seems so rickety
+                if (SceneTransitionHandler.Singleton.InitializeAsHost) //host
+                {
+                    NetworkManager.Singleton.StartHost();
+                }
+                else // client
+                {
+                    NetworkManager.Singleton.StartClient();
+                }
             }
         }
-        else //single player
+        else
         {
-            if (SceneTransitionHandler.Singleton.InitializeAsHost) //host
+            //objects must be spawned maually foir some reason
+            if(NetworkManager.Singleton.IsServer)
             {
-                NetworkManager.Singleton.StartHost();
-            }
-            else // client
-            {
-                NetworkManager.Singleton.StartClient();
+                //make sure all objects are spawned, too
+                NetworkObject[] netObjects = FindObjectsByType<NetworkObject>(0);
+                for (int i = 0; i < netObjects.Length; i++)
+                {
+                    if (!netObjects[i].IsSpawned)
+                    {
+                        netObjects[i].Spawn();
+                    }
+                }
             }
         }
     }

@@ -14,7 +14,33 @@ public class PlayerSpawner : NetworkBehaviour
 
     private void Awake()
     {
-        NetworkManager.ConnectionApprovalCallback += CustomConnectionApprovalCallback;
+        if (NetworkManager.Singleton != null)
+        {
+            Debug.Log("Registering connection approval callback.");
+            NetworkManager.Singleton.ConnectionApprovalCallback += CustomConnectionApprovalCallback;
+        }
+        else
+        {
+            Debug.LogError("NetworkManager is not set.");
+        }
+
+        SceneManager.sceneLoaded += OnSceneLoaded; // Register to scene loaded event
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //Debug.Log("Client count " + NetworkManager.Singleton.ConnectedClientsList.Count);
+
+        // Spawn players when scene is loaded
+        if (NetworkManager.Singleton.IsServer)
+        {
+            Debug.Log("scene load found");
+            SpawnPlayers();
+        }
+        else
+        {
+            Debug.Log("No server found");
+        }
     }
 
     void CustomConnectionApprovalCallback(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)    //mustnt be private
@@ -32,8 +58,32 @@ public class PlayerSpawner : NetworkBehaviour
         return position;
     }
 
+    private void SpawnPlayers()
+    {
+        for(int i = 0; i < NetworkManager.Singleton.ConnectedClientsList.Count; i++)
+        {
+            SpawnPlayer(NetworkManager.Singleton.ConnectedClientsList[i].ClientId);
+        }
+    }
+
+    private void SpawnPlayer(ulong clientId)
+    {
+        Debug.Log("attempt spawn players");
+        Vector3 spawnPosition = GetPlayerSpawnPosition();
+        GameObject playerInstance = Instantiate(player, spawnPosition, Quaternion.identity);
+        playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
+    }
+
     public override void OnDestroy()
     {
-        NetworkManager.ConnectionApprovalCallback -= CustomConnectionApprovalCallback;
+        
+
+        if (NetworkManager.Singleton != null)
+        {
+            Debug.Log("Unregistering connection approval callback.");
+            NetworkManager.Singleton.ConnectionApprovalCallback -= CustomConnectionApprovalCallback;
+        }
+
+        SceneManager.sceneLoaded -= OnSceneLoaded; // Unregister scene loaded event
     }
 }
