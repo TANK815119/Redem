@@ -257,3 +257,64 @@ Received Import Request.
 Start importing Assets/Player Rigs/Player-Weak Ragdoll.prefab using Guid(4b88451cc24bece45acad9d8ba697b0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0043c4d3d72c936bcb6462e0b65b21cc') in 0.043249 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 802
+========================================================================
+Received Import Request.
+  Time since last request: 2193.934322 seconds.
+  path: Assets/PBRTextures/floor_tiles_06_2k
+  artifactKey: Guid(bc8c8a71900bcaa4fb231a41d3f9fb8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/floor_tiles_06_2k using Guid(bc8c8a71900bcaa4fb231a41d3f9fb8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52358f8e54d8e373ce65f230650260fd') in 0.001093 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.298814 seconds.
+  path: Assets/PBRTextures/floor_tiles_06_2k/floor_tiles_06_2k.blend
+  artifactKey: Guid(a010486dd576a624e80698aa2c700790) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/floor_tiles_06_2k/floor_tiles_06_2k.blend using Guid(a010486dd576a624e80698aa2c700790) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0afce940e0cc40e2d5c2e7e6b7e62902') in 0.073069 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 34
+========================================================================
+Received Import Request.
+  Time since last request: 14.203795 seconds.
+  path: Assets/PBRTextures/floor_tiles_06_2k/textures
+  artifactKey: Guid(698204fb55856224db14f912fa62acda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/floor_tiles_06_2k/textures using Guid(698204fb55856224db14f912fa62acda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ceb5332d4579bcfc2ddf1dcc015bedb7') in 0.000840 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.083460 seconds.
+  path: Assets/PBRTextures/floor_tiles_06_2k/textures/floor_tiles_06_ao_2k.jpg
+  artifactKey: Guid(759f5511d76ef404680c91ee18fd8400) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/floor_tiles_06_2k/textures/floor_tiles_06_ao_2k.jpg using Guid(759f5511d76ef404680c91ee18fd8400) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a56fef9739b1666d455d46d160963eeb') in 0.025443 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/PBRTextures/floor_tiles_06_2k/textures/floor_tiles_06_diff_2k.jpg
+  artifactKey: Guid(266df3e23922d2049935c8724c9c1289) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/floor_tiles_06_2k/textures/floor_tiles_06_diff_2k.jpg using Guid(266df3e23922d2049935c8724c9c1289) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9ba5a1a912175346af13eed21c27ccf') in 0.072699 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/PBRTextures/floor_tiles_06_2k/textures/floor_tiles_06_nor_dx_2k.exr
+  artifactKey: Guid(cf17f0180ed9dbd478107f3afe35eaad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/floor_tiles_06_2k/textures/floor_tiles_06_nor_dx_2k.exr using Guid(cf17f0180ed9dbd478107f3afe35eaad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d84958e64636f097efd598494ac69ed') in 0.012666 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/PBRTextures/floor_tiles_06_2k/textures/floor_tiles_06_disp_2k.png
+  artifactKey: Guid(56e62f070f5141544b2ce6e21b37dae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/floor_tiles_06_2k/textures/floor_tiles_06_disp_2k.png using Guid(56e62f070f5141544b2ce6e21b37dae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '885e203cc2c116aabb3420c41c4b10d7') in 0.015143 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
