@@ -213,3 +213,32 @@ AssetImportParameters requested are different than current active one (requested
   custom:CustomObjectIndexerAttribute: 62b5816608c3102f162a1797e29626cf -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 25611.978309 seconds.
+  path: Assets/PBRTextures/white_plaster_02_2k/textures/white_plaster_02_arm_2k.jpg
+  artifactKey: Guid(1105159fbf1becd47a2ba5343764e94d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/white_plaster_02_2k/textures/white_plaster_02_arm_2k.jpg using Guid(1105159fbf1becd47a2ba5343764e94d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1df850f08a7e9c9d02a8fe720d7b176b') in 0.084911 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/PBRTextures/white_plaster_02_2k/textures/white_plaster_02_nor_dx_2k.exr
+  artifactKey: Guid(eac58969bbed1ed4ea0faed61c91013b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/white_plaster_02_2k/textures/white_plaster_02_nor_dx_2k.exr using Guid(eac58969bbed1ed4ea0faed61c91013b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '392fdedb4feded2ae72eaeb5a8b70017') in 0.016931 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/PBRTextures/white_plaster_02_2k/textures/white_plaster_02_rough_2k.exr
+  artifactKey: Guid(f28c7d8a714cc6644b504ee03e3fc50c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PBRTextures/white_plaster_02_2k/textures/white_plaster_02_rough_2k.exr using Guid(f28c7d8a714cc6644b504ee03e3fc50c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50188bde5da1606ef4c50eb6db42d2d1') in 0.016649 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
