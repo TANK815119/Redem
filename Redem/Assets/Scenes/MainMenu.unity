@@ -23781,6 +23781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OfficeLight
       objectReference: {fileID: 0}
+    - target: {fileID: 5351396984344518797, guid: 4e5c0184567653c42a1f55780a957123, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
