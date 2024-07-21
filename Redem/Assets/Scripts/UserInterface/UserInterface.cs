@@ -14,6 +14,7 @@ public class UserInterface : MonoBehaviour
     [SerializeField] private GameObject cursor;
     [SerializeField] private LayerMask mask;
     [SerializeField] private Vector2 UIDirection = new Vector2(0.16f, -0.33f);
+    [SerializeField] private bool portable = true;
     [SerializeField] private bool XROveride = false;
 
     private InputData inputData;
@@ -21,9 +22,12 @@ public class UserInterface : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(portable)
+        {
+            menu.SetActive(false);
+        }
         rightUIHand.SetActive(false);
         leftUIHand.SetActive(false);
-        menu.SetActive(false);
 
         inputData = GetComponent<InputData>();
     }
@@ -33,7 +37,7 @@ public class UserInterface : MonoBehaviour
     {
         inputData.rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool menuPressed);
 
-        if (menuPressed)
+        if (menuPressed || !portable)
         {
             ShowMenu();
         }
@@ -52,23 +56,25 @@ public class UserInterface : MonoBehaviour
 
     private void ShowMenu()
     {
-        if (!menu.activeInHierarchy)
+        if(portable)
         {
-            //menu rotation is facing same direction as right hand innitially
-            menu.transform.forward = head.forward;
-            menu.transform.rotation = Quaternion.Euler(0f, menu.transform.eulerAngles.y, 0f);
+            if (!menu.activeInHierarchy)
+            {
+                //menu rotation is facing same direction as right hand innitially
+                menu.transform.forward = head.forward;
+                menu.transform.rotation = Quaternion.Euler(0f, menu.transform.eulerAngles.y, 0f);
 
-            //offset from hand to menu
-            innitialOffset = rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y;
+                //offset from hand to menu
+                innitialOffset = rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y;
+            }
+
+            rightUIHand.SetActive(true);
+            leftUIHand.SetActive(true);
+            menu.SetActive(true);
+
+            //menu position is a little forward of the right hand always
+            menu.transform.position = rightUIHand.transform.position + innitialOffset;
         }
-
-        rightUIHand.SetActive(true);
-        leftUIHand.SetActive(true);
-        menu.SetActive(true);
-
-        //menu position is a little forward of the right hand always
-        menu.transform.position = rightUIHand.transform.position + innitialOffset;
-
 
         //interactions from the cursor to the moniter
         //cursor.transform.position = rightUIHand.transform.position + rightUIHand.transform.forward * UIDirection.x + rightUIHand.transform.up * UIDirection.y;

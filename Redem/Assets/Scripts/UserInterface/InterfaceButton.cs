@@ -33,11 +33,11 @@ public class InterfaceButton : MonoBehaviour
         //manipulate visuals
         if (cursorTouching && !triggerPressed)
         {
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.0025f);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.0025f); //forward
         }
         else
         {
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.001f);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.0025f); //receded
         }
 
         //assign logic

@@ -7,6 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
+    guid: 1dd89e9ca86f90a4da8603056712761e
+  - enabled: 1
+    path: Assets/Scenes/PlaneMainMenu.unity
     guid: 0c53848f997d44046aa9a196114f164a
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
@@ -20,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainIsland.unity
     guid: 0d7380c8cc0f1e0469b5cee3a2c14fdd
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: d6259c0a4fd84e943b0af94be36f33cc
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a4f9907d991fb90489ee2312e0430647, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 83b193fe051ee6e4aa3468df898cce1e, type: 2}
