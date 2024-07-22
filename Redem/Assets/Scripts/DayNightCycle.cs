@@ -19,11 +19,14 @@ namespace Rekabsen
         private float timeCounter;
 
         [SerializeField] AudioSource switchSound;
+        [SerializeField] private Component buttonLightSwitch;
+        private ButtonActionInterface lightSwitch;
 
         // Start is called before the first frame update
         void Start()
         {
             timeCounter = dayLength;
+            lightSwitch = (ButtonActionInterface)buttonLightSwitch;
         }
 
         // Update is called once per frame
@@ -41,6 +44,9 @@ namespace Rekabsen
                 {
                     MakeDayTime();
                 }
+
+                //swap lighting
+                lightSwitch.Play();
 
                 //audio
                 switchSound.Play();

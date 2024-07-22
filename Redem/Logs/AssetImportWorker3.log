@@ -15,7 +15,7 @@ C:/Users/reidj/Git Projects/Redem/Redem
 -logFile
 Logs/AssetImportWorker3.log
 -srvPort
-54859
+50848
 Successfully changed project path to: C:/Users/reidj/Git Projects/Redem/Redem
 C:/Users/reidj/Git Projects/Redem/Redem
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,14 +49,14 @@ C:/Users/reidj/Git Projects/Redem/Redem
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [14216] Host "[IP] 192.168.68.132 [Port] 0 [Flags] 2 [Guid] 1534917045 [EditorId] 1534917045 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-NPVEBCJ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [29532] Host "[IP] 192.168.68.132 [Port] 0 [Flags] 2 [Guid] 1595992420 [EditorId] 1595992420 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-NPVEBCJ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [14216] Host "[IP] 192.168.68.132 [Port] 0 [Flags] 2 [Guid] 1534917045 [EditorId] 1534917045 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-NPVEBCJ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [29532] Host "[IP] 192.168.68.132 [Port] 0 [Flags] 2 [Guid] 1595992420 [EditorId] 1595992420 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-NPVEBCJ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
 Default GameObject BitMask: Water already registered
-Refreshing native plugins compatible for Editor in 28.99 ms, found 15 plugins.
-Preloading 1 native plugins for Editor in 0.46 ms.
+Refreshing native plugins compatible for Editor in 28.49 ms, found 15 plugins.
+Preloading 1 native plugins for Editor in 0.48 ms.
 Initialize engine version: 2022.3.19f1 (244b723c30a6)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/reidj/Git Projects/Redem/Redem/Assets
@@ -71,47 +71,47 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56692
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56140
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.007281 seconds.
-- Loaded All Assemblies, in  0.276 seconds
+Registered in 0.007894 seconds.
+- Loaded All Assemblies, in  0.328 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 415 ms
+Android Extension - Scanning For ADB Devices 306 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.685 seconds
-Domain Reload Profiling: 960ms
-	BeginReloadAssembly (86ms)
+- Finished resetting the current domain, in  0.586 seconds
+Domain Reload Profiling: 912ms
+	BeginReloadAssembly (106ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (26ms)
+	RebuildCommonClasses (29ms)
 	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (46ms)
-	LoadAllAssembliesAndSetupDomain (109ms)
-		LoadAssemblies (83ms)
+	initialDomainReloadingComplete (54ms)
+	LoadAllAssembliesAndSetupDomain (129ms)
+		LoadAssemblies (105ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (107ms)
-			TypeCache.Refresh (106ms)
-				TypeCache.ScanAssembly (95ms)
+		AnalyzeDomain (126ms)
+			TypeCache.Refresh (125ms)
+				TypeCache.ScanAssembly (112ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (686ms)
+	FinalizeReload (587ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (640ms)
+		SetupLoadedEditorAssemblies (544ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (520ms)
-			SetLoadedEditorAssemblies (3ms)
+			InitializePlatformSupportModulesInManaged (399ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (83ms)
-			ProcessInitializeOnLoadMethodAttributes (32ms)
+			ProcessInitializeOnLoadAttributes (100ms)
+			ProcessInitializeOnLoadMethodAttributes (40ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -120,8 +120,8 @@ Domain Reload Profiling: 960ms
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  0.779 seconds
-Refreshing native plugins compatible for Editor in 21.13 ms, found 15 plugins.
+- Loaded All Assemblies, in  0.866 seconds
+Refreshing native plugins compatible for Editor in 18.78 ms, found 15 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Package Manager log level set to [2]
@@ -156,48 +156,48 @@ Mono: successfully reloaded assembly
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.907 seconds
-Domain Reload Profiling: 1679ms
-	BeginReloadAssembly (110ms)
+- Finished resetting the current domain, in  0.852 seconds
+Domain Reload Profiling: 1710ms
+	BeginReloadAssembly (121ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (19ms)
-	RebuildCommonClasses (25ms)
+		CreateAndSetChildDomain (16ms)
+	RebuildCommonClasses (26ms)
 	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (38ms)
-	LoadAllAssembliesAndSetupDomain (591ms)
-		LoadAssemblies (345ms)
+	initialDomainReloadingComplete (39ms)
+	LoadAllAssembliesAndSetupDomain (663ms)
+		LoadAssemblies (424ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (306ms)
-			TypeCache.Refresh (255ms)
-				TypeCache.ScanAssembly (234ms)
-			ScanForSourceGeneratedMonoScriptInfo (38ms)
+		AnalyzeDomain (313ms)
+			TypeCache.Refresh (263ms)
+				TypeCache.ScanAssembly (241ms)
+			ScanForSourceGeneratedMonoScriptInfo (37ms)
 			ResolveRequiredComponents (11ms)
-	FinalizeReload (908ms)
+	FinalizeReload (853ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (691ms)
+		SetupLoadedEditorAssemblies (656ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (24ms)
+			InitializePlatformSupportModulesInManaged (18ms)
 			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (116ms)
-			ProcessInitializeOnLoadAttributes (447ms)
-			ProcessInitializeOnLoadMethodAttributes (91ms)
+			BeforeProcessingInitializeOnLoad (103ms)
+			ProcessInitializeOnLoadAttributes (428ms)
+			ProcessInitializeOnLoadMethodAttributes (93ms)
 			AfterProcessingInitializeOnLoad (8ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (4ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
 Default GameObject BitMask: Water already registered
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 18.26 ms, found 15 plugins.
-Preloading 1 native plugins for Editor in 0.06 ms.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 18.48 ms, found 15 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
 Unloading 9909 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 305 unused Assets / (14.6 MB). Loaded Objects now: 10246.
-Memory consumption went from 417.6 MB to 402.9 MB.
-Total: 6.510100 ms (FindLiveObjects: 0.661800 ms CreateObjectMapping: 0.435700 ms MarkObjects: 3.413300 ms  DeleteObjects: 1.998000 ms)
+Unloading 305 unused Assets / (14.4 MB). Loaded Objects now: 10246.
+Memory consumption went from 417.5 MB to 403.1 MB.
+Total: 6.229100 ms (FindLiveObjects: 0.642600 ms CreateObjectMapping: 0.459100 ms MarkObjects: 3.379700 ms  DeleteObjects: 1.746600 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -206,12 +206,8 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
   custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:scripting/monoscript/fileName/SwitchLightmap.cs: d7e6953609ab63905feab73cd4539149 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:scripting/monoscript/fileName/SwitchLighting.cs: 1832fb23f33d447e0bc055d5dda555e4 -> 
-  custom:scripting/monoscript/fileName/ButtonSwitchLightingCustomInspector.cs: 468d1772a5850b460a5c8ad0c2f6a066 -> 
-  custom:scripting/monoscript/fileName/ButtonSwitchLighting.cs: 24ed0e6b674318cdb2aeafa49b69c0da -> 1832fb23f33d447e0bc055d5dda555e4
   custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:CustomObjectIndexerAttribute: 62b5816608c3102f162a1797e29626cf -> 
@@ -219,73 +215,30 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 147403.695841 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_light.exr
-  artifactKey: Guid(b1b364ad00a71754b8681a4969df5ddf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_light.exr using Guid(b1b364ad00a71754b8681a4969df5ddf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f879868a6641a491103c6f0c3566b22') in 0.068873 seconds
+  Time since last request: 56030.013676 seconds.
+  path: Assets/Scenes/BakedIsland/Dark/ReflectionProbe-0.exr
+  artifactKey: Guid(fdb2655384f561646af4d798c3934861) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BakedIsland/Dark/ReflectionProbe-0.exr using Guid(fdb2655384f561646af4d798c3934861) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe43d2a63914e794ff842e64b4b49c4d') in 0.377395 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 208
+========================================================================
+Received Import Request.
+  Time since last request: 1372.009657 seconds.
+  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
+  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34074688218350be7cb9e5b05015aa27') in 0.024237 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 256.647129 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
-  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f537b80e930fabb290df40251af8776a') in 0.017619 seconds
+  Time since last request: 0.000029 seconds.
+  path: Assets/Scenes/BakedIsland/ReflectionProbe-0.exr
+  artifactKey: Guid(82aa97c8610e04d46b3c82badff8cf84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BakedIsland/ReflectionProbe-0.exr using Guid(82aa97c8610e04d46b3c82badff8cf84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '143baf87517b85631b1b5dd4d7356642') in 0.008903 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 64.116392 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
-  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ac4268c04e548c94633457c4f1389b7') in 0.020826 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 62.889296 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
-  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0218500784a6dcab88e897e61ae1b4f8') in 0.011787 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 80.816084 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
-  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e20da853e95687b7669293b5c2ae8e2e') in 0.021556 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 64.798211 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
-  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eeac33af98b4fb78b6602f1a798beb15') in 0.016959 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 956.645476 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
-  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eaac7edc6777c7d2024bd1b9b6a923a8') in 0.118254 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 63.533145 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
-  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9704ba4c5ad7350b687a19a992bf3fc') in 0.014693 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 92.642954 seconds.
-  path: Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png
-  artifactKey: Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/BakedIsland/Lightmap-0_comp_dir.png using Guid(eb6ccdc564e88424f875c8ae9ad61a30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd8f27c137bab01654553029624c12dc') in 0.127092 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
