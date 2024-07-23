@@ -51,6 +51,7 @@ namespace Rekabsen
         {
             //set the scale in accordance to the set height
             float scale = playerHeight / modelHeight;
+            rigTransformer.PlayerHeight = playerHeight;
             rigTransformer.Scale = 1f / scale;
             ragdollTransformer.Scale = scale;
             headCamera.localScale = new Vector3(1f / scale, 1f / scale, 1f / scale) * 10f;
@@ -74,11 +75,11 @@ namespace Rekabsen
             else
             {
                 //record the height
-                PlayerPrefs.SetFloat(PlayerHeightKey, 190f);
+                PlayerPrefs.SetFloat(PlayerHeightKey, 175f);
                 PlayerPrefs.Save(); // Ensure the data is written to disk
-                Debug.Log("Player height set to: " + 190f);
+                Debug.Log("Player height set to: " + 175f);
 
-                return 190f; // Or any default value or error indicator
+                return 175f; // Or any default value or error indicator
             }
         }
     }

@@ -119,7 +119,7 @@ namespace Rekabsen
         private void OnCollisionStay(Collision collision)
         {
             //burn player
-            if(collision.gameObject.tag.Equals("Body"))
+            if(collision.gameObject.tag.Equals("Body") && burning)
             {
                 SearchForStats(collision.gameObject.transform).Burning = true;
             }
@@ -128,7 +128,7 @@ namespace Rekabsen
         private void OnCollisionExit(Collision collision)
         {
             //un-burn player
-            if (collision.gameObject.tag.Equals("Body"))
+            if (collision.gameObject.tag.Equals("Body") && burning)
             {
                 SearchForStats(collision.gameObject.transform).Burning = false;
             }
