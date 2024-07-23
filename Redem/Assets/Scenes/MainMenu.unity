@@ -17879,6 +17879,14 @@ PrefabInstance:
       propertyPath: hungerGrowl
       value: 
       objectReference: {fileID: 1558944962}
+    - target: {fileID: 9091964751425654533, guid: 60d175c4e0cfef84bb10e77627826140, type: 3}
+      propertyPath: headCamera
+      value: 
+      objectReference: {fileID: 1558944967}
+    - target: {fileID: 9091964751425654533, guid: 60d175c4e0cfef84bb10e77627826140, type: 3}
+      propertyPath: ragdollTransformer
+      value: 
+      objectReference: {fileID: 1558944963}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

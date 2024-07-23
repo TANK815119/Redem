@@ -16,24 +16,39 @@ namespace Rekabsen
         [SerializeField] private InterfaceButton decrementButton;
         [SerializeField] private TMPro.TMP_Text textMesh;
 
+        private const string PlayerHeightKey = "PlayerHeight";
+
         // Start is called before the first frame update
         void Start()
         {
+            playerHeight = GetPlayerHeight();
+            ConfigurePlayerHeight();
         }
 
         // Update is called once per frame
         void FixedUpdate() //has to be fixed update for some reason
         {
             //listen for button selections
+            bool changed = false;
             if (incrementButton.Selected)
             {
                 playerHeight += 1f;
+                changed = true;
             }
             if (decrementButton.Selected)
             {
                 playerHeight -= 1f;
+                changed = true;
             }
 
+            if(changed)
+            {
+                ConfigurePlayerHeight();
+            }
+        }
+
+        private void ConfigurePlayerHeight()
+        {
             //set the scale in accordance to the set height
             float scale = playerHeight / modelHeight;
             rigTransformer.Scale = 1f / scale;
@@ -43,6 +58,28 @@ namespace Rekabsen
             //display the height
             textMesh.text = ((int)playerHeight).ToString() + "cm" + "\n"
                 + ((int)(playerHeight * 0.393701f)).ToString() + "in";
+
+            //record the height
+            PlayerPrefs.SetFloat(PlayerHeightKey, playerHeight);
+            PlayerPrefs.Save(); // Ensure the data is written to disk
+            Debug.Log("Player height set to: " + playerHeight);
+        }
+
+        private float GetPlayerHeight()
+        {
+            if (PlayerPrefs.HasKey(PlayerHeightKey))
+            {
+                return PlayerPrefs.GetFloat(PlayerHeightKey);
+            }
+            else
+            {
+                //record the height
+                PlayerPrefs.SetFloat(PlayerHeightKey, 190f);
+                PlayerPrefs.Save(); // Ensure the data is written to disk
+                Debug.Log("Player height set to: " + 190f);
+
+                return 190f; // Or any default value or error indicator
+            }
         }
     }
 }

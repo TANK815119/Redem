@@ -5897,6 +5897,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   UIDirection: {x: 0.16, y: -0.33}
+  portable: 1
+  interactable: 1
   XROveride: 0
 --- !u!114 &5959783206959496811
 MonoBehaviour:
@@ -14773,6 +14775,9 @@ MonoBehaviour:
   head: {fileID: 7102022203639554171}
   anchor: {fileID: 7121142289825623259}
   turnSpeed: 120
+  modelHeight: 190
+  ragdollTransformer: {fileID: 6015983160925091184}
+  headCamera: {fileID: 8726894876391410192}
 --- !u!114 &3227564872143103754
 MonoBehaviour:
   m_ObjectHideFlags: 0
