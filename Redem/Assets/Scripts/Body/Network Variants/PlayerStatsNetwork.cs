@@ -18,6 +18,7 @@ namespace Rekabsen
         private float maxHunger;
         private float maxTemp;
         private bool dead = false;
+        public bool Burning { get; set; }
         public bool NearFire { get; set; }
         public bool IsDay { get; set; }
 
@@ -26,13 +27,14 @@ namespace Rekabsen
         [SerializeField] private float hungerPerSecond = 100f / (12f * 60f); //lose all hunger every 12 minutes
         [SerializeField] private float tempPerSecond = 100f / (3f * 60f); //lose all temp every 3 minutes
 
-        [SerializeField] AudioSource hungerGrowl;
-        [SerializeField] AudioSource hurtPain;
-        [SerializeField] AudioSource teethChatter;
-        [SerializeField] List<ConfigurableJoint> playerJoints;
-        [SerializeField] RoomspaceLocomotion roomLoco;
-        [SerializeField] ControllerLocomotion controlLoco;
-        [SerializeField] Buoyancy noseProxy;
+        [SerializeField] private AudioSource hungerGrowl;
+        [SerializeField] private AudioSource hurtPain;
+        [SerializeField] private AudioSource teethChatter;
+        [SerializeField] private List<ConfigurableJoint> playerJoints;
+        [SerializeField] private RoomspaceLocomotion roomLoco;
+        [SerializeField] private ControllerLocomotion controlLoco;
+        [SerializeField] private Buoyancy noseProxy;
+        private Buoyancy[] buoyants;
 
         // Start is called before the first frame update
         void Start()
@@ -40,8 +42,11 @@ namespace Rekabsen
             maxHealth = health.Value;
             maxHunger = hunger.Value;
             maxTemp = temp.Value;
+            Burning = false;
             NearFire = false;
             IsDay = true;
+
+            buoyants = GatherBuoyants(playerJoints);
         }
 
         // Update is called once per frame
@@ -72,16 +77,28 @@ namespace Rekabsen
 
         private bool TempUpdate()
         {
-            //ill also need some night time + fire code here when the time comes
-            if (noseProxy.IsSubmerged() && temp.Value >= 0f)
+            //go through all the conditions for temperature loss
+            bool lostTemp = false;
+            if(temp.Value > -1f)
             {
-                temp.Value -= tempPerSecond * Time.deltaTime * 4f;
+                if (noseProxy.IsSubmerged()) //if under water
+                {
+                    temp.Value -= tempPerSecond * Time.deltaTime * 2f;
+                    lostTemp = true;
+                }
+                if (IsTouchingWater(buoyants)) //if touching water
+                {
+                    temp.Value -= tempPerSecond * Time.deltaTime * 8f;
+                    lostTemp = true;
+                }
+                if (!IsDay && !NearFire) // if night and not near fire
+                {
+                    temp.Value -= tempPerSecond * Time.deltaTime;
+                    lostTemp = true;
+                }
             }
-            else if(!IsDay && !NearFire && temp.Value >= 0f)
-            {
-                temp.Value -= tempPerSecond * Time.deltaTime;
-            }
-            else if (temp.Value < 100f) //regenerate
+            
+            if (!lostTemp && temp.Value < 100f) //regenerate
             {
                 temp.Value += tempPerSecond * 4f * Time.deltaTime;
             }
@@ -107,7 +124,11 @@ namespace Rekabsen
                 }
                 if (cold)
                 {
-                    totalHurt += hurtPerSecond * 4f * Time.deltaTime;
+                    totalHurt += hurtPerSecond * 8f * Time.deltaTime;
+                }
+                if(Burning)
+                {
+                    totalHurt += hurtPerSecond * 8f * Time.deltaTime;
                 }
 
                 health.Value -= totalHurt;
@@ -236,6 +257,33 @@ namespace Rekabsen
                     health.Value = 100f;
                 }
             }
+        }
+
+        private Buoyancy[] GatherBuoyants(List<ConfigurableJoint> joints) //essentially converts joints list to Bouyancy array
+        {
+            List<Buoyancy> buoyantList = new List<Buoyancy>();
+            for(int i = 0; i < joints.Count; i++)
+            {
+                if(joints[i].TryGetComponent(out Buoyancy bouyancy))
+                {
+                    buoyantList.Add(bouyancy);
+                }
+            }
+
+            return buoyantList.ToArray();
+        }
+
+        private bool IsTouchingWater(Buoyancy[] buoyantList) //checks if any bouyant components are touching water
+        {
+            for(int i = 0; i < buoyantList.Length; i++)
+            {
+                if(buoyantList[i].IsSubmerged())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -7,9 +7,18 @@ public class UI_RelayJoinCodeDisplay : MonoBehaviour
 {
     [SerializeField] private TMP_Text displayText;
 
-    // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(WaitForJoinCode());
+    }
+
+    private IEnumerator WaitForJoinCode()
+    {
+        while (string.IsNullOrEmpty(SceneTransitionHandler.Singleton.JoinRelayCode))
+        {
+            yield return null; // Wait for the next frame
+        }
+
         displayText.text = SceneTransitionHandler.Singleton.JoinRelayCode;
     }
 }

@@ -92,6 +92,7 @@ namespace Rekabsen
 
         private void OnCollisionEnter(Collision collision)
         {
+            //light other objects
             Flamable flamable = collision.gameObject.GetComponent<Flamable>();
             if (flamable != null && !flamable.IsBurning() && burning)
             {
@@ -111,6 +112,58 @@ namespace Rekabsen
             if (other.gameObject.TryGetComponent(out Mouth mouth))
             {
                 mouth.GetStats().NearFire = false;
+            }
+        }
+
+
+        private void OnCollisionStay(Collision collision)
+        {
+            //burn player
+            if(collision.gameObject.tag.Equals("Body"))
+            {
+                SearchForStats(collision.gameObject.transform).Burning = true;
+            }
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            //un-burn player
+            if (collision.gameObject.tag.Equals("Body"))
+            {
+                SearchForStats(collision.gameObject.transform).Burning = false;
+            }
+        }
+
+        private PlayerStatsNetwork SearchForStats(Transform bodyPart) //manually aquires player stats through address, essentially -- must be changed if stats architecture/names changed!
+        {
+            Transform root = bodyPart.transform.root;
+
+            ///search for StatTracker object
+            Transform statTracker = null;
+            for(int i = 0; i < root.childCount; i++)
+            {
+                if(root.GetChild(i).name.Equals("SurvivalComponents"))
+                {
+                    Transform survivalComponents = root.GetChild(i);
+                    for (int j = 0; j < survivalComponents.childCount; j++)
+                    {
+                        if (survivalComponents.GetChild(j).name.Equals("StatTracker"))
+                        {
+                            statTracker = survivalComponents.GetChild(j);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if(statTracker != null && statTracker.gameObject.TryGetComponent(out PlayerStatsNetwork stats))
+            {
+                return stats;
+            }
+            else
+            {
+                Debug.LogError("PlayerStats could not be found");
+                return null;
             }
         }
     }

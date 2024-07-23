@@ -15,6 +15,7 @@ public class UserInterface : MonoBehaviour
     [SerializeField] private LayerMask mask;
     [SerializeField] private Vector2 UIDirection = new Vector2(0.16f, -0.33f);
     [SerializeField] private bool portable = true;
+    [SerializeField] private bool interactable = true;
     [SerializeField] private bool XROveride = false;
 
     private InputData inputData;
@@ -22,35 +23,41 @@ public class UserInterface : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(portable)
+        if(interactable)
         {
-            menu.SetActive(false);
-        }
-        rightUIHand.SetActive(false);
-        leftUIHand.SetActive(false);
+            if (portable)
+            {
+                menu.SetActive(false);
+            }
+            rightUIHand.SetActive(false);
+            leftUIHand.SetActive(false);
 
-        inputData = GetComponent<InputData>();
+            inputData = GetComponent<InputData>();
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        inputData.rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool menuPressed);
+        if (interactable)
+        {
+            inputData.rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool menuPressed);
 
-        if (menuPressed || !portable)
-        {
-            ShowMenu();
-        }
-        else
-        {
-            rightUIHand.SetActive(false);
-            leftUIHand.SetActive(false);
-            menu.SetActive(false);
-        }
+            if (menuPressed || !portable)
+            {
+                ShowMenu();
+            }
+            else
+            {
+                rightUIHand.SetActive(false);
+                leftUIHand.SetActive(false);
+                menu.SetActive(false);
+            }
 
-        if (XROveride == true)
-        {
-            ShowMenu();
+            if (XROveride == true)
+            {
+                ShowMenu();
+            }
         }
     }
 
