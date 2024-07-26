@@ -48,11 +48,14 @@ namespace Rekabsen
                         touchingBodies.Add(touchingNetBody);
                     }
                 }
-                touchingIDs.Clear();
 
-                FuseBodies(mainBody, touchingBodies);   
+                FuseBodies(mainBody, touchingBodies);
 
-                willFuse.Value = false;
+                if(IsOwner)
+                {
+                    touchingIDs.Clear();
+                    willFuse.Value = false;
+                }
             }
         }
 

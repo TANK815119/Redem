@@ -200,8 +200,8 @@ GameObject:
   - component: {fileID: 1740032773664323997}
   - component: {fileID: 8670568153111344107}
   - component: {fileID: 6459245963032498947}
-  - component: {fileID: 5710503263831994641}
-  - component: {fileID: 5098440667475950230}
+  - component: {fileID: 4478475013595191204}
+  - component: {fileID: 1767524457560297291}
   m_Layer: 0
   m_Name: Button_Bottom
   m_TagString: Untagged
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3811718867
+  GlobalObjectIdHash: 4147266365
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &5710503263831994641
+--- !u!114 &4478475013595191204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759064961629630538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: ad8f229d1430a9644b526b01091f7f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
@@ -304,7 +304,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &5098440667475950230
+--- !u!114 &1767524457560297291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -822,8 +822,8 @@ GameObject:
   - component: {fileID: 6861192587914418179}
   - component: {fileID: 4452644965006053950}
   - component: {fileID: 5447764114576916329}
-  - component: {fileID: 3391989209685797896}
-  - component: {fileID: 7818386022577047335}
+  - component: {fileID: 1497580670727800290}
+  - component: {fileID: 4887536606497233919}
   m_Layer: 0
   m_Name: Button_Top
   m_TagString: Untagged
@@ -990,7 +990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1101903967
+  GlobalObjectIdHash: 2241536808
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -998,7 +998,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &3391989209685797896
+--- !u!114 &1497580670727800290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7181846310370579790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: ad8f229d1430a9644b526b01091f7f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
@@ -1028,7 +1028,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &7818386022577047335
+--- !u!114 &4887536606497233919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

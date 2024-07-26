@@ -143,7 +143,8 @@ MonoBehaviour:
   minForce: 10
   health:
     m_InternalValue: 50
-  spawnObject: {fileID: 6557135406926233853, guid: 2be59726a58741e45ba6312441777530, type: 3}
+  emptyParent: {fileID: 6557135406926233853, guid: 2be59726a58741e45ba6312441777530, type: 3}
+  spawnObject: {fileID: 1861756025384843373, guid: f9e48eb7a2e32b346b4d7fe2a542a834, type: 3}
   damage: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
 --- !u!1 &863557225220855590
 GameObject:

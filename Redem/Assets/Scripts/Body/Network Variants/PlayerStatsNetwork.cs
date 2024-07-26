@@ -52,9 +52,13 @@ namespace Rekabsen
         // Update is called once per frame
         void Update()
         {
-            bool starving = HungerUpdate();
-            bool cold = TempUpdate();
-            HealthUpdate(starving, cold);
+            if(IsOwner)
+            {
+                bool starving = HungerUpdate();
+                bool cold = TempUpdate();
+                HealthUpdate(starving, cold);
+            }
+            
             CheckDisplay();
         }
 
@@ -93,7 +97,7 @@ namespace Rekabsen
                 }
                 if (!IsDay && !NearFire) // if night and not near fire
                 {
-                    temp.Value -= tempPerSecond * Time.deltaTime;
+                    temp.Value -= tempPerSecond * Time.deltaTime * 2f;
                     lostTemp = true;
                 }
             }

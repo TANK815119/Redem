@@ -39,7 +39,7 @@ namespace Rekabsen
         private void Update()
         {
             //try to eat the first object in the list
-            if(inMouth.Count > 0)
+            if(inMouth.Count > 0 && IsOwner)
             {
                 //increment eating
                 eaten += Time.deltaTime;

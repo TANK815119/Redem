@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2992830058
+  GlobalObjectIdHash: 423041421
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -161,7 +161,8 @@ MonoBehaviour:
   minForce: 10
   health:
     m_InternalValue: 50
-  spawnObject: {fileID: 6016882366342505503, guid: bcf0e60a7e93d2a44b177544c0644ece, type: 3}
+  emptyParent: {fileID: 6016882366342505503, guid: bcf0e60a7e93d2a44b177544c0644ece, type: 3}
+  spawnObject: {fileID: 6952669654539763045, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
   damage: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
 --- !u!114 &-5025973699836536830
 MonoBehaviour:

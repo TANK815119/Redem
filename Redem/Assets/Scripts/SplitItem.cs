@@ -12,49 +12,63 @@ namespace Rekabsen
     {
         [SerializeField] private float minForce = 10f;
         [SerializeField] private NetworkVariable<float> health = new NetworkVariable<float>(50f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        [SerializeField] private GameObject spawnObject;
+        [SerializeField] private GameObject emptyParent; //empty parent with children at desired positions
+        [SerializeField] private GameObject spawnObject; //spawned in empty children of parent
         [SerializeField] private AudioClip damage;
 
-        private NetworkVariable<bool> isSplit = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
-        // Update is called once per frame
-        void Update()
+        [ServerRpc]
+        private void AttemptSplitServerRPC(ServerRpcParams prcParams = default)
         {
-            if (isSplit.Value && IsHost)
-            {
-                AttemptSplit();
-            }
+            AttemptSplitClientRPC();
+        }
+
+        [ClientRpc]
+        private void AttemptSplitClientRPC(ClientRpcParams rpcParams = default)
+        {
+            AttemptSplit();
         }
 
         private void AttemptSplit()
         {
-            //spawn the offspring
-            GameObject parent = Instantiate(spawnObject, transform.position, transform.rotation);
+            //spawn the empty parent containing position and rotation of spawns in children
+            GameObject parent = Instantiate(emptyParent, transform.position, transform.rotation);
 
-            //attempt to spawn the parent
-            if (parent.TryGetComponent(out NetworkObject parentNet))
+            if(IsServer)
             {
-                parentNet.Spawn();
+                ////attempt to spawn the parent
+                //if (parent.TryGetComponent(out NetworkObject parentNet))
+                //{
+                //    parentNet.Spawn();
+                //}
+
+                //attempt to spawn children
+                //NetworkObject[] netChildren = parent.GetComponentsInChildren<NetworkObject>();
+                for (int i = 0; i < parent.transform.childCount; i++)
+                {
+                    //instantiate real child
+                    GameObject child = Instantiate(spawnObject, parent.transform.GetChild(i).position, parent.transform.GetChild(i).rotation);
+                    
+                    //spawn
+                    if(child.TryGetComponent(out NetworkObject netObj))
+                    {
+                        netObj.Spawn();
+                    }
+                }
+
+                //delete the mother
+                if (this.TryGetComponent(out NetworkObject motherNetObject))
+                {
+                    motherNetObject.Despawn(true);
+                }
             }
 
-            //attempt to spawn children
-            NetworkObject[] netChildren = parent.GetComponentsInChildren<NetworkObject>();
-            for (int i = 0; i < netChildren.Length; i++)
-            {
-                netChildren[i].Spawn();
-            }
-
-            //delete the mother
-            if (this.TryGetComponent(out NetworkObject motherNetObject))
-            {
-                motherNetObject.Despawn(true);
-                Destroy(this);
-            }
+            Destroy(parent); //clean up the emptyParent
+            Destroy(this);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.relativeVelocity.magnitude > minForce)//check the collsion is sufficently high velocity
+            if (IsOwner && collision.relativeVelocity.magnitude > minForce)//check the collsion is sufficently high velocity
             {
                 if (collision.gameObject.TryGetComponent(out Triboluminescence tribo))//check for triboluminescence
                 {
@@ -64,7 +78,7 @@ namespace Rekabsen
 
                     if (health.Value < 0f)
                     {
-                        isSplit.Value = true;
+                        AttemptSplitServerRPC();
                     }
                 }
             }

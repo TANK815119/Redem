@@ -45,13 +45,29 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3791361663761016435, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444904564867604766, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6952669654539763045, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
       propertyPath: m_Name
       value: Coconut_Halved
       objectReference: {fileID: 0}
     - target: {fileID: 7817762781692710275, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7817762781692710275, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1467273980
+      value: 3598519988
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054350024383482307, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9218571247683384083, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
       propertyPath: m_LocalPosition.x
@@ -115,13 +131,29 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3791361663761016435, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444904564867604766, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6952669654539763045, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
       propertyPath: m_Name
       value: Coconut_Halved (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7817762781692710275, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7817762781692710275, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1333452243
+      value: 352077514
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054350024383482307, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9218571247683384083, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
       propertyPath: m_LocalPosition.x

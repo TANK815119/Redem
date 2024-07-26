@@ -17,6 +17,7 @@ public class NetworkCameraAssigner : MonoBehaviour
         Camera playerCamera = GetComponent<Camera>();
         UniversalAdditionalCameraData cameraData = playerCamera.GetUniversalAdditionalCameraData();
         AudioListener playerListner = GetComponent<AudioListener>();
+        AudioLowPassFilter playerFilter = GetComponent<AudioLowPassFilter>();
 
         //assign the recently-spawned player NetworkObject to the most recent playerID
         if (NetworkManager.Singleton.IsServer)
@@ -31,6 +32,7 @@ public class NetworkCameraAssigner : MonoBehaviour
         {
             Destroy(cameraData);
             Destroy(playerCamera);
+            Destroy(playerFilter);
             Destroy(playerListner);
         }
 

@@ -64,7 +64,7 @@ namespace Rekabsen
         // Update is called once per frame
         void Update()
         {
-            if (IsHost) { VirtualCrouch(); }
+            if (IsOwner) { VirtualCrouch(); }
             BodilyCaltulations();
             PhysicsHead();
             PhysicsHip();
@@ -73,7 +73,7 @@ namespace Rekabsen
         void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
         {
             BodilyCaltulations();
-            if (IsHost) { VirtualTurn(); }
+            if (IsOwner) { VirtualTurn(); }
             PhysicsHead();
             PhysicsHip();
             PhysicsLegs();
@@ -113,7 +113,7 @@ namespace Rekabsen
         private void PhysicsHead()
         {
             //update the head's rotation to be same as headset
-            if (IsHost)
+            if (IsOwner)
             {
                 headRotation.Value = Quaternion.Euler(0f, turn.Value, 0f) *
                     ((inputData.headset.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion headsetRotation)) ? headsetRotation : headCamera.rotation);

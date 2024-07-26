@@ -8,20 +8,36 @@ namespace Rekabsen
     public class ButtonSceneTransition : NetworkBehaviour, ButtonActionInterface
     {
         [SerializeField] private string sceneName;
-        private NetworkVariable<bool> transitionCalled = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        //private NetworkVariable<bool> transitionCalled = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         // Update is called once per frame
         void Update()
         {
-            if (transitionCalled.Value)
-            {
-                SceneTransition();
-            }
+            //if (transitionCalled.Value)
+            //{
+            //    SceneTransition();
+            //}
         }
 
         public void Play()
         {
-            transitionCalled.Value = true;
+            if(IsOwner)
+            {
+                //transitionCalled.Value = true;
+                SceneTransitionServerRPC();
+            }
+        }
+
+        [ServerRpc] //first to server
+        private void SceneTransitionServerRPC(ServerRpcParams rpcParams = default)
+        {
+            SceneTransitionClientRPC();
+        }
+
+        [ClientRpc] //then to all the clients
+        private void SceneTransitionClientRPC(ClientRpcParams rpcParams = default)
+        {
+            SceneTransition();
         }
 
         private void SceneTransition()

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Unity.Netcode;
 
 namespace Rekabsen
 {
-    public class ButtonSwitchLighting : MonoBehaviour, ButtonActionInterface
+    public class ButtonSwitchLighting : NetworkBehaviour, ButtonActionInterface
     {
         //dark
         [SerializeField] private Texture2D[] darkLightMapDir;
@@ -42,7 +43,27 @@ namespace Rekabsen
 
         public void Play()
         {
-            if(bright)
+            if(IsOwner)
+            {
+                SwitchLightingServerRpc();
+            }
+        }
+
+        [ServerRpc] //command sent to server
+        private void SwitchLightingServerRpc(ServerRpcParams rpcParams = default)
+        {
+            SwitchLightingClientRpc();
+        }
+
+        [ClientRpc] //server commands all clients
+        private void SwitchLightingClientRpc(ClientRpcParams rpcParams = default)
+        {
+            SwitchLighting();
+        }
+
+        private void SwitchLighting()
+        {
+            if (bright)
             {
                 //switch to dark
                 LightmapSettings.lightmaps = darkLightmap;
