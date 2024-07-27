@@ -63,7 +63,7 @@ namespace Rekabsen
             }
 
             Destroy(parent); //clean up the emptyParent
-            Destroy(this);
+            //Destroy(this);
         }
 
         private void OnCollisionEnter(Collision collision)

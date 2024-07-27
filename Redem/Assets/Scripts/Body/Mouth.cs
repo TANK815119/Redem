@@ -13,8 +13,6 @@ namespace Rekabsen
         private List<Edible> inMouth;
         private float eaten = 0f; //seconds eaten
 
-        private NetworkVariable<bool> objectConsumed = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
         private void Start()
         {
             inMouth = new List<Edible>();
@@ -51,17 +49,22 @@ namespace Rekabsen
                 }
 
                 //check if eaten
-                if(eaten >= eatTime)
+                if(eaten >= eatTime && IsOwner && NetworkManager.Singleton.LocalClientId == OwnerClientId)
                 {
-                    objectConsumed.Value = true;
-
-                    //attempt consumption
-                    if (objectConsumed.Value && IsHost)
-                    {
-                        AttemptConsumption(inMouth[0]);
-                    }
-
                     eaten = 0f;
+                    
+                    Debug.Log("eaten >= eatTime reached");
+                    Debug.Log(inMouth.Count);
+
+                    if (!inMouth[0].Equals(null) && inMouth[0].TryGetComponent(out NetworkObject edibleNet))
+                    {
+                        Debug.Log("edibleNet reached");
+                        AttemptConsumptionServerRpc(edibleNet.NetworkObjectId);
+                    }
+                    else
+                    {
+                        inMouth.Clear();
+                    }
                 }
             }
             else
@@ -76,27 +79,62 @@ namespace Rekabsen
             }
         }
 
+        [ServerRpc]
+        private void AttemptConsumptionServerRpc(ulong edibleID, ServerRpcParams rcpParams = default)
+        {
+            AttemptConsumptionClientRpc(edibleID);
+        }
+
+        [ClientRpc]
+        private void AttemptConsumptionClientRpc(ulong edibleID, ClientRpcParams rcpParams = default)
+        {
+            AttemptConsumptionGatherEdible(edibleID);
+        }
+
+        private void AttemptConsumptionGatherEdible(ulong edibleID)
+        {
+            if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(edibleID, out NetworkObject ediblNet) && ediblNet.TryGetComponent(out Edible edible))
+            {
+                AttemptConsumption(edible);
+            }
+        }
+
         private void AttemptConsumption(Edible edible)
         {
+            Debug.Log("AttemptConsumption reached");
+
             //increase player hunger stat
-            stats.Feed(edible.Nourishment);
-
-            //spawn leftowvers
-            GameObject leftovers = Instantiate(edible.Leftovers, transform.position, transform.rotation);
-            if (leftovers.TryGetComponent(out NetworkObject netLeftover))
+            if (IsOwner)
             {
-                netLeftover.Spawn();
+                stats.Feed(edible.Nourishment);
             }
 
+            if(IsServer)
+            {
+                //instantiate leftowvers
+                GameObject leftovers = Instantiate(edible.Leftovers, transform.position, transform.rotation);
+
+                //spawn leftovers
+                if (leftovers.TryGetComponent(out NetworkObject netLeftover))
+                {
+                    netLeftover.Spawn();
+                }
+
+                //despawn the first object
+                if (edible.gameObject.TryGetComponent(out NetworkObject netEdible))
+                {
+                    netEdible.Despawn(true);
+                }
+            }
+
+            Debug.Log("reached end");
+            inMouth.Clear();
+            //if(inMouth.Contains(edible))
+            //{
+            //    inMouth.Remove(edible);
+            //}
             //destroy the first object
-            inMouth.Remove(edible);
-            if (edible.gameObject.TryGetComponent(out NetworkObject netEdible))
-            {
-                netEdible.Despawn(true);
-                Destroy(edible.gameObject);
-            }
-
-            objectConsumed.Value = false;
+            //Destroy(edible.gameObject);
         }
 
         public PlayerStatsNetwork GetStats()
