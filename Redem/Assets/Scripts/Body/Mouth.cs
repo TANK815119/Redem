@@ -129,12 +129,6 @@ namespace Rekabsen
 
             Debug.Log("reached end");
             inMouth.Clear();
-            //if(inMouth.Contains(edible))
-            //{
-            //    inMouth.Remove(edible);
-            //}
-            //destroy the first object
-            //Destroy(edible.gameObject);
         }
 
         public PlayerStatsNetwork GetStats()
