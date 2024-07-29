@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 namespace Rekabsen
 {
@@ -31,7 +32,17 @@ namespace Rekabsen
         [ServerRpc] //first to server
         private void SceneTransitionServerRPC(ServerRpcParams rpcParams = default)
         {
-            SceneTransitionClientRPC();
+            //SceneTransitionClientRPC();
+            if (IsServer)
+            {
+                Debug.Log("change scene called");
+                ChangeScene();
+            }
+        }
+
+        private void ChangeScene()
+        {
+            NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
 
         [ClientRpc] //then to all the clients
@@ -54,7 +65,7 @@ namespace Rekabsen
             {
                 Debug.Log("Initializing as Host.");
                 SceneTransitionHandler.Singleton.InitializeAsHost = true;
-                SceneTransitionHandler.Singleton.InitializeAsMultiplayer = true;
+                SceneTransitionHandler.Singleton.InitializeAsMultiplayer = false;
                 //SceneTransitionHandler.Singleton.JoinRelayCode = keyboard.GetText(); -- not neccessary
                 SceneTransitionHandler.Singleton.Initialize();
             }
@@ -62,7 +73,7 @@ namespace Rekabsen
             {
                 Debug.Log("Initializing as Client.");
                 SceneTransitionHandler.Singleton.InitializeAsHost = false;
-                SceneTransitionHandler.Singleton.InitializeAsMultiplayer = true;
+                SceneTransitionHandler.Singleton.InitializeAsMultiplayer = false;
                 //SceneTransitionHandler.Singleton.JoinRelayCode = keyboard.GetText(); should be same as innitial join
                 SceneTransitionHandler.Singleton.Initialize();
             }

@@ -11,6 +11,7 @@ public class PlayerSpawner : NetworkBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private float range = 1f;
+    [SerializeField] private Vector3 globalSpawnPosition = Vector3.zero;
 
     private void Awake()
     {
@@ -24,27 +25,55 @@ public class PlayerSpawner : NetworkBehaviour
             Debug.LogError("NetworkManager is not set.");
         }
 
+        NetworkManager.Singleton.SceneManager.OnLoadComplete += OnLoadComplete;
         SceneManager.sceneLoaded += OnSceneLoaded; // Register to scene loaded event
+    }
+
+    public void OnLoadComplete(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
+    {
+        //TeleportPlayersServerRPC(globalSpawnPosition);
+        Debug.Log("attempting teleport");
+        NetworkObject[] players = FindObjectsOfType<NetworkObject>();
+        foreach (NetworkObject player in players)
+        {
+            if (player.IsPlayerObject)
+            {
+                player.transform.position = globalSpawnPosition;
+            }
+        }
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //Debug.Log("Client count " + NetworkManager.Singleton.ConnectedClientsList.Count);
+        //// Spawn players when scene is loaded
+        //if (IsServer)
+        //{
+        //    Debug.Log("scene load found");
+        //    SpawnPlayers();
+        //}
+        //else
+        //{
+        //    Debug.Log("No server found");
+        //}
+    }
 
-        // Spawn players when scene is loaded
-        if (NetworkManager.Singleton.IsServer)
+    [ServerRpc]
+    private void TeleportPlayersServerRPC(Vector3 position, ServerRpcParams rpcParams = default) //use on scene transition
+    {
+        Debug.Log("attempting teleport");
+        NetworkObject[] players = FindObjectsOfType<NetworkObject>();
+        foreach (NetworkObject player in players)
         {
-            Debug.Log("scene load found");
-            SpawnPlayers();
-        }
-        else
-        {
-            Debug.Log("No server found");
+            if (player.IsPlayerObject)
+            {
+                player.transform.position = position;
+            }
         }
     }
 
     void CustomConnectionApprovalCallback(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)    //mustnt be private
     {
+        Debug.Log("connection approval called");
         response.CreatePlayerObject = true;
         response.Position = GetPlayerSpawnPosition();
         response.Rotation = Quaternion.identity;
@@ -53,7 +82,7 @@ public class PlayerSpawner : NetworkBehaviour
 
     public Vector3 GetPlayerSpawnPosition()
     {
-        Vector3 position = transform.position + new Vector3(Random.Range(-range, range), 0f, Random.Range(-range, range));
+        Vector3 position = globalSpawnPosition + new Vector3(Random.Range(-range, range), 0f, Random.Range(-range, range));
         Debug.Log(position);
         return position;
     }
@@ -84,6 +113,7 @@ public class PlayerSpawner : NetworkBehaviour
             NetworkManager.Singleton.ConnectionApprovalCallback -= CustomConnectionApprovalCallback;
         }
 
+        NetworkManager.Singleton.SceneManager.OnLoadComplete -= OnLoadComplete;
         SceneManager.sceneLoaded -= OnSceneLoaded; // Unregister scene loaded event
     }
 }

@@ -52,7 +52,7 @@ public class NetworkStartup : MonoBehaviour
                     JoinRelay(SceneTransitionHandler.Singleton.JoinRelayCode); //I pray this works; it seems so rickety
                 }
             }
-            else //single player
+            else //local
             {
                 if (SceneTransitionHandler.Singleton.InitializeAsHost) //host
                 {

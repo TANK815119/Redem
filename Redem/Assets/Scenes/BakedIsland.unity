@@ -46703,7 +46703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1084960133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83149,6 +83149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6914500505892135170, guid: e6b7cf364a967ea419ffcfb23725a2d0, type: 3}
   range: 1
+  globalSpawnPosition: {x: -3.23, y: 9.61, z: 64.31}
 --- !u!114 &1987644134
 MonoBehaviour:
   m_ObjectHideFlags: 0
