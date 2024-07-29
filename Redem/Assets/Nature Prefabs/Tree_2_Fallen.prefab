@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1994319077
+  GlobalObjectIdHash: 4237595014
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -307,7 +307,9 @@ MonoBehaviour:
   minForce: 10
   health:
     m_InternalValue: 50
-  spawnObject: {fileID: 7389330734909547483, guid: a6f7849371f04ab49b0e2c7a974ab44b, type: 3}
+  emptyParent: {fileID: 7389330734909547483, guid: a6f7849371f04ab49b0e2c7a974ab44b, type: 3}
+  spawnObjects:
+  - {fileID: 8166331209281463621, guid: 9291834ada347ab419c7ab28bd33a3a1, type: 3}
   damage: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
 --- !u!1 &3724926615082114614
 GameObject:

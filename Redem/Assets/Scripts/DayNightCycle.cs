@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 //changes the skybox every 12 minutes
 //and dims the sun
 namespace Rekabsen
 {
-    public class DayNightCycle : MonoBehaviour
+    public class DayNightCycle : NetworkBehaviour
     {
         [SerializeField] private List<MeshRenderer> holoWalls;
         [SerializeField] private Material dayMaterial;
@@ -14,7 +15,9 @@ namespace Rekabsen
 
         [SerializeField] private Light sun;
 
-        private bool daytime = true;
+        private NetworkVariable<bool> daytime = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+        private bool localDaytime = true;
+
         [SerializeField] private float dayLength = 60f * 12f; //12 minutes
         private float timeCounter;
 
@@ -32,26 +35,39 @@ namespace Rekabsen
         // Update is called once per frame
         void Update()
         {
-            timeCounter -= Time.deltaTime;
-
-            if(timeCounter <= 0f)
+            //keep track of day or night on network
+            if(IsServer)
             {
-                if(daytime)
+                timeCounter -= Time.deltaTime;
+
+                if (timeCounter <= 0f)
                 {
-                    MakeNightTime();
+                    daytime.Value = !daytime.Value;
+
+                    timeCounter = dayLength;
                 }
-                else
+            }
+
+            //update clients based on server daytime.Value
+            if(daytime.Value != localDaytime)
+            {
+                if(daytime.Value)
                 {
                     MakeDayTime();
                 }
+                else
+                {
+                    MakeNightTime();
+                }
+
+                //updated local read state
+                localDaytime = daytime.Value;
 
                 //swap lighting
                 lightSwitch.Play();
 
                 //audio
                 switchSound.Play();
-
-                timeCounter = dayLength;
             }
         }
 
@@ -64,9 +80,6 @@ namespace Rekabsen
 
             sun.intensity = 1f;
             SetAllPlayersDay(true);
-
-
-            daytime = true;
         }
 
         private void MakeNightTime()
@@ -78,8 +91,6 @@ namespace Rekabsen
 
             sun.intensity = 0.05f;
             SetAllPlayersDay(false);
-
-            daytime = false;
         }
 
         private void SetAllPlayersDay(bool day)

@@ -162,7 +162,8 @@ MonoBehaviour:
   health:
     m_InternalValue: 50
   emptyParent: {fileID: 6016882366342505503, guid: bcf0e60a7e93d2a44b177544c0644ece, type: 3}
-  spawnObject: {fileID: 6952669654539763045, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
+  spawnObjects:
+  - {fileID: 6952669654539763045, guid: 03e8ddbaf91a22b4097a9901a1569b45, type: 3}
   damage: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
 --- !u!114 &-5025973699836536830
 MonoBehaviour:

@@ -13,7 +13,7 @@ namespace Rekabsen
         [SerializeField] private float minForce = 10f;
         [SerializeField] private NetworkVariable<float> health = new NetworkVariable<float>(50f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         [SerializeField] private GameObject emptyParent; //empty parent with children at desired positions
-        [SerializeField] private GameObject spawnObject; //spawned in empty children of parent
+        [SerializeField] private List<GameObject> spawnObjects; //spawned in empty children of parent
         [SerializeField] private AudioClip damage;
 
         [ServerRpc]
@@ -35,23 +35,32 @@ namespace Rekabsen
 
             if(IsServer)
             {
-                ////attempt to spawn the parent
-                //if (parent.TryGetComponent(out NetworkObject parentNet))
-                //{
-                //    parentNet.Spawn();
-                //}
-
-                //attempt to spawn children
-                //NetworkObject[] netChildren = parent.GetComponentsInChildren<NetworkObject>();
-                for (int i = 0; i < parent.transform.childCount; i++)
+                if(spawnObjects.Count == 1) //single object mode
                 {
-                    //instantiate real child
-                    GameObject child = Instantiate(spawnObject, parent.transform.GetChild(i).position, parent.transform.GetChild(i).rotation);
-                    
-                    //spawn
-                    if(child.TryGetComponent(out NetworkObject netObj))
+                    for (int i = 0; i < parent.transform.childCount; i++)
                     {
-                        netObj.Spawn();
+                        //instantiate real child
+                        GameObject child = Instantiate(spawnObjects[0], parent.transform.GetChild(i).position, parent.transform.GetChild(i).rotation);
+
+                        //spawn
+                        if (child.TryGetComponent(out NetworkObject netObj))
+                        {
+                            netObj.Spawn();
+                        }
+                    }
+                }
+                else //multi-object mode
+                {
+                    for (int i = 0; i < parent.transform.childCount; i++)
+                    {
+                        //instantiate real child
+                        GameObject child = Instantiate(spawnObjects[i], parent.transform.GetChild(i).position, parent.transform.GetChild(i).rotation);
+
+                        //spawn
+                        if (child.TryGetComponent(out NetworkObject netObj))
+                        {
+                            netObj.Spawn();
+                        }
                     }
                 }
 
