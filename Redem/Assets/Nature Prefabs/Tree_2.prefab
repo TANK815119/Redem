@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5710348663463465342}
   - component: {fileID: 6561781523457335133}
   - component: {fileID: 3917480725626863229}
+  - component: {fileID: -5572433562321739014}
   m_Layer: 16
   m_Name: Tree_2
   m_TagString: Untagged
@@ -104,9 +105,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -148,6 +149,18 @@ MonoBehaviour:
   - {fileID: 1861756025384843373, guid: f9e48eb7a2e32b346b4d7fe2a542a834, type: 3}
   - {fileID: 3188625242423446150, guid: a4398c986017eae428ef3532a31407fe, type: 3}
   damage: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
+--- !u!114 &-5572433562321739014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247158900317986161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51f77c1f8173cc4ea381653230caacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &863557225220855590
 GameObject:
   m_ObjectHideFlags: 0

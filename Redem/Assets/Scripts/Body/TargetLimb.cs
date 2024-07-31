@@ -7,7 +7,7 @@ namespace Rekabsen
     public class TargetLimb : MonoBehaviour
     {
         [SerializeField] private Transform target;
-        private float innitialDisableMoment = 0.5f;
+        private float innitialDisableMoment = 1f;
         private ConfigurableJoint configurableJoint;
         private Quaternion initial;
 

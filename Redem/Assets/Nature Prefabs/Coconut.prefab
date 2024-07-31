@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4291913665604354376}
   - component: {fileID: 172571478875414141}
   - component: {fileID: -5025973699836536830}
+  - component: {fileID: -5990581181702637620}
   m_Layer: 0
   m_Name: Coconut
   m_TagString: Untagged
@@ -122,9 +123,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -182,6 +183,18 @@ MonoBehaviour:
   useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
+--- !u!114 &-5990581181702637620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372059032158533430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51f77c1f8173cc4ea381653230caacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4351658487611426152
 GameObject:
   m_ObjectHideFlags: 0

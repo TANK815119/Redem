@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 1577589327965218352}
   - component: {fileID: -7347416209197121581}
   - component: {fileID: -6968879984047001060}
+  - component: {fileID: 7832544702370118046}
   m_Layer: 0
   m_Name: Tree_2_Fallen
   m_TagString: Untagged
@@ -235,9 +236,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -311,6 +312,18 @@ MonoBehaviour:
   spawnObjects:
   - {fileID: 8166331209281463621, guid: 9291834ada347ab419c7ab28bd33a3a1, type: 3}
   damage: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
+--- !u!114 &7832544702370118046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861756025384843373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51f77c1f8173cc4ea381653230caacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3724926615082114614
 GameObject:
   m_ObjectHideFlags: 0

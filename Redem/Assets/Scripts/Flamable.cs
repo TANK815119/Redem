@@ -14,6 +14,7 @@ namespace Rekabsen
         [SerializeField] private AudioClip fireLite;
         [SerializeField] private float burnDuration = 8f * 60f; //burn duration
         private List<Transform> flames;
+        private Buoyancy buoyancy;
 
         private bool burning = false;
         private NetworkVariable<bool> lit = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -22,6 +23,8 @@ namespace Rekabsen
         void Start()
         {
             flames = new List<Transform>();
+
+            buoyancy = GetComponent<Buoyancy>();
 
             //check the object has a collider
             GetComponent<Collider>();
@@ -45,7 +48,7 @@ namespace Rekabsen
             }
 
             //essentially run down burn timer
-            if (lit.Value)
+            if (lit.Value && IsOwner)
             {
                 if(burnDuration > 0f)
                 {
@@ -66,6 +69,38 @@ namespace Rekabsen
                     Destroy(this);
                 }
             }
+
+            //check if flame has been doused
+            if(buoyancy.IsSubmerged() && burning && IsOwner)
+            {
+                DouseServerRpc(); //dous on all clients
+            }
+        }
+
+        [ServerRpc]
+        private void DouseServerRpc(ServerRpcParams rpcParams = default)
+        {
+            DouseClientRpc();
+        }
+
+        [ClientRpc]
+        private void DouseClientRpc(ClientRpcParams rpcParams = default)
+        {
+            Douse();
+        }
+
+        private void Douse() //gets rid of flames and the such
+        {
+            //destroy the flames
+            while(flames.Count > 0)
+            {
+                Destroy(flames[0]);
+                flames.Remove(flames[0]);
+            }
+
+            //reset bools
+            lit.Value = false;
+            burning = false;
         }
 
         private void Combust()
@@ -75,6 +110,7 @@ namespace Rekabsen
             for (int i = 0; i < burnPoints.Count; i++)
             {
                 GameObject fire = Instantiate(flame);
+                fire.transform.parent = this.transform;
                 flames.Add(fire.transform);
                 burning = true;
             }

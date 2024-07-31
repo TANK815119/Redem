@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: -7051539995572754656}
   - component: {fileID: -804941615671818628}
   - component: {fileID: 2849462431868383399}
+  - component: {fileID: 5345955750818686491}
   m_Layer: 0
   m_Name: Tree_2_Log
   m_TagString: Untagged
@@ -260,9 +261,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -320,6 +321,18 @@ MonoBehaviour:
   spawnObjects:
   - {fileID: 7130219063580105480, guid: bd0e0267078676349b441bf5b6a2d8b1, type: 3}
   damage: {fileID: 8300000, guid: a658cd8ed0d1421418bc54ca2f008bcd, type: 3}
+--- !u!114 &5345955750818686491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8166331209281463621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51f77c1f8173cc4ea381653230caacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9161770641522808902
 GameObject:
   m_ObjectHideFlags: 0

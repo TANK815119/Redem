@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 4366380718567030326}
   - component: {fileID: 7283440654482931858}
   - component: {fileID: -1950958034753688915}
+  - component: {fileID: 1687285517130952494}
   m_Layer: 0
   m_Name: Stick_4
   m_TagString: Untagged
@@ -476,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3112804857
+  GlobalObjectIdHash: 1675283183
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -497,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flame: {fileID: 5447838405438594324, guid: 93302c5e8b6c08043a8493f97e779dfd, type: 3}
+  fireLight: {fileID: 8617528146577894799, guid: c81abf3f392db33499d7a30d78da90d3, type: 3}
   burnPoints:
   - {fileID: 7176862417438238804}
   - {fileID: 1340441293795888508}
@@ -504,6 +506,7 @@ MonoBehaviour:
   - {fileID: 319867863928255822}
   fireCrackle: {fileID: 7155094468203532525}
   fireLite: {fileID: 8300000, guid: 4d15638b1eef74144904efd780adb899, type: 3}
+  burnDuration: 180
 --- !u!135 &4918171355051476697
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -655,9 +658,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -696,6 +699,18 @@ MonoBehaviour:
   useHydraulicRotationalDrag: 1
   splashVisual: {fileID: 3785613616410900586, guid: dba2b668531baf04c922a44e73f0d7b0, type: 3}
   splashSound: {fileID: 8300000, guid: edec64885817dc749a4e5af793287806, type: 3}
+--- !u!114 &1687285517130952494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2653803100005012585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51f77c1f8173cc4ea381653230caacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2892885041854086010
 GameObject:
   m_ObjectHideFlags: 0
