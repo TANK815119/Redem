@@ -19,6 +19,9 @@ namespace Rekabsen
         private bool burning = false;
         private NetworkVariable<bool> lit = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         private NetworkVariable<bool> spent = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+        private List<PlayerStatsNetwork> burntPlayerStats = new List<PlayerStatsNetwork>();
+
         // Start is called before the first frame update
         void Start()
         {
@@ -50,7 +53,7 @@ namespace Rekabsen
             //essentially run down burn timer
             if (lit.Value && IsOwner)
             {
-                if(burnDuration > 0f)
+                if (burnDuration > 0f)
                 {
                     burnDuration -= Time.deltaTime;
                 }
@@ -61,7 +64,7 @@ namespace Rekabsen
             }
 
             //destroy the object if run out of burn timer
-            if(spent.Value && IsHost)
+            if (spent.Value && IsHost)
             {
                 if (this.TryGetComponent(out NetworkObject netObject))
                 {
@@ -71,7 +74,7 @@ namespace Rekabsen
             }
 
             //check if flame has been doused
-            if(buoyancy.IsSubmerged() && burning && IsOwner)
+            if (buoyancy.IsSubmerged() && burning && IsOwner)
             {
                 DouseServerRpc(); //dous on all clients
             }
@@ -94,9 +97,15 @@ namespace Rekabsen
             //destroy the flames
             while(flames.Count > 0)
             {
-                Destroy(flames[0]);
+                Destroy(flames[0].gameObject);
                 flames.Remove(flames[0]);
             }
+
+            //stop players from burning
+            StopBurningPlayers();
+
+            //stop fire crackle audio
+            fireCrackle.Stop();
 
             //reset bools
             lit.Value = false;
@@ -157,7 +166,14 @@ namespace Rekabsen
             //burn player
             if(collision.gameObject.tag.Equals("Body") && burning)
             {
-                SearchForStats(collision.gameObject.transform).Burning = true;
+                PlayerStatsNetwork playerStats = SearchForStats(collision.gameObject.transform);
+                playerStats.Burning = true;
+
+                //add to list of burnt playerStats
+                if(!burntPlayerStats.Contains(playerStats))
+                {
+                    burntPlayerStats.Add(playerStats);
+                }
             }
         }
 
@@ -166,7 +182,14 @@ namespace Rekabsen
             //un-burn player
             if (collision.gameObject.tag.Equals("Body") && burning)
             {
-                SearchForStats(collision.gameObject.transform).Burning = false;
+                PlayerStatsNetwork playerStats = SearchForStats(collision.gameObject.transform);
+                playerStats.Burning = false;
+
+                //remove from list of burnt playerStats
+                if (!burntPlayerStats.Contains(playerStats))
+                {
+                    burntPlayerStats.Remove(playerStats);
+                }
             }
         }
 
@@ -201,6 +224,19 @@ namespace Rekabsen
                 Debug.LogError("PlayerStats could not be found");
                 return null;
             }
+        }
+
+        private void StopBurningPlayers()
+        {
+            for (int i = 0; i < burntPlayerStats.Count; i++)
+            {
+                burntPlayerStats[i].Burning = false;
+            }
+        }
+
+        public override void OnDestroy()
+        {
+            StopBurningPlayers();
         }
     }
 }

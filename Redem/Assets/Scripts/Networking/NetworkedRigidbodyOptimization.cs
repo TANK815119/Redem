@@ -45,12 +45,26 @@ public class NetworkedRigidbodyOptimization : NetworkBehaviour
     void DisableNetworkSync()
     {
         isSyncing = false;
-        netTransform.enabled = false; // Disable network transform updates
+
+        // Disable network transform updates
+        netTransform.SyncPositionX = false;
+        netTransform.SyncPositionY = false;
+        netTransform.SyncPositionZ = false;
+        netTransform.SyncRotAngleX = false;
+        netTransform.SyncRotAngleY = false;
+        netTransform.SyncRotAngleZ = false;
     }
 
     void EnableNetworkSync()
     {
         isSyncing = true;
-        netTransform.enabled = true; // Enable network transform updates
+
+        // Enable network transform updates
+        netTransform.SyncPositionX = true;
+        netTransform.SyncPositionY = true;
+        netTransform.SyncPositionZ = true;
+        netTransform.SyncRotAngleX = true;
+        netTransform.SyncRotAngleY = true;
+        netTransform.SyncRotAngleZ = true;
     }
 }

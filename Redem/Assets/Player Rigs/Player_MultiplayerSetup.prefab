@@ -1374,7 +1374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 473969700122172700}
-  innitialDisableMoment: 0.1
 --- !u!1 &330683837712198287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,6 +1668,9 @@ MonoBehaviour:
   head: {fileID: 7724801188134077196}
   anchor: {fileID: 7380816031660768406}
   turnSpeed: 120
+  modelHeight: 190
+  ragdollTransformer: {fileID: 0}
+  headCamera: {fileID: 0}
 --- !u!114 &5048373924316409252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5004,7 +5006,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1057106031214001781}
-  innitialDisableMoment: 0.1
 --- !u!1 &1698555648469338621
 GameObject:
   m_ObjectHideFlags: 0
@@ -8229,7 +8230,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1007338774077497884}
-  innitialDisableMoment: 0.1
 --- !u!114 &8758091652803468812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8687,6 +8687,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   UIDirection: {x: 0.16, y: -0.33}
+  portable: 1
+  interactable: 1
   XROveride: 0
 --- !u!114 &6784842588609774207
 MonoBehaviour:
@@ -9403,7 +9405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5620392540764083128}
-  innitialDisableMoment: 0.1
 --- !u!1 &2557570537898405303
 GameObject:
   m_ObjectHideFlags: 0
@@ -20888,7 +20889,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6384669017192159711}
-  innitialDisableMoment: 0.1
 --- !u!114 &8429135248105573138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21920,7 +21920,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4686024278074588767}
-  innitialDisableMoment: 0.1
 --- !u!1 &6274415654754330376
 GameObject:
   m_ObjectHideFlags: 0
@@ -22154,7 +22153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1687360423807527993}
-  innitialDisableMoment: 0.1
 --- !u!1 &6300907706627921491
 GameObject:
   m_ObjectHideFlags: 0
@@ -23560,7 +23558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2224115365681083166}
-  innitialDisableMoment: 0.1
 --- !u!1 &6762500172146610195
 GameObject:
   m_ObjectHideFlags: 0
@@ -28042,7 +28039,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7212398598444772795}
-  innitialDisableMoment: 0.1
 --- !u!1 &8267970719564062108
 GameObject:
   m_ObjectHideFlags: 0
