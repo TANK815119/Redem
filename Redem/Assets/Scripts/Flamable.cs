@@ -47,6 +47,9 @@ namespace Rekabsen
                 for (int i = 0; i < burnPoints.Count; i++)
                 {
                     flames[i].position = burnPoints[i].position;
+
+                    //always point up
+                    flames[i].rotation = Quaternion.identity;
                 }
             }
 

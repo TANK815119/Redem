@@ -70,7 +70,7 @@ namespace Rekabsen
                 //    angleLimited = true;
                 //}
 
-                if (angleLimited)
+                if (angleLimited || true) //true to avoid snapping
                 {
                     //float yDifference = Quaternion.Angle(Quaternion.Euler(0f, headset.eulerAngles.y, 0f), Quaternion.Euler(0f, headsetRotation.eulerAngles.y, 0f));
                     //headset.localRotation = Quaternion.Euler(new Vector3(headsetRotation.eulerAngles.x,

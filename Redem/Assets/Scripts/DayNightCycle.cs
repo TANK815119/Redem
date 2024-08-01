@@ -18,7 +18,8 @@ namespace Rekabsen
         private NetworkVariable<bool> daytime = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
         private bool localDaytime = true;
 
-        [SerializeField] private float dayLength = 60f * 12f; //12 minutes
+        [SerializeField] private float dayLength = 60f * 8f; //12 minutes
+        [SerializeField] private float nightLength = 60f * 6f; //12 minutes
         private float timeCounter;
 
         [SerializeField] AudioSource switchSound;
@@ -43,8 +44,6 @@ namespace Rekabsen
                 if (timeCounter <= 0f)
                 {
                     daytime.Value = !daytime.Value;
-
-                    timeCounter = dayLength;
                 }
             }
 
@@ -80,6 +79,8 @@ namespace Rekabsen
 
             sun.intensity = 1f;
             SetAllPlayersDay(true);
+
+            timeCounter = dayLength;
         }
 
         private void MakeNightTime()
@@ -91,6 +92,8 @@ namespace Rekabsen
 
             sun.intensity = 0.05f;
             SetAllPlayersDay(false);
+
+            timeCounter = nightLength;
         }
 
         private void SetAllPlayersDay(bool day)

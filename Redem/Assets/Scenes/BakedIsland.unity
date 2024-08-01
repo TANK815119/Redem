@@ -22262,6 +22262,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 167.726
       objectReference: {fileID: 0}
+    - target: {fileID: 5636483901555027049, guid: 2ba4e1ae576813741aee831bee1733df, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41707,6 +41711,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1408058109}
     m_Modifications:
+    - target: {fileID: 2152702910993710007, guid: d5d5aa82a619044479a97f1be2eb2e3e, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3791124016616318768, guid: d5d5aa82a619044479a97f1be2eb2e3e, type: 3}
       propertyPath: m_LocalScale.x
       value: 360.99002
@@ -63137,6 +63145,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1408058109}
     m_Modifications:
+    - target: {fileID: 2470903191168546741, guid: fbb418d6b9a87ad469d8501b5cc9240e, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8449616794182519936, guid: fbb418d6b9a87ad469d8501b5cc9240e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.73669
@@ -84400,7 +84412,8 @@ MonoBehaviour:
   dayMaterial: {fileID: 2100000, guid: 9658464713ffd99499b42715b61d835c, type: 2}
   nightMaterial: {fileID: 2100000, guid: ac47e4ec6af72bb45a80b6b02c299775, type: 2}
   sun: {fileID: 1988749610}
-  dayLength: 360
+  dayLength: 480
+  nightLength: 360
   switchSound: {fileID: 2040310296}
   buttonLightSwitch: {fileID: 2040310298}
 --- !u!114 &2040310298

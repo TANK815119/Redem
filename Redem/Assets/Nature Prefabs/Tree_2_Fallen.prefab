@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fff80ae2aaae34c972921a58e46af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minForce: 10
+  minForce: 7
   health:
     m_InternalValue: 50
   emptyParent: {fileID: 7389330734909547483, guid: a6f7849371f04ab49b0e2c7a974ab44b, type: 3}
