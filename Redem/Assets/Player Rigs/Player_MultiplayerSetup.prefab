@@ -1667,10 +1667,10 @@ MonoBehaviour:
   rightController: {fileID: 5633440532060383243}
   head: {fileID: 7724801188134077196}
   anchor: {fileID: 7380816031660768406}
-  turnSpeed: 120
+  turnSpeed: 240
   modelHeight: 190
-  ragdollTransformer: {fileID: 0}
-  headCamera: {fileID: 0}
+  ragdollTransformer: {fileID: 5921590878227660783}
+  headCamera: {fileID: 5661493982869533482}
 --- !u!114 &5048373924316409252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9680,7 +9680,7 @@ MonoBehaviour:
   anchorOriginHeight: 0.25
   crouchSpeed: 3
   jumpDepth: -0.6
-  turnSpeed: 120
+  turnSpeed: 240
   nerdNeckMin: 0.125
   nerdNeckMax: 0.4
   ragdollHead: {fileID: 3886515894992890326}
