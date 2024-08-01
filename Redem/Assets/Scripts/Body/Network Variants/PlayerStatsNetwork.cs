@@ -158,7 +158,7 @@ namespace Rekabsen
                 playerJoints[i].slerpDrive = rotation;
 
                 JointDrive positional = playerJoints[i].yDrive;
-                positional.positionSpring = positional.positionSpring / 1000000f;
+                positional.positionSpring = positional.positionSpring / 40f;
                 playerJoints[i].yDrive = positional;
             }
 
@@ -179,7 +179,7 @@ namespace Rekabsen
                 playerJoints[i].slerpDrive = rotation;
 
                 JointDrive positional = playerJoints[i].yDrive;
-                positional.positionSpring = positional.positionSpring * 1000000f;
+                positional.positionSpring = positional.positionSpring * 40;
                 playerJoints[i].yDrive = positional;
             }
 
