@@ -15,7 +15,7 @@ C:/Users/reidj/Git Projects/Redem/Redem
 -logFile
 Logs/AssetImportWorker5.log
 -srvPort
-49962
+51459
 Successfully changed project path to: C:/Users/reidj/Git Projects/Redem/Redem
 C:/Users/reidj/Git Projects/Redem/Redem
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,14 +49,14 @@ C:/Users/reidj/Git Projects/Redem/Redem
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [36936] Host "[IP] 192.168.68.132 [Port] 0 [Flags] 2 [Guid] 3293416987 [EditorId] 3293416987 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-NPVEBCJ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [36764] Host "[IP] 192.168.68.132 [Port] 0 [Flags] 2 [Guid] 1591930437 [EditorId] 1591930437 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-NPVEBCJ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [36936] Host "[IP] 192.168.68.132 [Port] 0 [Flags] 2 [Guid] 3293416987 [EditorId] 3293416987 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-NPVEBCJ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [36764] Host "[IP] 192.168.68.132 [Port] 0 [Flags] 2 [Guid] 1591930437 [EditorId] 1591930437 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-NPVEBCJ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
 Default GameObject BitMask: Water already registered
-Refreshing native plugins compatible for Editor in 31.96 ms, found 15 plugins.
-Preloading 1 native plugins for Editor in 0.50 ms.
+Refreshing native plugins compatible for Editor in 35.19 ms, found 15 plugins.
+Preloading 1 native plugins for Editor in 0.52 ms.
 Initialize engine version: 2022.3.19f1 (244b723c30a6)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/reidj/Git Projects/Redem/Redem/Assets
@@ -71,46 +71,46 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56768
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56588
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.007988 seconds.
-- Loaded All Assemblies, in  0.296 seconds
+Registered in 0.009087 seconds.
+- Loaded All Assemblies, in  0.311 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 334 ms
+Android Extension - Scanning For ADB Devices 324 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.614 seconds
-Domain Reload Profiling: 908ms
-	BeginReloadAssembly (84ms)
+- Finished resetting the current domain, in  0.606 seconds
+Domain Reload Profiling: 915ms
+	BeginReloadAssembly (97ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (27ms)
+	RebuildCommonClasses (26ms)
 	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (51ms)
+	initialDomainReloadingComplete (54ms)
 	LoadAllAssembliesAndSetupDomain (122ms)
-		LoadAssemblies (82ms)
+		LoadAssemblies (94ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (120ms)
-			TypeCache.Refresh (119ms)
+			TypeCache.Refresh (118ms)
 				TypeCache.ScanAssembly (107ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (615ms)
+	FinalizeReload (607ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (568ms)
+		SetupLoadedEditorAssemblies (558ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (436ms)
+			InitializePlatformSupportModulesInManaged (423ms)
 			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (91ms)
+			ProcessInitializeOnLoadAttributes (93ms)
 			ProcessInitializeOnLoadMethodAttributes (36ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
@@ -120,8 +120,8 @@ Domain Reload Profiling: 908ms
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory is not a mono symbol file
-- Loaded All Assemblies, in  0.856 seconds
-Refreshing native plugins compatible for Editor in 20.77 ms, found 15 plugins.
+- Loaded All Assemblies, in  1.083 seconds
+Refreshing native plugins compatible for Editor in 19.12 ms, found 15 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Package Manager log level set to [2]
@@ -156,48 +156,48 @@ Mono: successfully reloaded assembly
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.956 seconds
-Domain Reload Profiling: 1804ms
-	BeginReloadAssembly (121ms)
+- Finished resetting the current domain, in  0.966 seconds
+Domain Reload Profiling: 2042ms
+	BeginReloadAssembly (131ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (21ms)
-	RebuildCommonClasses (31ms)
-	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (45ms)
-	LoadAllAssembliesAndSetupDomain (642ms)
-		LoadAssemblies (383ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (43ms)
+	LoadAllAssembliesAndSetupDomain (862ms)
+		LoadAssemblies (420ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (326ms)
-			TypeCache.Refresh (271ms)
-				TypeCache.ScanAssembly (249ms)
-			ScanForSourceGeneratedMonoScriptInfo (41ms)
-			ResolveRequiredComponents (12ms)
-	FinalizeReload (956ms)
+		AnalyzeDomain (522ms)
+			TypeCache.Refresh (446ms)
+				TypeCache.ScanAssembly (406ms)
+			ScanForSourceGeneratedMonoScriptInfo (59ms)
+			ResolveRequiredComponents (14ms)
+	FinalizeReload (966ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (739ms)
+		SetupLoadedEditorAssemblies (734ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (21ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (120ms)
-			ProcessInitializeOnLoadAttributes (485ms)
-			ProcessInitializeOnLoadMethodAttributes (98ms)
-			AfterProcessingInitializeOnLoad (8ms)
+			BeforeProcessingInitializeOnLoad (116ms)
+			ProcessInitializeOnLoadAttributes (488ms)
+			ProcessInitializeOnLoadMethodAttributes (96ms)
+			AfterProcessingInitializeOnLoad (9ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (5ms)
 Default GameObject BitMask: Water already registered
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 19.52 ms, found 15 plugins.
+Refreshing native plugins compatible for Editor in 22.77 ms, found 15 plugins.
 Preloading 1 native plugins for Editor in 0.08 ms.
-Unloading 9909 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 305 unused Assets / (14.5 MB). Loaded Objects now: 10246.
-Memory consumption went from 417.8 MB to 403.2 MB.
-Total: 6.314100 ms (FindLiveObjects: 0.676400 ms CreateObjectMapping: 0.519700 ms MarkObjects: 3.183800 ms  DeleteObjects: 1.932700 ms)
+Unloading 9910 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 305 unused Assets / (14.6 MB). Loaded Objects now: 10247.
+Memory consumption went from 418.4 MB to 403.8 MB.
+Total: 6.655500 ms (FindLiveObjects: 0.782600 ms CreateObjectMapping: 0.386400 ms MarkObjects: 3.425800 ms  DeleteObjects: 2.059200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
