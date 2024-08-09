@@ -5934,6 +5934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spectatorCamera: {fileID: 7438780862285750536}
+  playerCamera: {fileID: 8186936894135656322}
   displayText: {fileID: 972418211290661769}
 --- !u!1 &3905730213383283183
 GameObject:

@@ -10,6 +10,7 @@ namespace Rekabsen
     {
         private InterfaceButton button;
         [SerializeField] private GameObject spectatorCamera;
+        [SerializeField] private GameObject playerCamera;
         [SerializeField] private TMP_Text displayText;
         private bool on = false;
 
@@ -30,16 +31,17 @@ namespace Rekabsen
 
         private void ChangeCamera()
         {
-            if(!on)
+            if(!on)//turn on
             {
+                spectatorCamera.transform.rotation = playerCamera.transform.rotation;
                 spectatorCamera.SetActive(true);
                 displayText.text = "\n Spectator       on";
                 on = true;
             }
-            else
+            else //turn off
             {
                 spectatorCamera.SetActive(false);
-                displayText.text = "\n Spectator       on";
+                displayText.text = "\n Spectator       off";
                 on = false;
             }
         }

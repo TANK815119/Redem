@@ -104,7 +104,7 @@ namespace Rekabsen
             
             if (!lostTemp && temp.Value < 100f) //regenerate
             {
-                temp.Value += tempPerSecond * 4f * Time.deltaTime;
+                temp.Value += tempPerSecond * 8f * Time.deltaTime;
             }
 
             if (temp.Value > 0f)
