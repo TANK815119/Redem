@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BakedIsland.unity
     guid: 92df0a5233c5c8543a996af8b42c0207
+  - enabled: 1
+    path: Assets/Scenes/LobbyEnd.unity
+    guid: 0b40b7a3a2ae657469e97a1e3faf4375
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a4f9907d991fb90489ee2312e0430647, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 83b193fe051ee6e4aa3468df898cce1e, type: 2}

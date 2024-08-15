@@ -65644,7 +65644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6863273780663025209, guid: ca20e50367b9701459318e7107d8e853, type: 3}
       propertyPath: sceneName
-      value: Lobby
+      value: LobbyEnd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

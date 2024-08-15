@@ -39,6 +39,10 @@ public class PlayerSpawner : NetworkBehaviour
             if (player.IsPlayerObject)
             {
                 player.transform.position = globalSpawnPosition;
+                for(int i = 0; i < player.transform.childCount; i++)
+                {
+                    player.transform.GetChild(i).localPosition = Vector3.zero;
+                }
             }
         }
     }
