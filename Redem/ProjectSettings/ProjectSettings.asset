@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Rekabsen
-  productName: Redem_MultiplayerTesting
+  productName: Physics VR Survival
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
@@ -139,7 +139,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.5
+  bundleVersion: 0.6
   preloadedAssets:
   - {fileID: -8458508097713605255, guid: 83b193fe051ee6e4aa3468df898cce1e, type: 2}
   - {fileID: 7612562862708697874, guid: 28b0df316b5c8b64db8f4b4060108999, type: 2}
@@ -289,7 +289,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 3e8d62e7372c76646a6a5bce2f7ca14c, type: 3}
+      m_Icon: {fileID: 2800000, guid: 5c616af4f0f6cde478d90a11a890c19c, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

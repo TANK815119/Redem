@@ -9578,6 +9578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_1
       objectReference: {fileID: 0}
+    - target: {fileID: 71889386162039449, guid: 7e5f91a3d2220bb4f857e4a05d321d63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2763124351999279235, guid: 7e5f91a3d2220bb4f857e4a05d321d63, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1278985698
