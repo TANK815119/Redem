@@ -30,6 +30,7 @@ public class NetworkCameraAssigner : MonoBehaviour
 
         if (!networkObject.OwnerClientId.Equals(NetworkManager.Singleton.LocalClientId))
         {
+            this.transform.parent.tag = "Body"; //for fog
             Destroy(cameraData);
             Destroy(playerCamera);
             Destroy(playerFilter);
