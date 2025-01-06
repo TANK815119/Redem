@@ -37,5 +37,5 @@ Future Plans:
 
 Informational videos:
 https://www.youtube.com/watch?v=SSqnNmdnhqI&t=4s - General overview of why this exists
-[https://www.youtube.com/watch?v=2EdgK1L6mEM](https://www.youtube.com/watch?v=GMJcr0ZyzII) - Fundamentals of the VR physics rig
+https://www.youtube.com/watch?v=GMJcr0ZyzII - Fundamentals of the VR physics rig
 https://www.youtube.com/watch?v=2EdgK1L6mEM - How the grabbing system works
