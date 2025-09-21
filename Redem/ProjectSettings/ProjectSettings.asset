@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Rekabsen
-  productName: Physics VR Survival
+  productName: FunctionMasterMobile
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
@@ -139,7 +139,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.6
+  bundleVersion: 0.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -161,7 +161,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Rekabsen.Redem_MultiplayerTesting
+    Android: com.Rekabsen.FunctionMasterMobile
     Standalone: com.Rekabsen.Redem-MultiplayerTesting-2
   buildNumber:
     Standalone: 0
@@ -287,7 +287,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 5c616af4f0f6cde478d90a11a890c19c, type: 3}
+      m_Icon: {fileID: 2800000, guid: 85ac55597b97403c82fc6601a93cf241, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
