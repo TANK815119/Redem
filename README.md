@@ -47,3 +47,5 @@ https://www.youtube.com/watch?v=GMJcr0ZyzII - Fundamentals of the VR physics rig
 https://www.youtube.com/watch?v=2EdgK1L6mEM - How the grabbing system works
 
 Made by Reid(Rekabsen on youtube)
+
+This project is licensed under the [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/) license.
